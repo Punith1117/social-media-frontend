@@ -73,16 +73,6 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     } catch (error) {
       // Standardized error handling
-      if (error.tokenExpired) {
-        clearExpiredToken();
-        setUser(null);
-        setToken(null);
-        return { 
-          success: false, 
-          error: 'Session expired. Please login again.',
-          tokenExpired: true
-        };
-      }
       return { 
         success: false, 
         error: error.error || 'Login failed',

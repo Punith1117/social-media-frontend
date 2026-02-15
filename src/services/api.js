@@ -28,8 +28,7 @@ class ApiService {
           success: false,
           error: data.error || `HTTP ${response.status}`,
           status: response.status,
-          field: data.field || null,
-          tokenExpired: response.status === 401 || data.tokenExpired
+          field: data.field || null
         };
       }
 
@@ -45,8 +44,7 @@ class ApiService {
         success: false,
         error: 'Network error. Please check your connection.',
         status: 0,
-        field: null,
-        tokenExpired: false
+        field: null
       };
     }
   }

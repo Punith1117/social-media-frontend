@@ -66,11 +66,7 @@ const LoginForm = () => {
         clearErrors();
         navigate('/');
       } else {
-        if (result.tokenExpired) {
-          setApiError('Your session has expired. Please login again.');
-        } else {
-          setApiError(result.error);
-        }
+        setApiError(result.error);
       }
     } catch (error) {
       setApiError('An unexpected error occurred. Please try again.');
