@@ -7,12 +7,12 @@ export const useSignupValidation = () => {
     password: null
   });
 
-  const validateField = useCallback((field, value) => {
-    const error = field === 'username' ? validateUsername(value) : validatePassword(value);
+  const validateField = useCallback((fieldName, value) => {
+    const error = fieldName === 'username' ? validateUsername(value) : validatePassword(value);
     
     setErrors(prev => ({
       ...prev,
-      [field]: error
+      [fieldName]: error
     }));
     
     return !error;
@@ -45,12 +45,12 @@ export const useLoginValidation = () => {
     password: null
   });
 
-  const validateField = useCallback((field, value) => {
-    const error = !value ? `${field.charAt(0).toUpperCase() + field.slice(1)} is required` : null;
+  const validateField = useCallback((fieldName, value) => {
+    const error = !value ? `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required` : null;
     
     setErrors(prev => ({
       ...prev,
-      [field]: error
+      [fieldName]: error
     }));
     
     return !error;

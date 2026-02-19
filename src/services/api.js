@@ -62,6 +62,55 @@ class ApiService {
       body: JSON.stringify({ username, password }),
     });
   }
+
+  // User Profile Management
+  async getMe() {
+    return this.request('/users/me');
+  }
+
+  async updateUser(userData) {
+    return this.request('/users/me', {
+      method: 'PUT',
+      body: JSON.stringify(userData),
+    });
+  }
+
+  async uploadProfilePhoto(file) {
+    const formData = new FormData();
+    formData.append('photo', file);
+
+    return this.request('/users/me/photo', {
+      method: 'POST',
+      body: formData,
+      headers: {}, // Let browser set Content-Type for multipart/form-data
+    });
+  }
+
+  async deleteProfilePhoto() {
+    return this.request('/users/me/photo', {
+      method: 'DELETE',
+    });
+  }
+
+  async getUserByUsername(username) {
+    return this.request(`/users/${username}`);
+  }
+
+  async followUser(followingId) {
+    return this.request(`/follow/${followingId}`, {
+      method: 'POST',
+    });
+  }
+
+  async unfollowUser(followingId) {
+    return this.request(`/follow/${followingId}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async getFollowStats(userId) {
+    return this.request(`/follow/stats/${userId}`);
+  }
 }
 
 export default new ApiService();
