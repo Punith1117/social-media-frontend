@@ -17,19 +17,15 @@ const PostHeader = styled.div`
   border-bottom: 1px solid #eee;
 `;
 
-const AuthorInfo = styled.div`
-  margin-bottom: 0.5rem;
-`;
-
-const AuthorName = styled.span`
-  font-weight: 600;
-  color: #333;
-  margin-right: 0.5rem;
-`;
-
 const PostDate = styled.span`
   color: #666;
   font-size: 0.9rem;
+`;
+
+const PostDates = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 `;
 
 const PostContent = styled.div`
@@ -104,10 +100,12 @@ const PostCard = ({ post, onLikeUpdate }) => {
   return (
     <PostCardContainer onClick={handleClick}>
       <PostHeader>
-        <AuthorInfo>
-          <AuthorName>{post.author?.username || 'Unknown User'}</AuthorName>
+        <PostDates>
           <PostDate>{formatDate(post.createdAt)}</PostDate>
-        </AuthorInfo>
+          {post.updatedAt !== post.createdAt && (
+            <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+          )}
+        </PostDates>
       </PostHeader>
 
       <PostContent>
