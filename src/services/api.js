@@ -111,6 +111,54 @@ class ApiService {
   async getFollowStats(userId) {
     return this.request(`/follow/stats/${userId}`);
   }
+
+  // Posts API
+  async createPost(content) {
+    return this.request('/posts', {
+      method: 'POST',
+      body: JSON.stringify({ content }),
+    });
+  }
+
+  async getPostById(id) {
+    return this.request(`/posts/${id}`);
+  }
+
+  async getPostsByUser(username, page = 1, limit = 5) {
+    const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+    return this.request(`/users/${username}/posts?${params}`);
+  }
+
+  async getOwnPosts(page = 1, limit = 5) {
+    const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+    return this.request(`/users/me/posts?${params}`);
+  }
+
+  async updatePost(id, content) {
+    return this.request(`/posts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ content }),
+    });
+  }
+
+  async deletePost(id) {
+    return this.request(`/posts/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  // Likes API
+  async likePost(postId) {
+    return this.request(`/posts/${postId}/like`, {
+      method: 'POST',
+    });
+  }
+
+  async unlikePost(postId) {
+    return this.request(`/posts/${postId}/like`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 export default new ApiService();
