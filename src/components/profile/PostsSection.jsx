@@ -1,26 +1,98 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import api from '../../services/api';
+import PostList from '../posts/PostList';
+import PaginationControls from '../posts/PaginationControls';
 
 const PostsContainer = styled.div`
   padding: 1rem;
-  text-align: center;
-  color: #666;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const NoPostsMessage = styled.div`
-  font-size: 1.1rem;
-  color: #999;
 `;
 
 const PostsSection = ({ username }) => {
+  const [posts, setPosts] = useState([]);
+  const [pagination, setPagination] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const fetchPosts = async (page = 1) => {
+    try {
+      setLoading(true);
+      const response = await api.getPostsByUser(username, page, 5);
+      setPosts(response.posts);
+      setPagination(response.pagination);
+      setError(null);
+    } catch (error) {
+      setError(error.error || 'Failed to load posts');
+      setPosts([]);
+      setPagination(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (username) {
+      setCurrentPage(1);
+      fetchPosts(1);
+    }
+  }, [username]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    fetchPosts(page);
+  };
+
+  const handleLikeUpdate = async (postId, shouldLike) => {
+    try {
+      // Optimistic update
+      setPosts(prev => prev.map(post => 
+        post.id === postId 
+          ? {
+              ...post,
+              isLikedByCurrentUser: shouldLike,
+              likesCount: shouldLike ? post.likesCount + 1 : post.likesCount - 1
+            }
+          : post
+      ));
+
+      if (shouldLike) {
+        await api.likePost(postId);
+      } else {
+        await api.unlikePost(postId);
+      }
+    } catch (error) {
+      // Revert optimistic update on error
+      setPosts(prev => prev.map(post => 
+        post.id === postId 
+          ? {
+              ...post,
+              isLikedByCurrentUser: !shouldLike,
+              likesCount: shouldLike ? post.likesCount - 1 : post.likesCount + 1
+            }
+          : post
+      ));
+      
+      console.error('Like/unlike failed:', error);
+    }
+  };
+
   return (
     <PostsContainer>
-      <NoPostsMessage>
-        {username} hasn't posted anything yet
-      </NoPostsMessage>
+      <PostList 
+        posts={posts}
+        loading={loading}
+        error={error}
+        onLikeUpdate={handleLikeUpdate}
+        emptyMessage={`${username} hasn't posted anything yet`}
+      />
+      
+      {pagination && (
+        <PaginationControls 
+          pagination={pagination}
+          onPageChange={handlePageChange}
+        />
+      )}
     </PostsContainer>
   );
 };
