@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import { ProfileProvider } from './context/ProfileContext';
 import ProtectedRoute from './components/layout/ProtectedRoute';
+import AppLayout from './components/layout/AppLayout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -16,37 +17,39 @@ function App() {
     <AuthProvider>
       <ProfileProvider>
         <Router>
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/users/:username" element={<UserProfilePage />} />
-            <Route path="/posts/:id" element={<PostDetailPage />} />
-            <Route 
-              path="/create-post" 
-              element={
-                <ProtectedRoute>
-                  <CreatePostPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/me" 
-              element={
-                <ProtectedRoute>
-                  <MyDetailsPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/" 
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <AppLayout>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/users/:username" element={<UserProfilePage />} />
+              <Route path="/posts/:id" element={<PostDetailPage />} />
+              <Route 
+                path="/create-post" 
+                element={
+                  <ProtectedRoute>
+                    <CreatePostPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/me" 
+                element={
+                  <ProtectedRoute>
+                    <MyDetailsPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/" 
+                element={
+                  <ProtectedRoute>
+                    <HomePage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </AppLayout>
         </Router>
       </ProfileProvider>
     </AuthProvider>
