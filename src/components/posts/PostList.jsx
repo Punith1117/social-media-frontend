@@ -31,6 +31,7 @@ const PostList = ({
   loading, 
   error, 
   onLikeUpdate,
+  onDelete,
   emptyMessage = "No posts yet" 
 }) => {
   if (loading) {
@@ -64,6 +65,7 @@ const PostList = ({
           key={post.id} 
           post={post} 
           onLikeUpdate={onLikeUpdate}
+          onDelete={onDelete}
         />
       ))}
     </PostListContainer>

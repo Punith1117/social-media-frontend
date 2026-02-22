@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import PostList from '../posts/PostList';
 import PaginationControls from '../posts/PaginationControls';
@@ -9,6 +10,7 @@ const PostsContainer = styled.div`
 `;
 
 const PostsSection = ({ username }) => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -77,6 +79,29 @@ const PostsSection = ({ username }) => {
     }
   };
 
+  const handleDelete = async (postId) => {
+    try {
+      // Optimistic update - remove post from state immediately
+      setPosts(prev => prev.filter(post => post.id !== postId));
+      
+      // Call API to delete post
+      await api.deletePost(postId);
+      
+      // Success - post already removed from state
+    } catch (error) {
+      if (error.status === 401 || error.status === 403) {
+        // Auth error - redirect to login
+        navigate('/login');
+      } else {
+        // Other errors - refetch posts to restore correct state
+        fetchPosts(currentPage);
+      }
+      
+      // Re-throw error to let PostCard know deletion failed
+      throw error;
+    }
+  };
+
   return (
     <PostsContainer>
       <PostList 
@@ -84,6 +109,7 @@ const PostsSection = ({ username }) => {
         loading={loading}
         error={error}
         onLikeUpdate={handleLikeUpdate}
+        onDelete={handleDelete}
         emptyMessage={`${username} hasn't posted anything yet`}
       />
       
