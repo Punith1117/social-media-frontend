@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage';
 import UserProfilePage from './pages/UserProfilePage';
 import MyDetailsPage from './pages/MyDetailsPage';
 import PostDetailPage from './pages/PostDetailPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/users/:username" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
+            <Route 
+              path="/create-post" 
+              element={
+                <ProtectedRoute>
+                  <CreatePostPage />
+                </ProtectedRoute>
+              } 
+            />
             <Route 
               path="/me" 
               element={
