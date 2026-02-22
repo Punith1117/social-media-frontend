@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 const PostCardContainer = styled.div`
   background: white;
@@ -63,14 +64,37 @@ const LikeButton = styled.button`
   }
 `;
 
+const DeleteButton = styled.button`
+  background: #e74c3c;
+  color: white;
+  border: 1px solid #e74c3c;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: auto;
+
+  &:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
 const LikesCount = styled.span`
   color: #666;
   font-size: 0.9rem;
 `;
 
-const PostCard = ({ post, onLikeUpdate }) => {
+const PostCard = ({ post, onLikeUpdate, onDelete }) => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleClick = () => {
     navigate(`/posts/${post.id}`);
@@ -89,6 +113,33 @@ const PostCard = ({ post, onLikeUpdate }) => {
     }
   };
 
+  const handleDeleteClick = (e) => {
+    e.stopPropagation(); // Prevent navigation when clicking delete button
+    
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    setIsDeleting(true);
+    
+    try {
+      if (onDelete) {
+        await onDelete(post.id);
+      }
+      setShowDeleteModal(false);
+    } catch (error) {
+      // Error handling is done at parent level
+      console.error('Delete failed:', error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -97,37 +148,59 @@ const PostCard = ({ post, onLikeUpdate }) => {
     });
   };
 
+  // Check if current user is the post owner
+  const isPostOwner = user?.id === post.authorId;
+
   return (
-    <PostCardContainer onClick={handleClick}>
-      <PostHeader>
-        <PostDates>
-          <PostDate>{formatDate(post.createdAt)}</PostDate>
-          {post.updatedAt !== post.createdAt && (
-            <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+    <>
+      <PostCardContainer onClick={handleClick}>
+        <PostHeader>
+          <PostDates>
+            <PostDate>{formatDate(post.createdAt)}</PostDate>
+            {post.updatedAt !== post.createdAt && (
+              <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+            )}
+          </PostDates>
+        </PostHeader>
+
+        <PostContent>
+          {post.content}
+        </PostContent>
+
+        <PostActions>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <LikeButton
+              onClick={handleLike}
+              disabled={!isAuthenticated}
+              $isLiked={post.isLikedByCurrentUser}
+            >
+              {post.isLikedByCurrentUser ? '❤️' : '🤍'} 
+              {post.isLikedByCurrentUser ? 'Unlike' : 'Like'}
+            </LikeButton>
+            <LikesCount>
+              {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
+            </LikesCount>
+          </div>
+          
+          {isPostOwner && (
+            <DeleteButton
+              onClick={handleDeleteClick}
+              disabled={isDeleting}
+            >
+              🗑️ Delete
+            </DeleteButton>
           )}
-        </PostDates>
-      </PostHeader>
-
-      <PostContent>
-        {post.content}
-      </PostContent>
-
-      <PostActions>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <LikeButton
-            onClick={handleLike}
-            disabled={!isAuthenticated}
-            $isLiked={post.isLikedByCurrentUser}
-          >
-            {post.isLikedByCurrentUser ? '❤️' : '🤍'} 
-            {post.isLikedByCurrentUser ? 'Unlike' : 'Like'}
-          </LikeButton>
-          <LikesCount>
-            {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
-          </LikesCount>
-        </div>
-      </PostActions>
-    </PostCardContainer>
+        </PostActions>
+      </PostCardContainer>
+      
+      <DeleteConfirmationModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteConfirm}
+        isDeleting={isDeleting}
+        postContent={post.content}
+      />
+    </>
   );
 };
 
