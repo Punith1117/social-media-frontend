@@ -261,9 +261,6 @@ const PostDetailPage = () => {
     });
   };
 
-  // Check if current user is the post owner
-  const isPostOwner = user?.id === post.authorId;
-
   if (loading) {
     return (
       <CenterContainer>
@@ -293,6 +290,9 @@ const PostDetailPage = () => {
       </CenterContainer>
     );
   }
+
+  // Check if current user is post owner - ONLY after confirming post exists
+  const isPostOwner = user?.id === post.authorId;
 
   return (
     <CenterContainer>
