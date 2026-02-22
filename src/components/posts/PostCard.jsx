@@ -95,6 +95,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
   const { user, isAuthenticated } = useAuth();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isLikeInProgress, setIsLikeInProgress] = useState(false);
 
   const handleClick = () => {
     navigate(`/posts/${post.id}`);
@@ -108,8 +109,19 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
       return;
     }
 
-    if (onLikeUpdate) {
-      onLikeUpdate(post.id, !post.isLikedByCurrentUser);
+    setIsLikeInProgress(true);
+    
+    // Capture current state before any mutations
+    const wasLiked = post.isLikedByCurrentUser;
+    
+    try {
+      // Call parent's like update function
+      onLikeUpdate(post.id, !wasLiked);
+    } catch (error) {
+      // Error handling is done at parent level
+      console.error('Like/unlike failed:', error);
+    } finally {
+      setIsLikeInProgress(false);
     }
   };
 
@@ -171,7 +183,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <LikeButton
               onClick={handleLike}
-              disabled={!isAuthenticated}
+              disabled={!isAuthenticated || isLikeInProgress}
               $isLiked={post.isLikedByCurrentUser}
             >
               {post.isLikedByCurrentUser ? '❤️' : '🤍'} 
