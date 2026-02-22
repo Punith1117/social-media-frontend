@@ -11,7 +11,8 @@ const FormContainer = styled.div`
 
 const TextArea = styled.textarea`
   width: 100%;
-  min-height: 120px;
+  min-height: 250px;
+  min-width: 300px;
   padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
