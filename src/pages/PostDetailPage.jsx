@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { CenterContainer } from '../styles/MinimalStyles';
+import DeleteConfirmationModal from '../components/posts/DeleteConfirmationModal';
 
 const PostContainer = styled.div`
   display: flex;
@@ -89,6 +90,27 @@ const LikeButton = styled.button`
   }
 `;
 
+const DeleteButton = styled.button`
+  background: #e74c3c;
+  color: white;
+  border: 1px solid #e74c3c;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  &:hover {
+    background: #c0392b;
+    border-color: #c0392b;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
 const LikesCount = styled.span`
   color: #666;
   font-size: 0.9rem;
@@ -140,6 +162,8 @@ const PostDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [liking, setLiking] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -198,6 +222,35 @@ const PostDetailPage = () => {
     }
   };
 
+  const handleDeleteClick = () => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    setIsDeleting(true);
+    
+    try {
+      await api.deletePost(post.id);
+      // Navigate to user's profile page after successful deletion
+      navigate(`/users/${post.author.username}`);
+    } catch (error) {
+      if (error.status === 401 || error.status === 403) {
+        navigate('/login');
+      } else {
+        // For other errors, keep modal open and show error
+        console.error('Delete failed:', error);
+        // TODO: Show error message to user
+      }
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -207,6 +260,9 @@ const PostDetailPage = () => {
       minute: '2-digit'
     });
   };
+
+  // Check if current user is the post owner
+  const isPostOwner = user?.id === post.authorId;
 
   if (loading) {
     return (
@@ -247,15 +303,28 @@ const PostDetailPage = () => {
       <PostContainer>
         <PostSection>
           <PostHeader>
-            <AuthorInfo>
-              <AuthorName>{post.author?.username || 'Unknown User'}</AuthorName>
-            </AuthorInfo>
-            <PostDates>
-              <PostDate>Created: {formatDate(post.createdAt)}</PostDate>
-              {post.updatedAt && post.updatedAt !== post.createdAt && (
-                <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div>
+                <AuthorInfo>
+                  <AuthorName>{post.author?.username || 'Unknown User'}</AuthorName>
+                </AuthorInfo>
+                <PostDates>
+                  <PostDate>Created: {formatDate(post.createdAt)}</PostDate>
+                  {post.updatedAt && post.updatedAt !== post.createdAt && (
+                    <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+                  )}
+                </PostDates>
+              </div>
+              
+              {isPostOwner && (
+                <DeleteButton
+                  onClick={handleDeleteClick}
+                  disabled={isDeleting}
+                >
+                  🗑️ Delete
+                </DeleteButton>
               )}
-            </PostDates>
+            </div>
           </PostHeader>
 
           <PostContent>
@@ -284,6 +353,14 @@ const PostDetailPage = () => {
           </NoComments>
         </CommentsSection>
       </PostContainer>
+      
+      <DeleteConfirmationModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteConfirm}
+        isDeleting={isDeleting}
+        postContent={post.content}
+      />
     </CenterContainer>
   );
 };
