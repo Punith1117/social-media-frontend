@@ -49,11 +49,22 @@ const DisplayName = styled.div`
 `;
 
 const UserListItem = ({ user }) => {
+  // Optimize Cloudinary images for list view (smaller size, faster loading)
+  const getOptimizedImageUrl = (url) => {
+    if (!url || !url.includes('cloudinary.com')) {
+      return url;
+    }
+    
+    // Add Cloudinary transformations for thumbnail
+    const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
+    return url.replace('/upload/', `/upload/${transformations}/`);
+  };
+
   return (
     <UserItemContainer>
       <UserItemLink to={`/users/${user.username}`}>
         <UserAvatar 
-          src={user.profilePhotoUrl || '/default-avatar.svg'} 
+          src={getOptimizedImageUrl(user.profilePhotoUrl) || '/default-avatar.svg'} 
           alt={user.displayName || user.username || 'User avatar'}
         />
         <UserInfo>
