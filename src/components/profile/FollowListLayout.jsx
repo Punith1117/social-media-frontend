@@ -88,7 +88,7 @@ const FollowListLayout = ({ user, children, activeTab, onTabChange }) => {
             {user.displayName && <p>{user.displayName}</p>}
           </UserDetails>
         </UserInfo>
-        <BackButton to={`/${user.username}`}>
+        <BackButton to={`/users/${user.username}`}>
           Back to Profile
         </BackButton>
       </Header>
