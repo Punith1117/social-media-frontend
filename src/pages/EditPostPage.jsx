@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { CenterContainer } from '../styles/MinimalStyles';
 import PostForm from '../components/posts/PostForm';
+
+const PageContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+`;
+
+const PageTitle = styled.h1`
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
 
 const EditPostPage = () => {
   const { id } = useParams();
@@ -95,18 +109,20 @@ const EditPostPage = () => {
   if (isUnauthorized) {
     return (
       <CenterContainer>
-        <h1>Edit Post</h1>
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
-          color: '#856404', 
-          background: '#fff3cd', 
-          border: '1px solid #ffeaa7', 
-          borderRadius: '4px',
-          margin: '1rem 0'
-        }}>
-          {error || 'You are not authorized to edit this post'}
-        </div>
+        <PageContainer>
+          <PageTitle>Edit Post</PageTitle>
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '2rem', 
+            color: '#856404', 
+            background: '#fff3cd', 
+            border: '1px solid #ffeaa7', 
+            borderRadius: '4px',
+            margin: '1rem 0'
+          }}>
+            {error || 'You are not authorized to edit this post'}
+          </div>
+        </PageContainer>
       </CenterContainer>
     );
   }
@@ -114,18 +130,20 @@ const EditPostPage = () => {
   if (error && !isUnauthorized) {
     return (
       <CenterContainer>
-        <h1>Edit Post</h1>
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
-          color: '#cc0000', 
-          background: '#f8d7da', 
-          border: '1px solid #f5c6cb', 
-          borderRadius: '4px',
-          margin: '1rem 0'
-        }}>
-          {error}
-        </div>
+        <PageContainer>
+          <PageTitle>Edit Post</PageTitle>
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '2rem', 
+            color: '#cc0000', 
+            background: '#f8d7da', 
+            border: '1px solid #f5c6cb', 
+            borderRadius: '4px',
+            margin: '1rem 0'
+          }}>
+            {error}
+          </div>
+        </PageContainer>
       </CenterContainer>
     );
   }
@@ -133,57 +151,61 @@ const EditPostPage = () => {
   if (!post) {
     return (
       <CenterContainer>
-        <h1>Edit Post</h1>
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
-          color: '#cc0000', 
-          background: '#f8d7da', 
-          border: '1px solid #f5c6cb', 
-          borderRadius: '4px',
-          margin: '1rem 0'
-        }}>
-          Post not found
-        </div>
+        <PageContainer>
+          <PageTitle>Edit Post</PageTitle>
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '2rem', 
+            color: '#cc0000', 
+            background: '#f8d7da', 
+            border: '1px solid #f5c6cb', 
+            borderRadius: '4px',
+            margin: '1rem 0'
+          }}>
+            Post not found
+          </div>
+        </PageContainer>
       </CenterContainer>
     );
   }
 
   return (
     <CenterContainer>
-      <h1>Edit Post</h1>
-      
-      {isSubmitting ? (
-        <div style={{ 
-          position: 'fixed', 
-          top: 0, 
-          left: 0, 
-          right: 0, 
-          bottom: 0, 
-          background: 'rgba(0, 0, 0, 0.5)', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          zIndex: 1000 
-        }}>
+      <PageContainer>
+        <PageTitle>Edit Post</PageTitle>
+        
+        {isSubmitting ? (
           <div style={{ 
-            background: 'white', 
-            padding: '2rem', 
-            borderRadius: '8px', 
-            textAlign: 'center' 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            background: 'rgba(0, 0, 0, 0.5)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            zIndex: 1000 
           }}>
-            Updating post...
+            <div style={{ 
+              background: 'white', 
+              padding: '2rem', 
+              borderRadius: '8px', 
+              textAlign: 'center' 
+            }}>
+              Updating post...
+            </div>
           </div>
-        </div>
-      ) : null}
-      
-      <PostForm
-        onSubmit={handleSubmit}
-        onCancel={handleCancel}
-        initialContent={post.content}
-        disabled={isSubmitting}
-        mode="edit"
-      />
+        ) : null}
+        
+        <PostForm
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+          initialContent={post.content}
+          disabled={isSubmitting}
+          mode="edit"
+        />
+      </PageContainer>
     </CenterContainer>
   );
 };
