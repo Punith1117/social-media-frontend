@@ -112,6 +112,14 @@ class ApiService {
     return this.request(`/follow/stats/${userId}`);
   }
 
+  async getFollowers(userId) {
+    return this.request(`/follow/followers/${userId}`);
+  }
+
+  async getFollowing(userId) {
+    return this.request(`/follow/following/${userId}`);
+  }
+
   // Posts API
   async createPost(content) {
     return this.request('/posts', {
