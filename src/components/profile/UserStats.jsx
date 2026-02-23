@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StatsContainer = styled.div`
@@ -24,7 +25,7 @@ const StatLabel = styled.div`
   margin-top: 0.25rem;
 `;
 
-const StatLink = styled.a`
+const StatLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   
@@ -37,13 +38,13 @@ const UserStats = ({ followersCount, followingCount, username }) => {
   return (
     <StatsContainer>
       <StatItem>
-        <StatLink href={`/${username}/followers`}>
+        <StatLink to={`/users/${username}/followers`}>
           <StatNumber>{followersCount}</StatNumber>
           <StatLabel>Followers</StatLabel>
         </StatLink>
       </StatItem>
       <StatItem>
-        <StatLink href={`/${username}/following`}>
+        <StatLink to={`/users/${username}/following`}>
           <StatNumber>{followingCount}</StatNumber>
           <StatLabel>Following</StatLabel>
         </StatLink>

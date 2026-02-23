@@ -12,6 +12,8 @@ import MyDetailsPage from './pages/MyDetailsPage';
 import PostDetailPage from './pages/PostDetailPage';
 import CreatePostPage from './pages/CreatePostPage';
 import EditPostPage from './pages/EditPostPage';
+import FollowersPage from './pages/FollowersPage';
+import FollowingPage from './pages/FollowingPage';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/users/:username" element={<UserProfilePage />} />
+              <Route path="/users/:username/followers" element={<FollowersPage />} />
+              <Route path="/users/:username/following" element={<FollowingPage />} />
               <Route 
                 path="/posts/:id/edit" 
                 element={
