@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { CenterContainer } from '../styles/MinimalStyles';
-import CreatePostForm from '../components/posts/CreatePostForm';
+import PostForm from '../components/posts/PostForm';
 
 const PageContainer = styled.div`
   max-width: 600px;
@@ -105,10 +105,11 @@ const CreatePostPage = () => {
           </LoadingOverlay>
         ) : null}
         
-        <CreatePostForm
+        <PostForm
           onSubmit={handleSubmit}
           onCancel={handleCancel}
           disabled={isLoading}
+          mode="create"
         />
       </PageContainer>
     </CenterContainer>

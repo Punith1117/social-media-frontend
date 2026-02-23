@@ -82,12 +82,19 @@ const ErrorMessage = styled.div`
   border-radius: 4px;
 `;
 
-const CreatePostForm = ({ onSubmit, onCancel, initialContent = '', disabled = false }) => {
+const PostForm = ({ 
+  onSubmit, 
+  onCancel, 
+  initialContent = '', 
+  disabled = false, 
+  mode = 'create' 
+}) => {
   const [content, setContent] = useState(initialContent);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const maxCharacters = 300;
+  const isEditMode = mode === 'edit';
 
   const handleContentChange = (e) => {
     const newContent = e.target.value;
@@ -129,10 +136,15 @@ const CreatePostForm = ({ onSubmit, onCancel, initialContent = '', disabled = fa
 
     try {
       await onSubmit(content.trim());
-      // Reset form on successful submission
-      setContent('');
+      // Reset form on successful submission only in create mode
+      if (!isEditMode) {
+        setContent('');
+      }
     } catch (err) {
-      setError(err.error || 'Failed to create post');
+      const errorMessage = isEditMode 
+        ? (err.error || 'Failed to update post')
+        : (err.error || 'Failed to create post');
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -149,13 +161,19 @@ const CreatePostForm = ({ onSubmit, onCancel, initialContent = '', disabled = fa
   const isFormValid = content.trim().length > 0 && content.length <= maxCharacters;
   const characterCount = content.length;
 
+  // Dynamic text based on mode
+  const placeholder = isEditMode ? 'Edit your post...' : "What's on your mind?";
+  const submitButtonText = isSubmitting 
+    ? (isEditMode ? 'Updating...' : 'Posting...')
+    : (isEditMode ? 'Update Post' : 'Post');
+
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
         <TextArea
           value={content}
           onChange={handleContentChange}
-          placeholder="What's on your mind?"
+          placeholder={placeholder}
           disabled={disabled || isSubmitting}
           maxLength={maxCharacters}
         />
@@ -184,7 +202,7 @@ const CreatePostForm = ({ onSubmit, onCancel, initialContent = '', disabled = fa
             type="submit"
             disabled={!isFormValid || disabled || isSubmitting}
           >
-            {isSubmitting ? 'Posting...' : 'Post'}
+            {submitButtonText}
           </Button>
         </ButtonContainer>
       </form>
@@ -192,4 +210,4 @@ const CreatePostForm = ({ onSubmit, onCancel, initialContent = '', disabled = fa
   );
 };
 
-export default CreatePostForm;
+export default PostForm;
