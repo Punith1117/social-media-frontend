@@ -90,6 +90,33 @@ const LikeButton = styled.button`
   }
 `;
 
+const EditButton = styled.button`
+  background: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+
+  &:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
 const DeleteButton = styled.button`
   background: #e74c3c;
   color: white;
@@ -222,6 +249,15 @@ const PostDetailPage = () => {
     }
   };
 
+  const handleEditClick = () => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    
+    navigate(`/posts/${post.id}/edit`);
+  };
+
   const handleDeleteClick = () => {
     if (!isAuthenticated) {
       navigate('/login');
@@ -317,12 +353,20 @@ const PostDetailPage = () => {
               </div>
               
               {isPostOwner && (
-                <DeleteButton
-                  onClick={handleDeleteClick}
-                  disabled={isDeleting}
-                >
-                  🗑️ Delete
-                </DeleteButton>
+                <ButtonContainer>
+                  <EditButton
+                    onClick={handleEditClick}
+                    disabled={isDeleting}
+                  >
+                    ✏️ Edit
+                  </EditButton>
+                  <DeleteButton
+                    onClick={handleDeleteClick}
+                    disabled={isDeleting}
+                  >
+                    🗑️ Delete
+                  </DeleteButton>
+                </ButtonContainer>
               )}
             </div>
           </PostHeader>

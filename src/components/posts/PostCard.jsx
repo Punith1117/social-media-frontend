@@ -64,6 +64,32 @@ const LikeButton = styled.button`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+const EditButton = styled.button`
+  background: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+
+  &:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
 const DeleteButton = styled.button`
   background: #e74c3c;
   color: white;
@@ -123,6 +149,17 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
     } finally {
       setIsLikeInProgress(false);
     }
+  };
+
+  const handleEditClick = (e) => {
+    e.stopPropagation(); // Prevent navigation when clicking edit button
+    
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    
+    navigate(`/posts/${post.id}/edit`);
   };
 
   const handleDeleteClick = (e) => {
@@ -195,12 +232,20 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
           </div>
           
           {isPostOwner && (
-            <DeleteButton
-              onClick={handleDeleteClick}
-              disabled={isDeleting}
-            >
-              🗑️ Delete
-            </DeleteButton>
+            <ButtonContainer>
+              <EditButton
+                onClick={handleEditClick}
+                disabled={isDeleting}
+              >
+                ✏️ Edit
+              </EditButton>
+              <DeleteButton
+                onClick={handleDeleteClick}
+                disabled={isDeleting}
+              >
+                🗑️ Delete
+              </DeleteButton>
+            </ButtonContainer>
           )}
         </PostActions>
       </PostCardContainer>
