@@ -5,6 +5,7 @@ import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { CenterContainer } from '../styles/MinimalStyles';
 import DeleteConfirmationModal from '../components/posts/DeleteConfirmationModal';
+import CommentSection from '../components/comments/CommentSection';
 
 const PostContainer = styled.div`
   display: flex;
@@ -16,14 +17,6 @@ const PostContainer = styled.div`
 
 const PostSection = styled.div`
   flex: 2;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1.5rem;
-`;
-
-const CommentsSection = styled.div`
-  flex: 1;
   background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -143,13 +136,6 @@ const LikesCount = styled.span`
   font-size: 0.9rem;
 `;
 
-const NoComments = styled.div`
-  text-align: center;
-  color: #999;
-  font-style: italic;
-  padding: 1rem;
-`;
-
 const LoadingContainer = styled.div`
   text-align: center;
   padding: 2rem;
@@ -174,11 +160,6 @@ const BackButton = styled.button`
   &:hover {
     text-decoration: underline;
   }
-`;
-
-const CommentsHeader = styled.h3`
-  margin-bottom: 1rem;
-  color: #333;
 `;
 
 const PostDetailPage = () => {
@@ -390,12 +371,7 @@ const PostDetailPage = () => {
           </div>
         </PostSection>
 
-        <CommentsSection>
-          <CommentsHeader>Comments</CommentsHeader>
-          <NoComments>
-            No comments yet
-          </NoComments>
-        </CommentsSection>
+        <CommentSection postId={post.id} />
       </PostContainer>
       
       <DeleteConfirmationModal
