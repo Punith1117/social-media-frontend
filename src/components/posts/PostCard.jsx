@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
+import ShareButton from '../common/ShareButton';
 
 const PostCardContainer = styled.div`
   background: white;
@@ -230,6 +231,8 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
               {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
             </LikesCount>
           </div>
+          
+          <ShareButton post={post} />
           
           {isPostOwner && (
             <ButtonContainer>

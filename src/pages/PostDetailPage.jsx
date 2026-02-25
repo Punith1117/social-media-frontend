@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { CenterContainer } from '../styles/MinimalStyles';
 import DeleteConfirmationModal from '../components/posts/DeleteConfirmationModal';
 import CommentSection from '../components/comments/CommentSection';
+import ShareButton from '../components/common/ShareButton';
 
 const PostContainer = styled.div`
   display: flex;
@@ -356,7 +357,7 @@ const PostDetailPage = () => {
             {post.content}
           </PostContent>
 
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <LikeButton
               onClick={handleLike}
               disabled={liking || !isAuthenticated}
@@ -368,6 +369,7 @@ const PostDetailPage = () => {
             <LikesCount>
               {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
             </LikesCount>
+            <ShareButton post={post} />
           </div>
         </PostSection>
 
