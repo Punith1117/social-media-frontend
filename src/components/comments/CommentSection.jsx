@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 import CommentItem from './CommentItem';
 import PaginationControls from '../posts/PaginationControls';
@@ -90,6 +92,7 @@ const NoComments = styled.div`
 
 const CommentSection = ({ postId }) => {
   const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [comments, setComments] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -151,6 +154,13 @@ const CommentSection = ({ postId }) => {
       // Refetch comments after successful creation
       fetchComments(pagination?.page || 1);
     } catch (error) {
+      // Handle authorization errors for authenticated operation
+      if (error.status === 401 || error.status === 403) {
+        clearExpiredToken();
+        navigate('/login');
+        return;
+      }
+      
       setFormError(error.error || 'Failed to create comment');
     } finally {
       setSubmitting(false);

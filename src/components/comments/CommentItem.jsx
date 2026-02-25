@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 
 const CommentContainer = styled.div`
@@ -65,6 +67,7 @@ const DeleteButton = styled.button`
 
 const CommentItem = ({ comment, onDelete }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   
   const handleDelete = async () => {
     try {
@@ -74,6 +77,13 @@ const CommentItem = ({ comment, onDelete }) => {
       // Then call API
       await api.deleteComment(comment.id);
     } catch (error) {
+      // Handle authorization errors for authenticated operation
+      if (error.status === 401 || error.status === 403) {
+        clearExpiredToken();
+        navigate('/login');
+        return;
+      }
+      
       // If delete fails, parent component needs to refetch to restore state
       console.error('Delete comment failed:', error);
       // Signal to parent that delete failed so it can refetch
