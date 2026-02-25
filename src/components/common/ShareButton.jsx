@@ -55,6 +55,23 @@ const DropdownOption = styled.button`
 const ShareButton = ({ post }) => {
   const [showFallback, setShowFallback] = useState(false);
   const [copied, setCopied] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowFallback(false);
+      }
+    };
+
+    if (showFallback) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showFallback]);
 
   const handleShare = async () => {
     const shareData = {
@@ -105,7 +122,7 @@ const ShareButton = ({ post }) => {
       </ShareButtonStyled>
       
       {showFallback && !navigator.share && (
-        <FallbackDropdown>
+        <FallbackDropdown ref={dropdownRef}>
           <DropdownOption onClick={handleCopyLink}>
             {copied ? '✅ Copied!' : '📋 Copy Link'}
           </DropdownOption>
