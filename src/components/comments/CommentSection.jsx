@@ -225,8 +225,7 @@ const CommentSection = ({ postId }) => {
           {/* Pagination */}
           {pagination && pagination.totalPages > 1 && (
             <PaginationControls
-              currentPage={pagination.page}
-              totalPages={pagination.totalPages}
+              pagination={pagination}
               onPageChange={handlePageChange}
             />
           )}
