@@ -167,6 +167,25 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  // Comments API
+  async createComment(postId, content) {
+    return this.request(`/posts/${postId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ content }),
+    });
+  }
+
+  async getCommentsByPost(postId, page = 1, limit = 10) {
+    const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+    return this.request(`/posts/${postId}/comments?${params}`);
+  }
+
+  async deleteComment(commentId) {
+    return this.request(`/comments/${commentId}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 export default new ApiService();
