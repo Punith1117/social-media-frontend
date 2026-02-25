@@ -96,7 +96,8 @@ const ShareButton = ({ post }) => {
     handleShare();
   };
 
-  const handleCopyLink = async () => {
+  const handleCopyLink = async (e) => {
+    e.stopPropagation();
     const url = `${window.location.origin}/posts/${post.id}`;
     
     try {
@@ -115,6 +116,11 @@ const ShareButton = ({ post }) => {
     }
   };
 
+  const handleCloseDropdown = (e) => {
+    e.stopPropagation();
+    setShowFallback(false);
+  };
+
   return (
     <ShareContainer>
       <ShareButtonStyled onClick={handleShareClick}>
@@ -126,7 +132,7 @@ const ShareButton = ({ post }) => {
           <DropdownOption onClick={handleCopyLink}>
             {copied ? '✅ Copied!' : '📋 Copy Link'}
           </DropdownOption>
-          <DropdownOption onClick={() => setShowFallback(false)}>
+          <DropdownOption onClick={handleCloseDropdown}>
             ✖️ Close
           </DropdownOption>
         </FallbackDropdown>
