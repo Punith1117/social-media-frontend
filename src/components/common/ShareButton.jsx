@@ -19,6 +19,11 @@ const ShareButtonStyled = styled.button`
   &:hover {
     background: #e9ecef;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 const FallbackDropdown = styled.div`
@@ -69,6 +74,11 @@ const ShareButton = ({ post }) => {
     }
   };
 
+  const handleShareClick = (e) => {
+    e.stopPropagation();
+    handleShare();
+  };
+
   const handleCopyLink = async () => {
     const url = `${window.location.origin}/posts/${post.id}`;
     
@@ -90,7 +100,7 @@ const ShareButton = ({ post }) => {
 
   return (
     <ShareContainer>
-      <ShareButtonStyled onClick={handleShare}>
+      <ShareButtonStyled onClick={handleShareClick}>
         🔗 Share
       </ShareButtonStyled>
       
