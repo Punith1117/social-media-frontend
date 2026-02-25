@@ -104,7 +104,7 @@ const CommentSection = ({ postId }) => {
       setLoading(true);
       setError(null);
       
-      const response = await api.getCommentsByPost(postId, page, 10);
+      const response = await api.getCommentsByPost(postId, page, 5);
       setComments(response.comments);
       setPagination(response.pagination);
     } catch (error) {
