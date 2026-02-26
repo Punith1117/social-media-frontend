@@ -122,9 +122,14 @@ const SearchBar = () => {
   useEffect(() => {
     const searchUsers = async () => {
       const trimmed = debouncedValue.trim();
-      if (!trimmed || trimmed.length < 3) {
+      if (!trimmed || trimmed.length < 3 || trimmed.length > 20) {
         setResults([]);
-        setIsOpen(false);
+        // Don't close dropdown if there's input - show validation message
+        if (trimmed.length > 0) {
+          setIsOpen(true);
+        } else {
+          setIsOpen(false);
+        }
         return;
       }
 
@@ -188,7 +193,13 @@ const SearchBar = () => {
           <ResultsDropdown>
             {loading && <div style={{ padding: '1rem', textAlign: 'center' }}>Loading...</div>}
             {error && <div style={{ padding: '1rem', textAlign: 'center', color: 'red' }}>{error}</div>}
-            {!loading && !error && results.length === 0 && debouncedValue.trim().length >= 3 && (
+            {!loading && !error && debouncedValue.trim().length > 0 && debouncedValue.trim().length < 3 && (
+              <NoResults>Enter at least 3 characters to search</NoResults>
+            )}
+            {!loading && !error && debouncedValue.trim().length > 20 && (
+              <NoResults>Search must be 20 characters or less</NoResults>
+            )}
+            {!loading && !error && results.length === 0 && debouncedValue.trim().length >= 3 && debouncedValue.trim().length <= 20 && (
               <NoResults>No users found</NoResults>
             )}
             {!loading && !error && results.map(user => (
