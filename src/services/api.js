@@ -96,6 +96,11 @@ class ApiService {
     return this.request(`/users/${username}`);
   }
 
+  async searchUsers(query) {
+    const params = new URLSearchParams({ q: query });
+    return this.request(`/users?${params}`);
+  }
+
   async followUser(followingId) {
     return this.request(`/follow/${followingId}`, {
       method: 'POST',
