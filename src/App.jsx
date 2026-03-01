@@ -14,6 +14,7 @@ import CreatePostPage from './pages/CreatePostPage';
 import EditPostPage from './pages/EditPostPage';
 import FollowersPage from './pages/FollowersPage';
 import FollowingPage from './pages/FollowingPage';
+import ExplorePage from './pages/ExplorePage';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
+              <Route path="/explore" element={<ExplorePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </AppLayout>
