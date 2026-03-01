@@ -60,6 +60,32 @@ const ExplorePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // IntersectionObserver for infinite scroll
+  useEffect(() => {
+    // Only set up observer after initial posts are loaded
+    if (posts.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !loading && hasMore) {
+          loadMore();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadingTriggerRef.current) {
+      observer.observe(loadingTriggerRef.current);
+    }
+
+    return () => {
+      if (loadingTriggerRef.current) {
+        observer.unobserve(loadingTriggerRef.current);
+      }
+    };
+  }, [loading, hasMore, loadMore, posts.length]);
+
   // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
