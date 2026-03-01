@@ -31,7 +31,31 @@ const useExploreFeed = () => {
     loadMore();
   }, []);
 
-  return { posts, loading, error, cursor, hasMore, loadMore };
+  const updatePostLike = (postId, shouldLike) => {
+    setPosts(prev => prev.map(post => 
+      post.id === postId 
+        ? {
+            ...post,
+            isLikedByCurrentUser: shouldLike,
+            likesCount: shouldLike ? post.likesCount + 1 : post.likesCount - 1
+          }
+        : post
+    ));
+  };
+
+  const revertPostLike = (postId, shouldLike) => {
+    setPosts(prev => prev.map(post => 
+      post.id === postId 
+        ? {
+            ...post,
+            isLikedByCurrentUser: !shouldLike,
+            likesCount: shouldLike ? post.likesCount - 1 : post.likesCount + 1
+          }
+        : post
+    ));
+  };
+
+  return { posts, loading, error, cursor, hasMore, loadMore, updatePostLike, revertPostLike };
 };
 
 export default useExploreFeed;
