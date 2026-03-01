@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/posts/PostList';
@@ -27,9 +27,48 @@ const LoadMoreButton = styled.button`
   }
 `;
 
+const BackToTopButton = styled.button`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
 const ExplorePage = () => {
   const navigate = useNavigate();
   const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useExploreFeed();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Show/hide back to top button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleLikeUpdate = async (postId, shouldLike) => {
     try {
@@ -68,6 +107,12 @@ const ExplorePage = () => {
         <LoadMoreButton onClick={loadMore} disabled={loading}>
           {loading ? 'Loading...' : 'Load More'}
         </LoadMoreButton>
+      )}
+
+      {showBackToTop && (
+        <BackToTopButton onClick={scrollToTop} title="Back to top">
+          ↑
+        </BackToTopButton>
       )}
     </Container>
   );
