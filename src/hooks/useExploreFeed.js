@@ -16,7 +16,7 @@ const useExploreFeed = () => {
     setError(null);
   
     try {
-      const response = await api.getExploreFeed(cursor, 10);
+      const response = await api.getExploreFeed(cursor, 5);
       setPosts(prev => [...prev, ...response.posts]);
       setCursor(response.nextCursor);
       setHasMore(response.hasMore);
