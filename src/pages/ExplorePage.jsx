@@ -61,6 +61,7 @@ const ExplorePage = () => {
         error={error}
         onLikeUpdate={handleLikeUpdate}
         emptyMessage="No posts to explore"
+        context="feed"
       />
 
       {hasMore && (

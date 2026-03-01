@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
@@ -117,12 +117,71 @@ const LikesCount = styled.span`
   font-size: 0.9rem;
 `;
 
-const PostCard = ({ post, onLikeUpdate, onDelete }) => {
+const AuthorSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+`;
+
+const AuthorPhoto = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const DefaultAvatar = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #666;
+`;
+
+const AuthorInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const AuthorUsername = styled.div`
+  font-weight: 500;
+  color: #333;
+`;
+
+const AuthorDisplayName = styled.div`
+  font-size: 0.9rem;
+  color: #666;
+`;
+
+const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLikeInProgress, setIsLikeInProgress] = useState(false);
+
+  // Optimize Cloudinary images for profile photos (smaller size, faster loading)
+  const getOptimizedImageUrl = (url) => {
+    if (!url || !url.includes('cloudinary.com')) {
+      return url;
+    }
+    
+    // Add Cloudinary transformations for thumbnail
+    const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
+    return url.replace('/upload/', `/upload/${transformations}/`);
+  };
 
   const handleClick = () => {
     navigate(`/posts/${post.id}`);
@@ -203,7 +262,24 @@ const PostCard = ({ post, onLikeUpdate, onDelete }) => {
 
   return (
     <>
-      <PostCardContainer onClick={handleClick}>
+      <PostCardContainer>
+        {context === 'feed' && (
+          <AuthorSection onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/users/${post.author?.username}`);
+          }}>
+            {post.author?.profilePhotoUrl ? (
+              <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
+            ) : (
+              <DefaultAvatar>{post.author?.username[0]?.toUpperCase()}</DefaultAvatar>
+            )}
+            <AuthorInfo>
+              <AuthorUsername>{post.author?.username}</AuthorUsername>
+              <AuthorDisplayName>{post.author?.displayName}</AuthorDisplayName>
+            </AuthorInfo>
+          </AuthorSection>
+        )}
+
         <PostHeader>
           <PostDates>
             <PostDate>{formatDate(post.createdAt)}</PostDate>
