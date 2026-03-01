@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/posts/PostList';
-import { useExploreFeed } from '../hooks/useExploreFeed';
+import useExploreFeed from '../hooks/useExploreFeed';
 import api from '../services/api';
 
 const Container = styled.div`
