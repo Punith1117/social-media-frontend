@@ -191,6 +191,16 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  // Explore Feed API
+  async getExploreFeed(cursor = null, limit = 10) {
+    const params = new URLSearchParams();
+    if (cursor) params.append('cursor', cursor);
+    if (limit !== 10) params.append('limit', limit.toString());
+  
+    const queryString = params.toString();
+    return this.request(`/feed/explore${queryString ? '?' + queryString : ''}`);
+  }
 }
 
 export default new ApiService();
