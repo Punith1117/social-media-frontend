@@ -7,6 +7,8 @@ import api from '../services/api';
 
 const Container = styled.div`
   padding: 1rem;
+  max-width: 50vw;
+  margin: 0 auto;
 `;
 
 const LoadMoreButton = styled.button`
