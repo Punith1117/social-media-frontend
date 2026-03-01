@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import api from '../services/api';
 
 const useExploreFeed = () => {
@@ -7,6 +7,7 @@ const useExploreFeed = () => {
   const [error, setError] = useState(null);
   const [cursor, setCursor] = useState(null);
   const [hasMore, setHasMore] = useState(true);
+  const initialFetchDone = useRef(false);
 
   const loadMore = async () => {
     if (loading || !hasMore) return;
@@ -28,7 +29,10 @@ const useExploreFeed = () => {
 
   // Initial fetch
   useEffect(() => {
-    loadMore();
+    if (!initialFetchDone.current) { // to fix double fetch for react strict mode
+      initialFetchDone.current = true;
+      loadMore();
+    }
   }, []);
 
   const updatePostLike = (postId, shouldLike) => {
