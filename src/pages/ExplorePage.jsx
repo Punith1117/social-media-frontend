@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/posts/PostList';
@@ -11,21 +11,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const LoadMoreButton = styled.button`
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 1rem auto;
-  display: block;
 
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
 
 const BackToTopButton = styled.button`
   position: fixed;
@@ -50,10 +36,19 @@ const BackToTopButton = styled.button`
   }
 `;
 
+const LoadingTrigger = styled.div`
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+`;
+
 const ExplorePage = () => {
   const navigate = useNavigate();
   const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useExploreFeed();
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const loadingTriggerRef = useRef(null);
 
   // Show/hide back to top button based on scroll position
   useEffect(() => {
@@ -104,9 +99,9 @@ const ExplorePage = () => {
       />
 
       {hasMore && (
-        <LoadMoreButton onClick={loadMore} disabled={loading}>
-          {loading ? 'Loading...' : 'Load More'}
-        </LoadMoreButton>
+        <LoadingTrigger ref={loadingTriggerRef}>
+          {loading && <div>Loading more posts...</div>}
+        </LoadingTrigger>
       )}
 
       {showBackToTop && (
