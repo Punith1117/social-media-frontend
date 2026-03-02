@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { isTokenValid } from '../../utils/tokenUtils';
 import { CenterContainer } from '../../styles/MinimalStyles';
 
 const ProtectedRoute = ({ children }) => {
@@ -14,8 +15,8 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Token validation now handled centrally by AuthContext
-  if (!isAuthenticated) {
+  // Immediate token validation check
+  if (!isAuthenticated || !isTokenValid()) {
     return <Navigate to="/login" replace />;
   }
 
