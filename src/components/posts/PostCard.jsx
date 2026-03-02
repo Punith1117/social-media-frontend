@@ -77,6 +77,11 @@ const PostContent = styled.div`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    color: #0066cc;
+  }
 `;
 
 const PostActions = styled.div`
@@ -295,7 +300,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
           </PostHeader>
         )}
 
-        <PostContent>
+        <PostContent onClick={handleClick}>
           {post.content}
         </PostContent>
 
