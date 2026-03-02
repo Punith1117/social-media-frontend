@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CreatePostButton from '../common/CreatePostButton';
 import SearchBar from '../common/SearchBar';
 import TabNavigation from '../navigation/TabNavigation';
+import LogoutButton from '../common/LogoutButton';
 
 const ContentContainer = styled.div`
   padding-top: 60px;
@@ -31,6 +32,7 @@ const AppLayout = ({ children }) => {
       </ContentContainer>
       {shouldShowSearchBar && <SearchBar />}
       {shouldShowButton && <CreatePostButton />}
+      <LogoutButton />
     </>
   );
 };
