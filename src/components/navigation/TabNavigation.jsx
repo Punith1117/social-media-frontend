@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
 
@@ -67,8 +67,21 @@ const SimpleTab = styled(Tab)`
 
 const TabNavigation = () => {
   const { user, isAuthenticated } = useAuth();
+  const location = useLocation();
 
   if (!isAuthenticated) {
+    // On auth pages, only show explore link
+    if (location.pathname === '/login' || location.pathname === '/signup') {
+      return (
+        <TabContainer>
+          <SimpleTab to="/explore">
+            Explore
+          </SimpleTab>
+        </TabContainer>
+      );
+    }
+    
+    // On other pages, show login/signup
     return (
       <TabContainer>
         <SimpleTab to="/login">
@@ -76,6 +89,9 @@ const TabNavigation = () => {
         </SimpleTab>
         <SimpleTab to="/signup">
           Sign Up
+        </SimpleTab>
+        <SimpleTab to="/explore">
+          Explore
         </SimpleTab>
       </TabContainer>
     );
