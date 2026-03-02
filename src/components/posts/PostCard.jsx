@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
@@ -14,20 +14,55 @@ const PostCardContainer = styled.div`
 `;
 
 const PostHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-bottom: 0.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+`;
+
+const AuthorPhoto = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const AuthorInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const AuthorUsername = styled.div`
+  font-weight: 500;
+  color: #333;
+`;
+
+const AuthorDisplayName = styled.div`
+  font-size: 0.9rem;
+  color: #666;
+`;
+
+const PostDates = styled.div`
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: #666;
 `;
 
 const PostDate = styled.span`
   color: #666;
-  font-size: 0.9rem;
-`;
-
-const PostDates = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  font-size: 0.8rem;
 `;
 
 const PostContent = styled.div`
@@ -125,44 +160,7 @@ const AuthorSection = styled.div`
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #eee;
   cursor: pointer;
-
-  &:hover {
-    background: #f8f9fa;
-  }
-`;
-
-const AuthorPhoto = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-
-const DefaultAvatar = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  color: #666;
-`;
-
-const AuthorInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const AuthorUsername = styled.div`
-  font-weight: 500;
-  color: #333;
-`;
-
-const AuthorDisplayName = styled.div`
-  font-size: 0.9rem;
-  color: #666;
+  position: relative;
 `;
 
 const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
@@ -264,30 +262,38 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     <>
       <PostCardContainer>
         {context === 'feed' && (
-          <AuthorSection onClick={(e) => {
+          <PostHeader onClick={(e) => {
             e.stopPropagation();
             navigate(`/users/${post.author?.username}`);
           }}>
             {post.author?.profilePhotoUrl ? (
               <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
             ) : (
-              <DefaultAvatar>{post.author?.username[0]?.toUpperCase()}</DefaultAvatar>
+              <AuthorPhoto src="/default-avatar.svg" alt={post.author.username} />
             )}
             <AuthorInfo>
               <AuthorUsername>{post.author?.username}</AuthorUsername>
               <AuthorDisplayName>{post.author?.displayName}</AuthorDisplayName>
             </AuthorInfo>
-          </AuthorSection>
+            <PostDates>
+              <PostDate>{formatDate(post.createdAt)}</PostDate>
+              {post.updatedAt !== post.createdAt && (
+                <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+              )}
+            </PostDates>
+          </PostHeader>
         )}
 
-        <PostHeader>
-          <PostDates>
-            <PostDate>{formatDate(post.createdAt)}</PostDate>
-            {post.updatedAt !== post.createdAt && (
-              <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
-            )}
-          </PostDates>
-        </PostHeader>
+        {context === 'profile' && (
+          <PostHeader>
+            <PostDates>
+              <PostDate>{formatDate(post.createdAt)}</PostDate>
+              {post.updatedAt !== post.createdAt && (
+                <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+              )}
+            </PostDates>
+          </PostHeader>
+        )}
 
         <PostContent>
           {post.content}
