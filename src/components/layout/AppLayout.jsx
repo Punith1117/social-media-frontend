@@ -38,6 +38,25 @@ const AppLayout = ({ children }) => {
           </NavLink>
         </div>
       )}
+      {!['/login', '/signup', '/'].includes(location.pathname) && (
+        <div style={{ 
+          position: 'fixed', 
+          top: '1rem', 
+          left: '5rem', 
+          zIndex: 1000 
+        }}>
+          <NavLink 
+            to="/" 
+            style={{ 
+              color: '#007bff',
+              textDecoration: 'none',
+              fontWeight: '500'
+            }}
+          >
+            Home
+          </NavLink>
+        </div>
+      )}
       {shouldShowButton && <CreatePostButton />}
     </>
   );
