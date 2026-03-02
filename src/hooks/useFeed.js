@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '../services/api';
 
-const useExploreFeed = () => {
+const useFeed = (feedType = 'explore') => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +16,9 @@ const useExploreFeed = () => {
     setError(null);
   
     try {
-      const response = await api.getExploreFeed(cursor, 5);
+      const response = feedType === 'home' 
+        ? await api.getHomeFeed(cursor, 5)
+        : await api.getExploreFeed(cursor, 5);
       setPosts(prev => [...prev, ...response.posts]);
       setCursor(response.nextCursor);
       setHasMore(response.hasMore);
@@ -62,4 +64,4 @@ const useExploreFeed = () => {
   return { posts, loading, error, cursor, hasMore, loadMore, updatePostLike, revertPostLike };
 };
 
-export default useExploreFeed;
+export default useFeed;

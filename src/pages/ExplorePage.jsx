@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import PostList from '../components/posts/PostList';
-import useExploreFeed from '../hooks/useExploreFeed';
+import useFeed from '../hooks/useFeed';
 import api from '../services/api';
 
 const Container = styled.div`
@@ -46,7 +46,7 @@ const LoadingTrigger = styled.div`
 
 const ExplorePage = () => {
   const navigate = useNavigate();
-  const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useExploreFeed();
+  const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useFeed('explore');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadingTriggerRef = useRef(null);
 
