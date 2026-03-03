@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
@@ -170,6 +170,7 @@ const AuthorSection = styled.div`
 
 const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -194,7 +195,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     e.stopPropagation(); // Prevent navigation when clicking like button
     
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
 
@@ -218,7 +219,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     e.stopPropagation(); // Prevent navigation when clicking edit button
     
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
     
@@ -229,7 +230,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     e.stopPropagation(); // Prevent navigation when clicking delete button
     
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
     

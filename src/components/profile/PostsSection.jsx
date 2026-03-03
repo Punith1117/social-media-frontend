@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../../services/api';
 import PostList from '../posts/PostList';
 import PaginationControls from '../posts/PaginationControls';
@@ -11,6 +11,7 @@ const PostsContainer = styled.div`
 
 const PostsSection = ({ username }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [posts, setPosts] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -91,7 +92,7 @@ const PostsSection = ({ username }) => {
     } catch (error) {
       if (error.status === 401 || error.status === 403) {
         // Auth error - redirect to login
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
       } else {
         // Other errors - refetch posts to restore correct state
         fetchPosts(currentPage);

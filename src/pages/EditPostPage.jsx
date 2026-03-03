@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -22,6 +22,7 @@ const PageTitle = styled.h1`
 const EditPostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -84,7 +85,7 @@ const EditPostPage = () => {
       
       // Handle authentication errors
       if (error.status === 401 || error.status === 403) {
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
         return;
       }
       

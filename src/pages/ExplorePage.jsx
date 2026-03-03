@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PostList from '../components/posts/PostList';
 import useFeed from '../hooks/useFeed';
 import api from '../services/api';
@@ -46,6 +46,7 @@ const LoadingTrigger = styled.div`
 
 const ExplorePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useFeed('explore');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadingTriggerRef = useRef(null);
@@ -106,7 +107,7 @@ const ExplorePage = () => {
       revertPostLike(postId, shouldLike);
       
       if (error.status === 401 || error.status === 403) {
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
       }
       console.error('Like/unlike failed:', error);
       throw error;

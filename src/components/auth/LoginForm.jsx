@@ -64,7 +64,8 @@ const LoginForm = () => {
       
       if (result.success) {
         clearErrors();
-        navigate('/');
+        const redirectTo = location.state?.from || '/';
+        navigate(redirectTo, { replace: true });
       } else {
         setApiError(result.error);
       }

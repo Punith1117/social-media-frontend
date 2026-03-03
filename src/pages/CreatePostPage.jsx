@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
@@ -41,13 +41,14 @@ const LoadingSpinner = styled.div`
 
 const CreatePostPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const [isLoading, setIsLoading] = React.useState(false);
 
   // Redirect to login if not authenticated
   React.useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
     }
   }, [isAuthenticated, navigate]);
 
@@ -65,7 +66,7 @@ const CreatePostPage = () => {
       
       // Handle authentication errors
       if (error.status === 401 || error.status === 403) {
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
         return;
       }
       

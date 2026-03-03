@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 
@@ -68,6 +68,7 @@ const DeleteButton = styled.button`
 const CommentItem = ({ comment, onDelete }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   
   const handleDelete = async () => {
     try {
@@ -80,7 +81,7 @@ const CommentItem = ({ comment, onDelete }) => {
       // Handle authorization errors for authenticated operation
       if (error.status === 401 || error.status === 403) {
         clearExpiredToken();
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
         return;
       }
       

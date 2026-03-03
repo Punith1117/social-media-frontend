@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 import CommentItem from './CommentItem';
@@ -93,6 +93,7 @@ const NoComments = styled.div`
 const CommentSection = ({ postId }) => {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [comments, setComments] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -157,7 +158,7 @@ const CommentSection = ({ postId }) => {
       // Handle authorization errors for authenticated operation
       if (error.status === 401 || error.status === 403) {
         clearExpiredToken();
-        navigate('/login');
+        navigate('/login', { state: { from: location.pathname } });
         return;
       }
       

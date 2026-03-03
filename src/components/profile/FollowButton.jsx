@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import { useFollow } from '../../hooks/useFollow';
@@ -31,6 +31,7 @@ const Button = styled.button`
 const FollowButton = ({ followingId, onFollowChange }) => {
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toggleFollow, loading, isFollowing } = useFollow(followingId);
 
   // Don't show follow button for own profile
@@ -41,7 +42,7 @@ const FollowButton = ({ followingId, onFollowChange }) => {
 
   const handleFollowClick = async () => {
     if (!isAuthenticated) {
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
 
