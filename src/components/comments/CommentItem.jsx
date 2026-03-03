@@ -66,7 +66,7 @@ const DeleteButton = styled.button`
 `;
 
 const CommentItem = ({ comment, onDelete }) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -80,7 +80,7 @@ const CommentItem = ({ comment, onDelete }) => {
     } catch (error) {
       // Handle authorization errors for authenticated operation
       if (error.status === 401 || error.status === 403) {
-        clearExpiredToken();
+        logout();
         navigate('/login', { state: { from: location.pathname } });
         return;
       }

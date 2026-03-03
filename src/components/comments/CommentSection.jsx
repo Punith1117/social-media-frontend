@@ -91,7 +91,7 @@ const NoComments = styled.div`
 `;
 
 const CommentSection = ({ postId }) => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [comments, setComments] = useState([]);
@@ -157,7 +157,7 @@ const CommentSection = ({ postId }) => {
     } catch (error) {
       // Handle authorization errors for authenticated operation
       if (error.status === 401 || error.status === 403) {
-        clearExpiredToken();
+        logout();
         navigate('/login', { state: { from: location.pathname } });
         return;
       }
