@@ -265,7 +265,6 @@ const PostDetailPage = () => {
       } else {
         // For other errors, keep modal open and show error
         console.error('Delete failed:', error);
-        // TODO: Show error message to user
       }
     } finally {
       setIsDeleting(false);
