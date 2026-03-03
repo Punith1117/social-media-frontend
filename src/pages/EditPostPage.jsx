@@ -23,7 +23,7 @@ const EditPostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -85,6 +85,7 @@ const EditPostPage = () => {
       
       // Handle authentication errors
       if (error.status === 401 || error.status === 403) {
+        logout();
         navigate('/login', { state: { from: location.pathname } });
         return;
       }

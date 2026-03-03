@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import PostList from '../components/posts/PostList';
 import useFeed from '../hooks/useFeed';
 import api from '../services/api';
@@ -45,6 +46,7 @@ const LoadingTrigger = styled.div`
 `;
 
 const ExplorePage = () => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useFeed('explore');
@@ -107,6 +109,7 @@ const ExplorePage = () => {
       revertPostLike(postId, shouldLike);
       
       if (error.status === 401 || error.status === 403) {
+        logout();
         navigate('/login', { state: { from: location.pathname } });
       }
       console.error('Like/unlike failed:', error);

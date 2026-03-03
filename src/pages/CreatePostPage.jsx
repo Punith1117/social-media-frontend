@@ -42,7 +42,7 @@ const LoadingSpinner = styled.div`
 const CreatePostPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const [isLoading, setIsLoading] = React.useState(false);
 
   // Redirect to login if not authenticated
@@ -66,6 +66,7 @@ const CreatePostPage = () => {
       
       // Handle authentication errors
       if (error.status === 401 || error.status === 403) {
+        logout();
         navigate('/login', { state: { from: location.pathname } });
         return;
       }

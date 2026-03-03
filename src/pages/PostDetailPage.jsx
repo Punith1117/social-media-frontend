@@ -167,7 +167,7 @@ const PostDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -223,6 +223,7 @@ const PostDetailPage = () => {
       
       // Handle auth errors
       if (error.status === 401 || error.status === 403) {
+        logout();
         navigate('/login', { state: { from: location.pathname } });
       } else {
         console.error('Like/unlike failed:', error);
@@ -259,6 +260,7 @@ const PostDetailPage = () => {
       navigate(`/users/${post.author.username}`);
     } catch (error) {
       if (error.status === 401 || error.status === 403) {
+        logout();
         navigate('/login', { state: { from: location.pathname } });
       } else {
         // For other errors, keep modal open and show error

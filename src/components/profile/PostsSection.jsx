@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import PostList from '../posts/PostList';
 import PaginationControls from '../posts/PaginationControls';
@@ -10,6 +11,7 @@ const PostsContainer = styled.div`
 `;
 
 const PostsSection = ({ username }) => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [posts, setPosts] = useState([]);
@@ -91,7 +93,8 @@ const PostsSection = ({ username }) => {
       // Success - post already removed from state
     } catch (error) {
       if (error.status === 401 || error.status === 403) {
-        // Auth error - redirect to login
+        // Auth error - logout and redirect to login
+        logout();
         navigate('/login', { state: { from: location.pathname } });
       } else {
         // Other errors - refetch posts to restore correct state
