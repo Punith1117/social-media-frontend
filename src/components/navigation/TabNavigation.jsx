@@ -41,20 +41,39 @@ const Tab = styled(NavLink)`
 `;
 
 const ProfileTab = styled(Tab)`
-  min-width: 200px;
+  min-width: 250px;
   gap: 0.75rem;
+  padding: 0.5rem 1rem;
+`;
+
+const ProfilePhoto = styled.img`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #e0e0e0;
 `;
 
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex: 1;
+  min-width: 0;
 `;
 
 const Username = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const DisplayName = styled.span`
+  font-size: 0.8rem;
+  color: #666;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -68,6 +87,16 @@ const SimpleTab = styled(Tab)`
 const TabNavigation = () => {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
+
+  // Optimize Cloudinary images for navigation (smaller size, faster loading)
+  const getOptimizedImageUrl = (url) => {
+    if (!url || !url.includes('cloudinary.com')) {
+      return url;
+    }
+    // Add Cloudinary transformations for smaller size and better performance
+    const transformations = 'w_84,h_84,c_fill,q_auto,f_auto';
+    return url.replace('/upload/', `/upload/${transformations}/`);
+  };
 
   if (!isAuthenticated) {
     // On auth pages, only show explore link
@@ -104,8 +133,15 @@ const TabNavigation = () => {
   return (
     <TabContainer>
       <ProfileTab to="/me">
+        <ProfilePhoto 
+          src={getOptimizedImageUrl(user.profilePhotoUrl) || '/default-avatar.svg'} 
+          alt={user.username} 
+        />
         <ProfileInfo>
           <Username>@{user.username}</Username>
+          {user.displayName && (
+            <DisplayName>{user.displayName}</DisplayName>
+          )}
         </ProfileInfo>
       </ProfileTab>
       
