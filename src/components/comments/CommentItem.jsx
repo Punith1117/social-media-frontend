@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Trash } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { clearExpiredToken } from '../../utils/tokenUtils';
@@ -49,7 +50,7 @@ const DeleteButton = styled.button`
   background: #e74c3c;
   color: white;
   border: 1px solid #e74c3c;
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.4rem;
   border-radius: 3px;
   cursor: pointer;
   font-size: 0.8rem;
@@ -116,7 +117,7 @@ const CommentItem = ({ comment, onDelete }) => {
           <DeleteButton
             onClick={handleDelete}
           >
-            🗑️ Delete
+            <Trash size={16} title="Delete" />
           </DeleteButton>
         )}
       </CommentHeader>

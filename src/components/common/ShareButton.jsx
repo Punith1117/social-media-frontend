@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { Share2, ClipboardCopy, CircleCheck, CircleX } from 'lucide-react';
 
 const ShareContainer = styled.div`
   position: relative;
@@ -10,7 +11,7 @@ const ShareButtonStyled = styled.button`
   background: #f8f9fa;
   color: #333;
   border: 1px solid #ddd;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -124,16 +125,16 @@ const ShareButton = ({ post }) => {
   return (
     <ShareContainer>
       <ShareButtonStyled onClick={handleShareClick}>
-        🔗 Share
+        <Share2 size={18} title="Share" />
       </ShareButtonStyled>
       
       {showFallback && !navigator.share && (
         <FallbackDropdown ref={dropdownRef}>
           <DropdownOption onClick={handleCopyLink}>
-            {copied ? '✅ Copied!' : '📋 Copy Link'}
+            {copied ? <CircleCheck size={16} title="Copied!" /> : <ClipboardCopy size={16} title="Copy Link" />}
           </DropdownOption>
           <DropdownOption onClick={handleCloseDropdown}>
-            ✖️ Close
+            <CircleX size={16} title="Close" />
           </DropdownOption>
         </FallbackDropdown>
       )}

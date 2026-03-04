@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
+import { HeartHandshake, FileEdit, Trash } from 'lucide-react';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import ShareButton from '../common/ShareButton';
 
@@ -93,7 +94,7 @@ const LikeButton = styled.button`
   background: ${props => props.$isLiked ? '#e74c3c' : '#f8f9fa'};
   color: ${props => props.$isLiked ? 'white' : '#333'};
   border: 1px solid ${props => props.$isLiked ? '#e74c3c' : '#ddd'};
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -114,7 +115,7 @@ const EditButton = styled.button`
   background: #007bff;
   color: white;
   border: 1px solid #007bff;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -135,7 +136,7 @@ const DeleteButton = styled.button`
   background: #e74c3c;
   color: white;
   border: 1px solid #e74c3c;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -312,8 +313,11 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
               disabled={!isAuthenticated || isLikeInProgress}
               $isLiked={post.isLikedByCurrentUser}
             >
-              {post.isLikedByCurrentUser ? '❤️' : '🤍'} 
-              {post.isLikedByCurrentUser ? 'Unlike' : 'Like'}
+              <HeartHandshake 
+                size={18} 
+                title={post.isLikedByCurrentUser ? "Unlike" : "Like"}
+                fill={post.isLikedByCurrentUser ? "currentColor" : "none"}
+              />
             </LikeButton>
             <LikesCount>
               {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
@@ -328,13 +332,13 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
                 onClick={handleEditClick}
                 disabled={isDeleting}
               >
-                ✏️ Edit
+                <FileEdit size={18} title="Edit" />
               </EditButton>
               <DeleteButton
                 onClick={handleDeleteClick}
                 disabled={isDeleting}
               >
-                🗑️ Delete
+                <Trash size={18} title="Delete" />
               </DeleteButton>
             </ButtonContainer>
           )}

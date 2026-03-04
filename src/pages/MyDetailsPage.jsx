@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { FileEdit, CircleX } from 'lucide-react';
 import ProfileLayout from '../components/layout/ProfileLayout';
 import PostsSection from '../components/profile/PostsSection';
 import EditProfileForm from '../components/profile/EditProfileForm';
@@ -23,7 +24,7 @@ const ErrorContainer = styled.div`
 `;
 
 const EditButton = styled.button`
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
   background: #0066cc;
   color: white;
   border: none;
@@ -118,7 +119,7 @@ const MyDetailsPage = () => {
       showFollowButton={false}
       editButton={
         <EditButton onClick={handleEditToggle}>
-          {isEditing ? 'Cancel Edit' : 'Edit Profile'}
+          {isEditing ? <CircleX size={18} title="Cancel Edit" /> : <FileEdit size={18} title="Edit Profile" />}
         </EditButton>
       }
     >
