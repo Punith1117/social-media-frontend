@@ -10,7 +10,7 @@ const SidebarContainer = styled.div`
   max-width: 300px;
 `;
 
-const ProfileSidebar = ({ user, showFollowButton = false }) => {
+const ProfileSidebar = ({ user, showFollowButton = false, editButton = null }) => {
   const userId = useMemo(() => user?.id, [user?.id]);
   const { followStats, loading: statsLoading, refreshStats } = useFollow(userId);
 
@@ -29,7 +29,7 @@ const ProfileSidebar = ({ user, showFollowButton = false }) => {
 
   return (
     <SidebarContainer>
-      <ProfileCard user={user} showFollowButton={false} />
+      <ProfileCard user={user} showFollowButton={false} editButton={editButton} />
       <UserStats 
         followersCount={followStats.followersCount}
         followingCount={followStats.followingCount}

@@ -11,10 +11,10 @@ const LayoutContainer = styled.div`
   padding: 1rem;
 `;
 
-const ProfileLayout = ({ user, children, showFollowButton = false }) => {
+const ProfileLayout = ({ user, children, showFollowButton = false, editButton = null }) => {
   return (
     <LayoutContainer>
-      <ProfileSidebar user={user} showFollowButton={showFollowButton} />
+      <ProfileSidebar user={user} showFollowButton={showFollowButton} editButton={editButton} />
       <ProfileContent>
         {children}
       </ProfileContent>

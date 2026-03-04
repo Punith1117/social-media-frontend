@@ -17,7 +17,7 @@ const Container = styled.div`
 const BackToTopButton = styled.button`
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
+  right: 20vw;
   background: #007bff;
   color: white;
   border: none;

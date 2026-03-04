@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 const ProfileCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 5px;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -23,15 +23,21 @@ const ProfilePhoto = styled.img`
 
 const UserName = styled.h2`
   margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 `;
 
 const DisplayName = styled.p`
   margin: 0 0 1rem 0;
-  font-size: 1.1rem;
-  color: #666;
-  font-style: italic;
+  font-size: 1.2rem;
+  color: #6b7280;
+  font-weight: 500;
+  line-height: 1.3;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
 `;
 
 const Bio = styled.p`
@@ -46,7 +52,7 @@ const JoinDate = styled.p`
   color: #999;
 `;
 
-const ProfileCard = ({ user, showFollowButton = false }) => {
+const ProfileCard = ({ user, showFollowButton = false, editButton = null }) => {
   const { user: currentUser } = useAuth();
   
   const formatDate = (dateString) => {
@@ -72,6 +78,11 @@ const ProfileCard = ({ user, showFollowButton = false }) => {
       )}
       {user.bio && <Bio>{user.bio}</Bio>}
       <JoinDate>Joined {formatDate(user.createdAt)}</JoinDate>
+      {editButton && (
+        <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+          {editButton}
+        </div>
+      )}
       {showFollowButton && !isOwnProfile && (
         <div style={{ marginTop: '1rem' }}>
           {/* FollowButton will be added here */}

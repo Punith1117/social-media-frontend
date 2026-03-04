@@ -113,22 +113,25 @@ const MyDetailsPage = () => {
   }
 
   return (
-    <div>
-      <EditButton onClick={handleEditToggle}>
-        {isEditing ? 'Cancel Edit' : 'Edit Profile'}
-      </EditButton>
-      <ProfileLayout user={user} showFollowButton={false}>
-        {isEditing ? (
-          <EditProfileForm 
-            user={user} 
-            onCancel={handleEditCancel} 
-            onUpdate={handleProfileUpdate}
-          />
-        ) : (
-          <PostsSection username={user.username} />
-        )}
-      </ProfileLayout>
-    </div>
+    <ProfileLayout 
+      user={user} 
+      showFollowButton={false}
+      editButton={
+        <EditButton onClick={handleEditToggle}>
+          {isEditing ? 'Cancel Edit' : 'Edit Profile'}
+        </EditButton>
+      }
+    >
+      {isEditing ? (
+        <EditProfileForm 
+          user={user} 
+          onCancel={handleEditCancel} 
+          onUpdate={handleProfileUpdate}
+        />
+      ) : (
+        <PostsSection username={user.username} />
+      )}
+    </ProfileLayout>
   );
 };
 

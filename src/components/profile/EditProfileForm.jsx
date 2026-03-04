@@ -365,12 +365,6 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
             {loading ? 'Saving...' : 'Save Changes'}
           </Button>
         </FormGroup>
-        
-        <FormGroup>
-          <Button type="button" onClick={onCancel} disabled={loading}>
-            Cancel
-          </Button>
-        </FormGroup>
       </form>
     </FormContainer>
   );
