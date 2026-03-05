@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useLoginValidation } from '../../hooks/useValidation';
 import { useAuth } from '../../context/AuthContext';
 import { CenterContainer, Container, Title, Form, Text } from '../../styles/MinimalStyles';
@@ -128,7 +128,7 @@ const LoginForm = () => {
         </Form>
         
         <Text>
-          Don't have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </Text>
       </Container>
     </CenterContainer>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSignupValidation } from '../../hooks/useValidation';
 import { useAuth } from '../../context/AuthContext';
 import { CenterContainer, Container, Title, Form, Text } from '../../styles/MinimalStyles';
@@ -105,7 +105,7 @@ const SignupForm = () => {
         </Form>
         
         <Text>
-          Already have an account? <a href="/login">Log In</a>
+          Already have an account? <Link to="/login">Log In</Link>
         </Text>
       </Container>
     </CenterContainer>
