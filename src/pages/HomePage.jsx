@@ -10,6 +10,11 @@ const Container = styled.div`
   padding: 1rem;
   max-width: 50vw;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
 `;
 
 const BackToTopButton = styled.button`
@@ -29,6 +34,15 @@ const BackToTopButton = styled.button`
   font-size: 1.2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   transition: opacity 0.3s ease;
+
+  @media (max-width: 768px) {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
 
   &:hover {
     opacity: 0.8;
