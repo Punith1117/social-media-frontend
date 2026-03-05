@@ -11,7 +11,6 @@ const PostCardContainer = styled.div`
   border: 1px solid #ddd;
   padding: 1rem;
   margin-bottom: 1rem;
-  cursor: pointer;
 `;
 
 const PostHeader = styled.div`
@@ -88,6 +87,12 @@ const PostContent = styled.div`
 const PostActions = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    gap: 0.75rem;
+  }
 `;
 
 const LikeButton = styled.button`
@@ -153,9 +158,16 @@ const DeleteButton = styled.button`
   }
 `;
 
+const LikeSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 const LikesCount = styled.span`
   color: #666;
   font-size: 0.9rem;
+  min-width: 60px;
 `;
 
 const AuthorSection = styled.div`
@@ -307,7 +319,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
         </PostContent>
 
         <PostActions>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <LikeSection>
             <LikeButton
               onClick={handleLike}
               disabled={!isAuthenticated || isLikeInProgress}
@@ -322,7 +334,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
             <LikesCount>
               {post.likesCount} {post.likesCount === 1 ? 'like' : 'likes'}
             </LikesCount>
-          </div>
+          </LikeSection>
           
           <ShareButton post={post} />
           
