@@ -8,6 +8,10 @@ import styled from 'styled-components';
 const SearchContainer = styled.div`
   position: relative;
   width: 300px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -16,6 +20,11 @@ const SearchInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    padding: 0.375rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -28,6 +37,11 @@ const CloseButton = styled.button`
   cursor: pointer;
   font-size: 1.2rem;
   color: #666;
+
+  @media (max-width: 768px) {
+    right: 0.375rem;
+    font-size: 1rem;
+  }
 `;
 
 const ResultsDropdown = styled.div`
@@ -53,6 +67,11 @@ const UserResult = styled.div`
   &:hover {
     background: #f5f5f5;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
 `;
 
 const ProfilePhoto = styled.img`
@@ -60,6 +79,11 @@ const ProfilePhoto = styled.img`
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 const DefaultAvatar = styled.div`
@@ -72,6 +96,12 @@ const DefaultAvatar = styled.div`
   justify-content: center;
   font-size: 0.8rem;
   color: #666;
+
+  @media (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
 `;
 
 const UserInfo = styled.div`
@@ -86,12 +116,21 @@ const Username = styled.div`
 const DisplayName = styled.div`
   font-size: 0.8rem;
   color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const NoResults = styled.div`
   padding: 1rem;
   text-align: center;
   color: #666;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
 `;
 
 const SearchBar = () => {

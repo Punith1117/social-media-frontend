@@ -8,6 +8,12 @@ const TabContainer = styled.div`
   align-items: center;
   gap: 0.5rem;
   flex: 1;
+
+  @media (max-width: 768px) {
+    flex: auto;
+    width: 100%;
+    gap: 0.25rem;
+  }
 `;
 
 const Tab = styled(NavLink)`
@@ -30,12 +36,24 @@ const Tab = styled(NavLink)`
     color: #0066cc;
     background: #e7f3ff;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
 `;
 
 const ProfileTab = styled(Tab)`
   min-width: 250px;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
+
+  @media (max-width: 768px) {
+    min-width: 0;
+    flex: 1;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+  }
 `;
 
 const ProfilePhoto = styled.img`
@@ -44,6 +62,11 @@ const ProfilePhoto = styled.img`
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #e0e0e0;
+
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
 `;
 
 const ProfileInfo = styled.div`
@@ -61,6 +84,10 @@ const Username = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const DisplayName = styled.span`
@@ -69,11 +96,19 @@ const DisplayName = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const SimpleTab = styled(Tab)`
   min-width: 80px;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    min-width: 60px;
+  }
 `;
 
 const TabNavigation = () => {

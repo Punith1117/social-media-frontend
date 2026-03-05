@@ -17,6 +17,14 @@ const HeaderContainer = styled.div`
   padding: 0 1rem;
   min-height: 60px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem;
+    min-height: auto;
+    gap: 1rem;
+  }
 `;
 
 const Header = () => {
