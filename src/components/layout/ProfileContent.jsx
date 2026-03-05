@@ -6,6 +6,11 @@ const ContentContainer = styled.div`
   border-radius: 8px;
   border: 1px solid #ddd;
   min-height: 400px;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    flex: none;
+  }
 `;
 
 const ProfileContent = ({ children }) => {

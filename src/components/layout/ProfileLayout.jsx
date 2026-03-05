@@ -5,10 +5,15 @@ import ProfileContent from './ProfileContent';
 
 const LayoutContainer = styled.div`
   display: flex;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
   gap: 1rem;
   padding: 1rem;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const ProfileLayout = ({ user, children, showFollowButton = false, editButton = null }) => {

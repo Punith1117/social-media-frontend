@@ -10,6 +10,11 @@ const ProfileCardContainer = styled.div`
   border: 1px solid #ddd;
   border-radius: 8px;
   background: white;
+  
+  @media (max-width: 768px) {
+    text-align: center;
+    align-items: center;
+  }
 `;
 
 const ProfilePhoto = styled.img`
@@ -52,6 +57,17 @@ const JoinDate = styled.p`
   color: #999;
 `;
 
+const EditButtonContainer = styled.div`
+  margin-top: 1rem;
+  text-align: right;
+  
+  @media (max-width: 768px) {
+    text-align: right !important;
+    align-self: flex-end;
+    width: 100%;
+  }
+`;
+
 const ProfileCard = ({ user, showFollowButton = false, editButton = null }) => {
   const { user: currentUser } = useAuth();
   
@@ -79,9 +95,9 @@ const ProfileCard = ({ user, showFollowButton = false, editButton = null }) => {
       {user.bio && <Bio>{user.bio}</Bio>}
       <JoinDate>Joined {formatDate(user.createdAt)}</JoinDate>
       {editButton && (
-        <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+        <EditButtonContainer>
           {editButton}
-        </div>
+        </EditButtonContainer>
       )}
       {showFollowButton && !isOwnProfile && (
         <div style={{ marginTop: '1rem' }}>

@@ -11,6 +11,9 @@ const StatsContainer = styled.div`
 const StatItem = styled.div`
   text-align: center;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StatNumber = styled.div`
@@ -28,6 +31,7 @@ const StatLabel = styled.div`
 const StatLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+  display: inline-block;
   
   &:hover {
     text-decoration: underline;

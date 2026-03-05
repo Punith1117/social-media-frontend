@@ -8,6 +8,10 @@ import PaginationControls from '../posts/PaginationControls';
 
 const PostsContainer = styled.div`
   padding: 1rem;
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
 `;
 
 const PostsSection = ({ username }) => {
