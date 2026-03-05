@@ -86,21 +86,15 @@ const ProfilePhoto = styled.img`
   }
 `;
 
-const DefaultAvatar = styled.div`
+const DefaultAvatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  color: #666;
+  object-fit: cover;
 
   @media (max-width: 768px) {
     width: 28px;
     height: 28px;
-    font-size: 0.7rem;
   }
 `;
 
@@ -243,7 +237,7 @@ const SearchBar = () => {
                 {user.profilePhotoUrl ? (
                   <ProfilePhoto src={getOptimizedImageUrl(user.profilePhotoUrl)} alt={user.username} />
                 ) : (
-                  <DefaultAvatar>{user.username[0]?.toUpperCase()}</DefaultAvatar>
+                  <DefaultAvatar src="/default-avatar.svg" alt={user.username} />
                 )}
                 <UserInfo>
                   <Username>{user.username}</Username>
