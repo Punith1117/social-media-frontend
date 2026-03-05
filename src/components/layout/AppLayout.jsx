@@ -2,16 +2,11 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import CreatePostButton from '../common/CreatePostButton';
-import SearchBar from '../common/SearchBar';
-import TabNavigation from '../navigation/TabNavigation';
+import Header from './Header';
 import LogoutButton from '../common/LogoutButton';
 
 const ContentContainer = styled.div`
-  padding-top: 60px;
-
-  @media (max-width: 768px) {
-    padding-top: 56px;
-  }
+  padding-top: 0px;
 `;
 
 const AppLayout = ({ children }) => {
@@ -22,15 +17,13 @@ const AppLayout = ({ children }) => {
   
   // Check if current route is excluded
   const shouldShowButton = !excludedRoutes.includes(location.pathname);
-  const shouldShowSearchBar = !excludedRoutes.includes(location.pathname);
 
   return (
     <>
-      <TabNavigation />
+      <Header />
       <ContentContainer>
         {children}
       </ContentContainer>
-      {shouldShowSearchBar && <SearchBar />}
       {shouldShowButton && <CreatePostButton />}
       <LogoutButton />
     </>

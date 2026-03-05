@@ -4,18 +4,10 @@ import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
 
 const TabContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-bottom: 1px solid #ccc;
-  z-index: 1000;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  height: 60px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  gap: 0.5rem;
+  flex: 1;
 `;
 
 const Tab = styled(NavLink)`
