@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { isTokenValid } from '../../utils/tokenUtils';
 import { CenterContainer } from '../../styles/MinimalStyles';
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, logout } = useAuth();
+
+  useEffect(() => {
+    if (!loading && (!isAuthenticated || !isTokenValid())) {
+      logout();
+    }
+  }, [isAuthenticated, loading, logout]);
 
   if (loading) {
     return (
@@ -15,7 +21,6 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Immediate token validation check
   if (!isAuthenticated || !isTokenValid()) {
     return <Navigate to="/login" replace />;
   }
