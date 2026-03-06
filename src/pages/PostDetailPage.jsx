@@ -49,12 +49,36 @@ const AuthorInfo = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
+  gap: 0.75rem;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba(0, 123, 255, 0.05);
+    border-radius: 4px;
+  }
+`;
+
+const AuthorPhoto = styled.img`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const AuthorDetails = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const AuthorName = styled.span`
   font-weight: 600;
   color: #333;
   margin-right: 0.5rem;
+`;
+
+const AuthorDisplayName = styled.span`
+  font-size: 0.9rem;
+  color: #666;
 `;
 
 const PostDate = styled.span`
@@ -305,6 +329,21 @@ const PostDetailPage = () => {
     }
   };
 
+  // Optimize Cloudinary images for profile photos (smaller size, faster loading)
+  const getOptimizedImageUrl = (url) => {
+    if (!url || !url.includes('cloudinary.com')) {
+      return url;
+    }
+    
+    // Add Cloudinary transformations for thumbnail
+    const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
+    return url.replace('/upload/', `/upload/${transformations}/`);
+  };
+
+  const handleAuthorClick = () => {
+    navigate(`/users/${post.author.username}`);
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -359,8 +398,18 @@ const PostDetailPage = () => {
           <PostHeader>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <AuthorInfo>
-                  <AuthorName>{post.author?.username || 'Unknown User'}</AuthorName>
+                <AuthorInfo onClick={handleAuthorClick}>
+                  {post.author?.profilePhotoUrl ? (
+                    <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
+                  ) : (
+                    <AuthorPhoto src="/default-avatar.svg" alt={post.author.username} />
+                  )}
+                  <AuthorDetails>
+                    <AuthorName>{post.author?.username || 'Unknown User'}</AuthorName>
+                    {post.author?.displayName && (
+                      <AuthorDisplayName>{post.author.displayName}</AuthorDisplayName>
+                    )}
+                  </AuthorDetails>
                 </AuthorInfo>
                 <PostDates>
                   <PostDate>Created: {formatDate(post.createdAt)}</PostDate>
