@@ -10,6 +10,10 @@ const CommentContainer = styled.div`
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
   
+  @media (max-width: 768px) {
+    padding: 0.75rem 0;
+  }
+  
   &:last-child {
     border-bottom: none;
   }

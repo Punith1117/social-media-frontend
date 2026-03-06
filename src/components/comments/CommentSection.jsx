@@ -11,6 +11,10 @@ const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  
+  @media (max-width: 768px) {
+    gap: 0.75rem;
+  }
 `;
 
 const CommentsHeader = styled.h3`
@@ -27,6 +31,11 @@ const CommentForm = styled.form`
   background: #f8f9fa;
   border-radius: 4px;
   border: 1px solid #ddd;
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const CommentTextarea = styled.textarea`

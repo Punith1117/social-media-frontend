@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { HeartHandshake, FileEdit, Trash } from 'lucide-react';
+import { HeartHandshake, FileEdit, Trash, ArrowLeft } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { CenterContainer } from '../styles/MinimalStyles';
 import DeleteConfirmationModal from '../components/posts/DeleteConfirmationModal';
 import CommentSection from '../components/comments/CommentSection';
 import ShareButton from '../components/common/ShareButton';
+
+const PageContainer = styled.div`
+  padding: 1rem;
+  position: relative;
+`;
 
 const PostContainer = styled.div`
   display: flex;
@@ -15,6 +19,12 @@ const PostContainer = styled.div`
   margin: 0 auto;
   padding: 1rem;
   gap: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
 `;
 
 const PostSection = styled.div`
@@ -23,6 +33,10 @@ const PostSection = styled.div`
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 1.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const PostHeader = styled.div`
@@ -158,9 +172,28 @@ const BackButton = styled.button`
   font-size: 0.9rem;
   margin-bottom: 1rem;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 50%;
+    left: 0.5rem;
+    margin-bottom: 0;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
   
   &:hover {
     text-decoration: underline;
+    background-color: rgba(0, 123, 255, 0.05);
+  }
+  
+  &:active {
+    background-color: rgba(0, 123, 255, 0.1);
   }
 `;
 
@@ -284,31 +317,31 @@ const PostDetailPage = () => {
 
   if (loading) {
     return (
-      <CenterContainer>
+      <PageContainer>
         <LoadingContainer>
           Loading post...
         </LoadingContainer>
-      </CenterContainer>
+      </PageContainer>
     );
   }
 
   if (error) {
     return (
-      <CenterContainer>
+      <PageContainer>
         <ErrorContainer>
           {error}
         </ErrorContainer>
-      </CenterContainer>
+      </PageContainer>
     );
   }
 
   if (!post) {
     return (
-      <CenterContainer>
+      <PageContainer>
         <ErrorContainer>
           Post not found
         </ErrorContainer>
-      </CenterContainer>
+      </PageContainer>
     );
   }
 
@@ -316,9 +349,9 @@ const PostDetailPage = () => {
   const isPostOwner = user?.id === post.authorId;
 
   return (
-    <CenterContainer>
+    <PageContainer>
       <BackButton onClick={() => navigate(-1)}>
-        ← Back
+        <ArrowLeft size={20} />
       </BackButton>
       
       <PostContainer>
@@ -389,7 +422,7 @@ const PostDetailPage = () => {
         isDeleting={isDeleting}
         postContent={post.content}
       />
-    </CenterContainer>
+    </PageContainer>
   );
 };
 
