@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Trash } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 
 const CommentContainer = styled.div`
@@ -28,7 +27,21 @@ const CommentHeader = styled.div`
 
 const AuthorInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba(0, 123, 255, 0.05);
+    border-radius: 4px;
+  }
+`;
+
+const AuthorPhoto = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const AuthorName = styled.span`
@@ -75,6 +88,21 @@ const CommentItem = ({ comment, onDelete }) => {
   const navigate = useNavigate();
   const location = useLocation();
   
+  // Optimize Cloudinary images for profile photos (smaller size, faster loading)
+  const getOptimizedImageUrl = (url) => {
+    if (!url || !url.includes('cloudinary.com')) {
+      return url;
+    }
+    
+    // Add Cloudinary transformations for thumbnail
+    const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
+    return url.replace('/upload/', `/upload/${transformations}/`);
+  };
+  
+  const handleAuthorClick = () => {
+    navigate(`/users/${comment.author.username}`);
+  };
+  
   const handleDelete = async () => {
     try {
       // Optimistic update - remove comment immediately
@@ -112,9 +140,13 @@ const CommentItem = ({ comment, onDelete }) => {
   return (
     <CommentContainer>
       <CommentHeader>
-        <AuthorInfo>
+        <AuthorInfo onClick={handleAuthorClick}>
+          {comment.author?.profilePhotoUrl ? (
+            <AuthorPhoto src={getOptimizedImageUrl(comment.author.profilePhotoUrl)} alt={comment.author.username} />
+          ) : (
+            <AuthorPhoto src="/default-avatar.svg" alt={comment.author.username} />
+          )}
           <AuthorName>{comment.author?.username || 'Unknown User'}</AuthorName>
-          <CommentDate>{formatDate(comment.createdAt)}</CommentDate>
         </AuthorInfo>
         
         {isCommentAuthor && (
@@ -129,6 +161,8 @@ const CommentItem = ({ comment, onDelete }) => {
       <CommentContent>
         {comment.content}
       </CommentContent>
+      
+      <CommentDate>{formatDate(comment.createdAt)}</CommentDate>
     </CommentContainer>
   );
 };
