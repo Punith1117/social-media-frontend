@@ -177,7 +177,7 @@ const TabNavigation = () => {
       </SimpleTab>
       
       <SimpleTab to="/explore">
-        Feed
+        Explore
       </SimpleTab>
     </TabContainer>
   );
