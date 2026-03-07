@@ -28,7 +28,14 @@ const PostsSection = ({ username }) => {
     try {
       setLoading(true);
       const response = await api.getPostsByUser(username, page, 5);
-      setPosts(response.posts);
+      // Append username to each post for ShareButton
+      const postsWithAuthor = response.posts.map(post => ({
+        ...post,
+        author: {
+          username: username
+        }
+      }));
+      setPosts(postsWithAuthor);
       setPagination(response.pagination);
       setError(null);
     } catch (error) {
@@ -60,7 +67,8 @@ const PostsSection = ({ username }) => {
           ? {
               ...post,
               isLikedByCurrentUser: shouldLike,
-              likesCount: shouldLike ? post.likesCount + 1 : post.likesCount - 1
+              likesCount: shouldLike ? post.likesCount + 1 : post.likesCount - 1,
+              author: post.author // Preserve author information
             }
           : post
       ));
@@ -77,7 +85,8 @@ const PostsSection = ({ username }) => {
           ? {
               ...post,
               isLikedByCurrentUser: !shouldLike,
-              likesCount: shouldLike ? post.likesCount - 1 : post.likesCount + 1
+              likesCount: shouldLike ? post.likesCount - 1 : post.likesCount + 1,
+              author: post.author // Preserve author information
             }
           : post
       ));
