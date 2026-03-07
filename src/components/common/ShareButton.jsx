@@ -8,48 +8,91 @@ const ShareContainer = styled.div`
 `;
 
 const ShareButtonStyled = styled.button`
-  background: #f8f9fa;
-  color: #333;
-  border: 1px solid #ddd;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
+  background: rgba(155, 89, 182, 0.15);
+  color: #9b59b6;
+  border: 1px solid rgba(155, 89, 182, 0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-out;
 
-  &:hover {
-    background: #e9ecef;
+  &:hover:not(:disabled) {
+    background: #9b59b6;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
   }
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const FallbackDropdown = styled.div`
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.5rem);
   right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: rgba(20, 15, 15, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(220, 53, 69, 0.1),
+    inset 0 1px 0 rgba(220, 53, 69, 0.2);
   z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const DropdownOption = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   border: none;
   background: none;
   text-align: left;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d4c5a7;
+  transition: all 0.2s ease;
+  position: relative;
 
   &:hover {
-    background: #f8f9fa;
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(220, 53, 69, 0.15);
   }
 `;
 
