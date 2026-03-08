@@ -27,10 +27,12 @@ export const Text = styled.p`
   text-align: center;
   
   a {
-    color: #0066cc;
+    color: #cc0000;
     text-decoration: none;
+    font-weight: 600;
     
     &:hover {
+      color: #ff0000;
       text-decoration: underline;
     }
   }
@@ -53,7 +55,7 @@ export const FormGroup = styled.div`
 export const Label = styled.label`
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  color: #e8d5c7;
+  color: #cc0000;
   font-size: 0.9rem;
   letter-spacing: 0.01em;
   margin-bottom: 0.25rem;
@@ -114,18 +116,21 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 50%, #990000 100%);
   color: #ffffff;
-  border: none;
+  border: 2px solid #ff0000;
   border-radius: 12px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    0 4px 15px rgba(231, 76, 60, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 4px 20px rgba(255, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   
@@ -138,42 +143,68 @@ export const Button = styled.button`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.3), 
       transparent
     );
     transition: left 0.8s ease;
   }
   
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
-    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(135deg, #ff3333 0%, #ff0000 50%, #cc0000 100%);
+    border-color: #ff3333;
+    color: #ffffff;
+    transform: translateY(-3px);
     box-shadow: 
-      0 6px 20px rgba(231, 76, 60, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 8px 30px rgba(255, 0, 0, 0.8),
+      0 0 0 2px rgba(255, 51, 51, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
     
     &::before {
       left: 100%;
     }
+    
+    &::after {
+      opacity: 1;
+    }
   }
   
   &:active:not(:disabled) {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 4px 15px rgba(255, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 0, 0, 0.4);
   }
   
   &:disabled {
-    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    background: linear-gradient(135deg, #4a0000 0%, #330000 100%);
+    border-color: #660000;
+    color: #990000;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
     
-    &::before {
+    &::before,
+    &::after {
       display: none;
     }
   }
 `;
 
 export const ErrorMessage = styled.span`
-  color: #e74c3c;
+  color: #ff3333;
   font-size: 0.8rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
@@ -197,7 +228,7 @@ export const ErrorMessage = styled.span`
 `;
 
 export const SuccessMessage = styled.span`
-  color: #28a745;
+  color: #00ff00;
   font-size: 0.8rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;

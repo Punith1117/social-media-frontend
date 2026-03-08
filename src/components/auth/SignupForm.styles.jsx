@@ -7,15 +7,15 @@ export const AuthContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
+    radial-gradient(ellipse at top, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+    linear-gradient(135deg, #cc0000 0%, #990000 50%, #660000 100%);
   backdrop-filter: blur(25px);
 `;
 
 export const FormContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
+    radial-gradient(ellipse at top, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(20, 0, 0, 0.95) 0%, rgba(10, 0, 0, 0.98) 100%);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(220, 53, 69, 0.3);
   border-radius: 24px;
@@ -114,20 +114,20 @@ export const Title = styled.h1`
   text-align: center;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
-  color: #e8d5c7;
+  color: #ff0000;
   font-weight: 700;
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   animation: titleGlow 2s ease-in-out infinite alternate;
 
   @keyframes titleGlow {
     0% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(220, 53, 69, 0.2);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 0, 0, 0.6);
     }
     100% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(220, 53, 69, 0.4);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
     }
   }
 `;
@@ -166,12 +166,12 @@ export const ErrorMessage = styled.div`
 export const AuthText = styled.p`
   margin: 1.5rem 0 0 0;
   text-align: center;
-  color: #a8a29e;
+  color: #cc0000;
   font-size: 0.9rem;
   font-weight: 500;
   
   a {
-    color: #e74c3c;
+    color: #ff0000;
     text-decoration: none;
     font-weight: 700;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -184,12 +184,12 @@ export const AuthText = styled.p`
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e74c3c, #c0392b);
+      background: linear-gradient(90deg, #ff0000, #cc0000);
       transition: width 0.3s ease;
     }
     
     &:hover {
-      color: #c0392b;
+      color: #ffffff;
       transform: translateX(3px);
       
       &::after {
