@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useLoginValidation } from '../../hooks/useValidation';
 import { useAuth } from '../../context/AuthContext';
-import { CenterContainer, Container, Title, Form, Text } from '../../styles/MinimalStyles';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import {
+  AuthContainer,
+  FormContainer,
+  Title,
+  Form,
+  SuccessMessage,
+  ErrorMessage,
+  AuthText
+} from './LoginForm.styles';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -77,19 +85,14 @@ const LoginForm = () => {
   };
 
   return (
-    <CenterContainer>
-      <Container>
+    <AuthContainer>
+      <FormContainer>
         <Title>Log In</Title>
         <Form onSubmit={handleSubmit}>
           {successMessage && (
-            <div style={{ 
-              color: '#006600', 
-              fontSize: '0.9rem', 
-              textAlign: 'center',
-              marginBottom: '1rem'
-            }}>
+            <SuccessMessage>
               {successMessage}
-            </div>
+            </SuccessMessage>
           )}
           
           <Input
@@ -117,9 +120,9 @@ const LoginForm = () => {
           />
           
           {apiError && !apiError.field && (
-            <div style={{ color: '#cc0000', fontSize: '0.9rem', textAlign: 'center' }}>
+            <ErrorMessage>
               {apiError}
-            </div>
+            </ErrorMessage>
           )}
           
           <Button type="submit" disabled={loading}>
@@ -127,11 +130,11 @@ const LoginForm = () => {
           </Button>
         </Form>
         
-        <Text>
+        <AuthText>
           Don't have an account? <Link to="/signup">Sign Up</Link>
-        </Text>
-      </Container>
-    </CenterContainer>
+        </AuthText>
+      </FormContainer>
+    </AuthContainer>
   );
 };
 

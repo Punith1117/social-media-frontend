@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSignupValidation } from '../../hooks/useValidation';
 import { useAuth } from '../../context/AuthContext';
-import { CenterContainer, Container, Title, Form, Text } from '../../styles/MinimalStyles';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import {
+  AuthContainer,
+  FormContainer,
+  Title,
+  Form,
+  ErrorMessage,
+  AuthText
+} from './SignupForm.styles';
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -65,8 +72,8 @@ const SignupForm = () => {
   };
 
   return (
-    <CenterContainer>
-      <Container>
+    <AuthContainer>
+      <FormContainer>
         <Title>Sign Up</Title>
         <Form onSubmit={handleSubmit}>
           <Input
@@ -94,9 +101,9 @@ const SignupForm = () => {
           />
           
           {apiError && !apiError.field && (
-            <div style={{ color: '#cc0000', fontSize: '0.9rem', textAlign: 'center' }}>
+            <ErrorMessage>
               {apiError}
-            </div>
+            </ErrorMessage>
           )}
           
           <Button type="submit" disabled={loading}>
@@ -104,11 +111,11 @@ const SignupForm = () => {
           </Button>
         </Form>
         
-        <Text>
+        <AuthText>
           Already have an account? <Link to="/login">Log In</Link>
-        </Text>
-      </Container>
-    </CenterContainer>
+        </AuthText>
+      </FormContainer>
+    </AuthContainer>
   );
 };
 
