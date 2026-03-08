@@ -24,21 +24,42 @@ const ErrorContainer = styled.div`
 `;
 
 const EditButton = styled.button`
-  padding: 0.3rem 0.6rem;
-  background: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  background: rgba(243, 156, 18, 0.15);
+  color: #f39c12;
+  border: 1px solid rgba(243, 156, 18, 0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-out;
   margin-bottom: 1rem;
-  
-  &:hover {
-    background: #0052a3;
+
+  &:hover:not(:disabled) {
+    background: #f39c12;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 `;
 
 const MyDetailsPage = () => {
-  const { user: currentUser, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
