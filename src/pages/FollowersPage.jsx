@@ -12,13 +12,54 @@ const LoadingContainer = styled.div`
   align-items: center;
   height: 200px;
   font-size: 1.1rem;
-  color: #666;
+  color: #e8d5c7;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  animation: loadingPulse 2s ease-in-out infinite;
+  
+  @keyframes loadingPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
 `;
 
 const ErrorContainer = styled.div`
   text-align: center;
   padding: 2rem;
-  color: #cc0000;
+  color: #e74c3c;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  background: 
+    linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(192, 57, 43, 0.1) 100%);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(231, 76, 60, 0.2);
+  animation: errorShake 0.3s ease-in-out;
+  
+  @keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+  }
+`;
+
+const UserNotFoundContainer = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: #a8a29e;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  background: 
+    linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(220, 53, 69, 0.1);
 `;
 
 const FollowersPage = () => {
@@ -77,9 +118,9 @@ const FollowersPage = () => {
   if (!user) {
     return (
       <CenterContainer>
-        <ErrorContainer>
+        <UserNotFoundContainer>
           User not found
-        </ErrorContainer>
+        </UserNotFoundContainer>
       </CenterContainer>
     );
   }
