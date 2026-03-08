@@ -2,130 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDebounced } from '../../hooks/useDebounced';
 import api from '../../services/api';
-import styled from 'styled-components';
-
-// Minimal styled components
-const SearchContainer = styled.div`
-  position: relative;
-  width: 300px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
-
-  @media (max-width: 768px) {
-    padding: 0.375rem;
-    font-size: 0.8rem;
-  }
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #666;
-
-  @media (max-width: 768px) {
-    right: 0.375rem;
-    font-size: 1rem;
-  }
-`;
-
-const ResultsDropdown = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-top: none;
-  max-height: 300px;
-  overflow-y: auto;
-`;
-
-const UserResult = styled.div`
-  padding: 0.75rem;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  &:hover {
-    background: #f5f5f5;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem;
-    gap: 0.5rem;
-  }
-`;
-
-const ProfilePhoto = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  @media (max-width: 768px) {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
-const DefaultAvatar = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  @media (max-width: 768px) {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
-const UserInfo = styled.div`
-  flex: 1;
-`;
-
-const Username = styled.div`
-  font-weight: 500;
-  color: #333;
-`;
-
-const DisplayName = styled.div`
-  font-size: 0.8rem;
-  color: #666;
-
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-  }
-`;
-
-const NoResults = styled.div`
-  padding: 1rem;
-  text-align: center;
-  color: #666;
-
-  @media (max-width: 768px) {
-    padding: 0.75rem;
-    font-size: 0.9rem;
-  }
-`;
+import {
+  SearchContainer,
+  SearchInputWrapper,
+  SearchInput,
+  CloseButton,
+  ResultsDropdown,
+  UserResult,
+  Avatar,
+  UserInfo,
+  Username,
+  DisplayName,
+  NoResults,
+  LoadingMessage,
+  ErrorMessage
+} from './SearchBar.styles';
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState('');
@@ -201,7 +92,7 @@ const SearchBar = () => {
 
   return (
     <SearchContainer>
-      <div style={{ position: 'relative' }}>
+      <SearchInputWrapper>
         <SearchInput
           type="text"
           placeholder="Search users..."
@@ -221,8 +112,8 @@ const SearchBar = () => {
         
         {isOpen && (
           <ResultsDropdown>
-            {loading && <div style={{ padding: '1rem', textAlign: 'center' }}>Loading...</div>}
-            {error && <div style={{ padding: '1rem', textAlign: 'center', color: 'red' }}>{error}</div>}
+            {loading && <LoadingMessage>Loading...</LoadingMessage>}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
             {!loading && !error && debouncedValue.trim().length > 0 && debouncedValue.trim().length < 3 && (
               <NoResults>Enter at least 3 characters to search</NoResults>
             )}
@@ -234,11 +125,7 @@ const SearchBar = () => {
             )}
             {!loading && !error && results.map(user => (
               <UserResult key={user.id} onClick={() => handleUserClick(user.username)}>
-                {user.profilePhotoUrl ? (
-                  <ProfilePhoto src={getOptimizedImageUrl(user.profilePhotoUrl)} alt={user.username} />
-                ) : (
-                  <DefaultAvatar src="/default-avatar.svg" alt={user.username} />
-                )}
+                <Avatar src={getOptimizedImageUrl(user.profilePhotoUrl) || '/default-avatar.svg'} alt={user.username} />
                 <UserInfo>
                   <Username>{user.username}</Username>
                   <DisplayName>{user.displayName}</DisplayName>
@@ -247,7 +134,7 @@ const SearchBar = () => {
             ))}
           </ResultsDropdown>
         )}
-      </div>
+      </SearchInputWrapper>
     </SearchContainer>
   );
 };

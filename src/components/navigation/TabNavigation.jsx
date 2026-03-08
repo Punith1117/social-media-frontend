@@ -1,119 +1,38 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import styled from 'styled-components';
-
-const TabContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-
-  @media (max-width: 768px) {
-    flex: auto;
-    width: 100%;
-    gap: 0.25rem;
-  }
-`;
-
-const Tab = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: #666;
-  font-weight: 500;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: #f8f9fa;
-    color: #0066cc;
-  }
-
-  &.active {
-    color: #0066cc;
-    background: #e7f3ff;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
-  }
-`;
-
-const ProfileTab = styled(Tab)`
-  min-width: 250px;
-  gap: 0.75rem;
-  padding: 0.5rem 1rem;
-
-  @media (max-width: 768px) {
-    min-width: 0;
-    flex: 1;
-    gap: 0.5rem;
-    padding: 0.375rem 0.75rem;
-  }
-`;
-
-const ProfilePhoto = styled.img`
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #e0e0e0;
-
-  @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
-  }
-`;
-
-const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 1;
-  min-width: 0;
-`;
-
-const Username = styled.span`
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @media (max-width: 768px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const DisplayName = styled.span`
-  font-size: 0.8rem;
-  color: #666;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-  }
-`;
-
-const SimpleTab = styled(Tab)`
-  min-width: 80px;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    min-width: 60px;
-  }
-`;
+import {
+  TabContainer,
+  ProfileTab,
+  ProfilePhoto,
+  ProfileInfo,
+  Username,
+  DisplayName,
+  SimpleTab,
+  FirstLastLetter,
+  MiddleLetter
+} from './TabNavigation.styles';
 
 const TabNavigation = () => {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
+
+  // Helper function to format username with styled first and last letters
+  const formatUsername = (username) => {
+    if (!username || username.length <= 2) return username;
+    
+    const first = username[0];
+    const middle = username.slice(1, -1);
+    const last = username[username.length - 1];
+    
+    return (
+      <>
+        <FirstLastLetter>{first}</FirstLastLetter>
+        <MiddleLetter>{middle}</MiddleLetter>
+        <FirstLastLetter>{last}</FirstLastLetter>
+      </>
+    );
+  };
 
   // Optimize Cloudinary images for navigation (smaller size, faster loading)
   const getOptimizedImageUrl = (url) => {
@@ -165,7 +84,7 @@ const TabNavigation = () => {
           alt={user.username} 
         />
         <ProfileInfo>
-          <Username>@{user.username}</Username>
+          <Username>{formatUsername(user.username)}</Username>
           {user.displayName && (
             <DisplayName>{user.displayName}</DisplayName>
           )}
