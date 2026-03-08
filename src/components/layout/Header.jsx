@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import TabNavigation from '../navigation/TabNavigation';
 import SearchBar from '../common/SearchBar';
+import LogoutButton from '../common/LogoutButton';
 
 const HeaderContainer = styled.div`
   position: sticky;
@@ -60,19 +61,61 @@ const HeaderContainer = styled.div`
   }
 `;
 
+const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+
 const Header = () => {
   const location = useLocation();
   
-  // Pages where SearchBar should NOT appear
+  // Pages where SearchBar and LogoutButton should NOT appear
   const excludedRoutes = ['/login', '/signup', '/create-post'];
   
   // Check if current route is excluded
   const shouldShowSearchBar = !excludedRoutes.includes(location.pathname);
+  const shouldShowLogoutButton = !excludedRoutes.includes(location.pathname);
 
   return (
     <HeaderContainer>
-      <TabNavigation />
-      {shouldShowSearchBar && <SearchBar />}
+      <HeaderContent>
+        <LeftSection>
+          <TabNavigation />
+        </LeftSection>
+        <RightSection>
+          {shouldShowSearchBar && <SearchBar />}
+          {shouldShowLogoutButton && <LogoutButton />}
+        </RightSection>
+      </HeaderContent>
     </HeaderContainer>
   );
 };
