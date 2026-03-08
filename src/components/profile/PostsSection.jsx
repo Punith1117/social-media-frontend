@@ -8,6 +8,10 @@ import PaginationControls from '../posts/PaginationControls';
 
 const PostsContainer = styled.div`
   padding: 1rem;
+  background: 
+    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(26, 15, 15, 0.95) 0%, rgba(15, 10, 10, 0.98) 100%);
+  border-radius: 12px;
   
   @media (max-width: 768px) {
     padding: 0.75rem;

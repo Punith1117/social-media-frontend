@@ -1,35 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 1rem 0;
-`;
-
-const PaginationButton = styled.button`
-  background: ${props => props.$active ? '#007bff' : '#f8f9fa'};
-  color: ${props => props.$active ? 'white' : '#333'};
-  border: 1px solid ${props => props.$active ? '#007bff' : '#ddd'};
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
-const PageInfo = styled.span`
-  color: #666;
-  font-size: 0.9rem;
-  margin: 0 0.5rem;
-`;
+import { 
+  PaginationContainer, 
+  PaginationButton, 
+  PageInfo 
+} from './PaginationControls.styles';
 
 const PaginationControls = ({ pagination, onPageChange }) => {
   const { page, totalPages, total, limit } = pagination;
