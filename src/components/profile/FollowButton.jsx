@@ -6,25 +6,68 @@ import { useFollow } from '../../hooks/useFollow';
 
 const FollowButtonContainer = styled.div`
   margin-top: 1rem;
+  animation: buttonFadeIn 0.6s ease-out 0.7s both;
+
+  @keyframes buttonFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Button = styled.button`
-  padding: 0.5rem 1rem;
-  background: ${props => props.$isFollowing ? '#ccc' : '#0066cc'};
-  color: white;
-  border: none;
+  padding: 0.8rem 1.6rem;
+  background: ${props => props.$isFollowing 
+    ? '#2a1810' 
+    : '#1a2a1a'};
+  color: ${props => props.$isFollowing ? '#d2691e' : '#4ade80'};
+  border: 1px solid ${props => props.$isFollowing 
+    ? '#8b4513' 
+    : '#16a34a'};
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   
-  &:hover {
-    background: ${props => props.$isFollowing ? '#999' : '#0052a3'};
+  &:hover:not(:disabled) {
+    background: ${props => props.$isFollowing 
+      ? '#3a2818' 
+      : '#2a3a2a'};
+    border-color: ${props => props.$isFollowing 
+      ? '#cd853f' 
+      : '#22c55e'};
+    color: ${props => props.$isFollowing ? '#f4a460' : '#86efac'};
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
   
   &:disabled {
-    background: #ccc;
+    background: #1a1a1a;
+    color: #6b7280;
+    border-color: #374151;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s ease;
   }
 `;
 
