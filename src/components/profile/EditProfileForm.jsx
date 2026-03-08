@@ -1,139 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { useProfile } from '../../context/ProfileContext';
-
-const FormContainer = styled.div`
-  padding: 1rem;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid ${props => props.$hasError ? '#cc0000' : '#ccc'};
-  border-radius: 4px;
-  
-  &:focus {
-    outline: none;
-    border-color: ${props => props.$hasError ? '#cc0000' : '#0066cc'};
-  }
-`;
-
-const TextArea = styled.textarea`
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid ${props => props.$hasError ? '#cc0000' : '#ccc'};
-  border-radius: 4px;
-  min-height: 100px;
-  resize: vertical;
-  
-  &:focus {
-    outline: none;
-    border-color: ${props => props.$hasError ? '#cc0000' : '#0066cc'};
-  }
-`;
-
-const Button = styled.button`
-  padding: 0.5rem 1rem;
-  background: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  
-  &:hover {
-    background: #0052a3;
-  }
-  
-  &:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
-const ErrorMessage = styled.span`
-  color: #cc0000;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-`;
-
-const PhotoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-`;
-
-const PhotoPreview = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #0066cc;
-`;
-
-const PhotoUploadContainer = styled.div`
-  flex: 1;
-`;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const FileInputButton = styled.button`
-  padding: 0.5rem 1rem;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  
-  &:hover {
-    background: #e0e0e0;
-  }
-  
-  &:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
-const ReadOnlyInput = styled.div`
-  padding: 0.5rem;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: #666;
-  font-weight: 500;
-`;
-
-const DeleteButton = styled.button`
-  padding: 0.25rem 0.5rem;
-  background: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-  
-  &:hover {
-    background: #c82333;
-  }
-  
-  &:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-`;
+import {
+  FormContainer,
+  FormGroup,
+  Label,
+  Input,
+  TextArea,
+  Button,
+  ErrorMessage,
+  PhotoContainer,
+  PhotoPreview,
+  PhotoUploadContainer,
+  FileInput,
+  FileInputButton,
+  ReadOnlyInput,
+  ButtonContainer,
+  FileInfo
+} from './EditProfileForm.styles';
 
 const EditProfileForm = ({ user, onCancel, onUpdate }) => {
   const { updateUserProfile, uploadProfilePhoto, deleteProfilePhoto } = useProfile();
@@ -288,12 +171,12 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
-        <FormGroup>
+        <FormGroup $delay="0s">
           <Label>Username</Label>
           <ReadOnlyInput>{user?.username || ''}</ReadOnlyInput>
         </FormGroup>
         
-        <FormGroup>
+        <FormGroup $delay="0.1s">
           <Label>Profile Photo</Label>
           <PhotoContainer>
             <PhotoPreview 
@@ -310,13 +193,14 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
                   {photoUploading ? 'Uploading...' : 'Choose Photo'}
                 </FileInputButton>
                 {(user?.profilePhotoUrl || photoFile) && (
-                  <DeleteButton
+                  <Button
                     type="button"
                     onClick={handleDeletePhoto}
                     disabled={loading || photoUploading}
+                    $variant="delete"
                   >
                     Delete
-                  </DeleteButton>
+                  </Button>
                 )}
               </div>
               <FileInput
@@ -327,16 +211,16 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
                 disabled={loading || photoUploading}
               />
               {photoFile && (
-                <div style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#666' }}>
+                <FileInfo>
                   Selected: {photoFile.name}
-                </div>
+                </FileInfo>
               )}
             </PhotoUploadContainer>
           </PhotoContainer>
           {errors.photo && <ErrorMessage>{errors.photo}</ErrorMessage>}
         </FormGroup>
         
-        <FormGroup>
+        <FormGroup $delay="0.2s">
           <Label>Display Name</Label>
           <Input
             name="displayName"
@@ -348,7 +232,7 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
           {errors.displayName && <ErrorMessage>{errors.displayName}</ErrorMessage>}
         </FormGroup>
         
-        <FormGroup>
+        <FormGroup $delay="0.3s">
           <Label>Bio</Label>
           <TextArea
             name="bio"
@@ -360,11 +244,14 @@ const EditProfileForm = ({ user, onCancel, onUpdate }) => {
           {errors.bio && <ErrorMessage>{errors.bio}</ErrorMessage>}
         </FormGroup>
         
-        <FormGroup>
-          <Button type="submit" disabled={loading}>
+        <ButtonContainer>
+          <Button 
+            type="submit" 
+            disabled={loading}
+          >
             {loading ? 'Saving...' : 'Save Changes'}
           </Button>
-        </FormGroup>
+        </ButtonContainer>
       </form>
     </FormContainer>
   );
