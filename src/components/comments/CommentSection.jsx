@@ -1,103 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { clearExpiredToken } from '../../utils/tokenUtils';
 import api from '../../services/api';
 import CommentItem from './CommentItem';
 import PaginationControls from '../posts/PaginationControls';
-
-const CommentsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  
-  @media (max-width: 768px) {
-    gap: 0.75rem;
-  }
-`;
-
-const CommentsHeader = styled.h3`
-  margin-bottom: 1rem;
-  color: #333;
-`;
-
-const CommentForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  
-  @media (max-width: 768px) {
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-`;
-
-const CommentTextarea = styled.textarea`
-  width: 100%;
-  min-height: 80px;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  resize: vertical;
-  
-  &:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-`;
-
-const CharacterCounter = styled.div`
-  font-size: 0.8rem;
-  color: ${props => props.$overLimit ? '#e74c3c' : '#666'};
-  text-align: right;
-`;
-
-const SubmitButton = styled.button`
-  background: #007bff;
-  color: white;
-  border: 1px solid #007bff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  
-  &:hover:not(:disabled) {
-    background: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  color: #e74c3c;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-`;
-
-const LoadingMessage = styled.div`
-  text-align: center;
-  color: #666;
-  padding: 1rem;
-`;
-
-const NoComments = styled.div`
-  text-align: center;
-  color: #999;
-  font-style: italic;
-  padding: 1rem;
-`;
+import {
+  CommentsContainer,
+  CommentsHeader,
+  CommentForm,
+  CommentTextarea,
+  CharacterCounter,
+  SubmitButton,
+  ErrorMessage,
+  LoadingMessage,
+  NoComments
+} from './CommentSection.styles';
 
 const CommentSection = ({ postId }) => {
   const { user, isAuthenticated, logout } = useAuth();

@@ -1,225 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import { HeartHandshake, FileEdit, Trash, ArrowLeft } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import DeleteConfirmationModal from '../components/posts/DeleteConfirmationModal';
 import CommentSection from '../components/comments/CommentSection';
 import ShareButton from '../components/common/ShareButton';
-
-const PageContainer = styled.div`
-  padding: 1rem;
-  position: relative;
-`;
-
-const PostContainer = styled.div`
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0.5rem;
-  }
-`;
-
-const PostSection = styled.div`
-  flex: 2;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1.5rem;
-  
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-`;
-
-const PostHeader = styled.div`
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #eee;
-`;
-
-const AuthorInfo = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  gap: 0.75rem;
-  cursor: pointer;
-  
-  &:hover {
-    background: rgba(0, 123, 255, 0.05);
-    border-radius: 4px;
-  }
-`;
-
-const AuthorPhoto = styled.img`
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-
-const AuthorDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const AuthorName = styled.span`
-  font-weight: 600;
-  color: #333;
-  margin-right: 0.5rem;
-`;
-
-const AuthorDisplayName = styled.span`
-  font-size: 0.9rem;
-  color: #666;
-`;
-
-const PostDate = styled.span`
-  color: #666;
-  font-size: 0.9rem;
-`;
-
-const PostDates = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 0.5rem;
-`;
-
-const PostContent = styled.div`
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  margin-bottom: 1rem;
-`;
-
-const LikeButton = styled.button`
-  background: ${props => props.$isLiked ? '#e74c3c' : '#f8f9fa'};
-  color: ${props => props.$isLiked ? 'white' : '#333'};
-  border: 1px solid ${props => props.$isLiked ? '#e74c3c' : '#ddd'};
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-
-  &:hover {
-    background: ${props => props.$isLiked ? '#c0392b' : '#e9ecef'};
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
-const EditButton = styled.button`
-  background: #007bff;
-  color: white;
-  border: 1px solid #007bff;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-right: 0.5rem;
-
-  &:hover {
-    background: #0056b3;
-    border-color: #0056b3;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  margin-left: auto;
-`;
-
-const DeleteButton = styled.button`
-  background: #e74c3c;
-  color: white;
-  border: 1px solid #e74c3c;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-
-  &:hover {
-    background: #c0392b;
-    border-color: #c0392b;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
-const LikesCount = styled.span`
-  color: #666;
-  font-size: 0.9rem;
-`;
-
-const LoadingContainer = styled.div`
-  text-align: center;
-  padding: 2rem;
-  color: #666;
-`;
-
-const ErrorContainer = styled.div`
-  text-align: center;
-  padding: 2rem;
-  color: #cc0000;
-`;
-
-const BackButton = styled.button`
-  background: none;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-  
-  @media (max-width: 768px) {
-    position: fixed;
-    top: 50%;
-    left: 0.5rem;
-    margin-bottom: 0;
-    z-index: 10;
-    transform: translateY(-50%);
-  }
-  
-  &:hover {
-    text-decoration: underline;
-    background-color: rgba(0, 123, 255, 0.05);
-  }
-  
-  &:active {
-    background-color: rgba(0, 123, 255, 0.1);
-  }
-`;
+import {
+  PageContainer,
+  PostContainer,
+  PostSection,
+  PostHeader,
+  AuthorInfo,
+  AuthorPhoto,
+  AuthorDetails,
+  AuthorName,
+  AuthorDisplayName,
+  PostDate,
+  PostDates,
+  PostContent,
+  LikeButton,
+  EditButton,
+  ButtonContainer,
+  DeleteButton,
+  LikesCount,
+  LoadingContainer,
+  ErrorContainer,
+  BackButton
+} from './PostDetailPage.styles';
 
 const PostDetailPage = () => {
   const { id } = useParams();
