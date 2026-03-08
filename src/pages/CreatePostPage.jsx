@@ -13,10 +13,51 @@ const PageContainer = styled.div`
 `;
 
 const PageTitle = styled.h1`
-  color: #333;
+  color: #e8d5c7;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  position: relative;
+  animation: titleFadeIn 0.6s ease-out;
+
+  @keyframes titleFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #dc3545, #8b4513);
+    border-radius: 2px;
+    animation: titleUnderline 0.8s ease-out 0.3s both;
+  }
+
+  @keyframes titleUnderline {
+    0% {
+      width: 0;
+      opacity: 0;
+    }
+    100% {
+      width: 60px;
+      opacity: 1;
+    }
+  }
 `;
 
 const LoadingOverlay = styled.div`
@@ -25,18 +66,43 @@ const LoadingOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 `;
 
 const LoadingSpinner = styled.div`
-  background: white;
+  background: 
+    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 24px;
   padding: 2rem;
-  border-radius: 8px;
   text-align: center;
+  color: #e8d5c7;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(220, 53, 69, 0.2),
+    inset 0 2px 4px rgba(220, 53, 69, 0.3),
+    inset 0 -2px 4px rgba(139, 69, 19, 0.2);
+  animation: spinnerEntrance 0.4s ease-out;
+
+  @keyframes spinnerEntrance {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 `;
 
 const CreatePostPage = () => {
