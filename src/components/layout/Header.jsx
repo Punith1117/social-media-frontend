@@ -6,7 +6,7 @@ import TabNavigation from '../navigation/TabNavigation';
 import SearchBar from '../common/SearchBar';
 import LogoutButton from '../common/LogoutButton';
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   background: 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const PostCardContainer = styled.div`
+export const PostCardContainer = styled.article`
   background: 
     radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
@@ -421,7 +421,7 @@ export const PostContent = styled(Link)`
   }
 `;
 
-export const PostActions = styled.div`
+export const PostActions = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;

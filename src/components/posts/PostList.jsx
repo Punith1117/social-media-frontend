@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PostCard from './PostCard';
 
-const PostListContainer = styled.div`
+const PostListContainer = styled.section`
   display: flex;
   flex-direction: column;
 `;

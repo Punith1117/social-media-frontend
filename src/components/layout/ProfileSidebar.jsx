@@ -5,7 +5,7 @@ import UserStats from '../profile/UserStats';
 import FollowButton from '../profile/FollowButton';
 import { useFollow } from '../../hooks/useFollow';
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled.aside`
   flex: 1;
   max-width: 300px;
   

@@ -89,45 +89,48 @@ const LoginForm = () => {
       <FormContainer>
         <Title>Log In</Title>
         <Form onSubmit={handleSubmit}>
-          {successMessage && (
-            <SuccessMessage>
-              {successMessage}
-            </SuccessMessage>
-          )}
-          
-          <Input
-            label="Username"
-            name="username"
-            type="text"
-            value={formData.username}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            error={errors.username || (apiError?.field === 'username' ? apiError.error : null)}
-            placeholder="Enter your username"
-            disabled={loading}
-          />
-          
-          <Input
-            label="Password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            error={errors.password || (apiError?.field === 'password' ? apiError.error : null)}
-            placeholder="Enter your password"
-            disabled={loading}
-          />
-          
-          {apiError && !apiError.field && (
-            <ErrorMessage>
-              {apiError}
-            </ErrorMessage>
-          )}
-          
-          <Button type="submit" disabled={loading}>
-            {loading ? 'Logging In...' : 'Log In'}
-          </Button>
+          <fieldset>
+            <legend style={{ display: 'none' }}>Login Credentials</legend>
+            {successMessage && (
+              <SuccessMessage>
+                {successMessage}
+              </SuccessMessage>
+            )}
+            
+            <Input
+              label="Username"
+              name="username"
+              type="text"
+              value={formData.username}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              error={errors.username || (apiError?.field === 'username' ? apiError.error : null)}
+              placeholder="Enter your username"
+              disabled={loading}
+            />
+            
+            <Input
+              label="Password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              error={errors.password || (apiError?.field === 'password' ? apiError.error : null)}
+              placeholder="Enter your password"
+              disabled={loading}
+            />
+            
+            {apiError && !apiError.field && (
+              <ErrorMessage>
+                {apiError}
+              </ErrorMessage>
+            )}
+            
+            <Button type="submit" disabled={loading}>
+              {loading ? 'Logging In...' : 'Log In'}
+            </Button>
+          </fieldset>
         </Form>
         
         <AuthText>

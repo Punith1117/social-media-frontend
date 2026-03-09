@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.section`
   flex: 3;
   background: 
     radial-gradient(ellipse at top, rgba(220, 53, 69, 0.05) 0%, transparent 50%),

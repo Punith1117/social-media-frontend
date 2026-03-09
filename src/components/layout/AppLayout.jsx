@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CreatePostButton from '../common/CreatePostButton';
 import Header from './Header';
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.main`
   padding-top: 0px;
 `;
 
