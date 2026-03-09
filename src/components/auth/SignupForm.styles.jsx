@@ -7,26 +7,27 @@ export const AuthContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   background: 
-    radial-gradient(ellipse at top, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
-    linear-gradient(135deg, #cc0000 0%, #990000 50%, #660000 100%);
-  backdrop-filter: blur(25px);
+    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #0d0d0d 70%, #000000 100%);
+  backdrop-filter: blur(10px);
+  position: relative;
 `;
 
 export const FormContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 0, 0, 0.95) 0%, rgba(10, 0, 0, 0.98) 100%);
+    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 24px;
   padding: 2rem;
   max-width: 400px;
   width: 100%;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
-    inset 0 -2px 4px rgba(139, 69, 19, 0.2);
+    0 0 0 1px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
@@ -60,7 +61,7 @@ export const FormContainer = styled.div`
     background: linear-gradient(90deg, 
       transparent, 
       rgba(220, 53, 69, 0.8), 
-      rgba(139, 69, 19, 0.6),
+      rgba(220, 53, 69, 0.6),
       rgba(220, 53, 69, 0.8),
       transparent
     );
@@ -88,7 +89,7 @@ export const FormContainer = styled.div`
       0 0 0 2px rgba(220, 53, 69, 0.4),
       0 0 30px rgba(220, 53, 69, 0.3),
       inset 0 2px 8px rgba(220, 53, 69, 0.4),
-      inset 0 -2px 8px rgba(139, 69, 19, 0.3);
+      inset 0 -2px 8px rgba(220, 53, 69, 0.3);
     border-color: rgba(220, 53, 69, 0.5);
     
     &::before {
@@ -114,7 +115,7 @@ export const Title = styled.h1`
   text-align: center;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
-  color: #ff0000;
+  color: #e8d5c7;
   font-weight: 700;
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
@@ -124,10 +125,10 @@ export const Title = styled.h1`
 
   @keyframes titleGlow {
     0% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 0, 0, 0.6);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(220, 53, 69, 0.3);
     }
     100% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(220, 53, 69, 0.5);
     }
   }
 `;
@@ -166,12 +167,12 @@ export const ErrorMessage = styled.div`
 export const AuthText = styled.p`
   margin: 1.5rem 0 0 0;
   text-align: center;
-  color: #cc0000;
+  color: #a8a29e;
   font-size: 0.9rem;
   font-weight: 500;
   
   a {
-    color: #ff0000;
+    color: #dc3545;
     text-decoration: none;
     font-weight: 700;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -184,12 +185,12 @@ export const AuthText = styled.p`
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #ff0000, #cc0000);
+      background: linear-gradient(90deg, #dc3545, #dc3545);
       transition: width 0.3s ease;
     }
     
     &:hover {
-      color: #ffffff;
+      color: #8b4513;
       transform: translateX(3px);
       
       &::after {

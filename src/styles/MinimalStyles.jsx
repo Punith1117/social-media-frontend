@@ -55,7 +55,7 @@ export const FormGroup = styled.div`
 export const Label = styled.label`
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  color: #cc0000;
+  color: #b9b9b9ff;
   font-size: 0.9rem;
   letter-spacing: 0.01em;
   margin-bottom: 0.25rem;
