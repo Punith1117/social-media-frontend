@@ -30,6 +30,12 @@ A modern, full-featured social media frontend application built with React and V
 - **Feedback Systems**: Loading states and error handling
 - **Pagination**: Efficient data loading for posts and comments
 
+### **Progressive Web App (PWA)**
+- **Offline-First Architecture**: Service worker-powered caching for reliable performance even without internet connectivity
+- **Native App Installability**: Web app manifest with custom icons enabling one-click installation on mobile and desktop devices
+- **Enhanced User Experience**: App-like behavior with standalone mode, responsive design, and cross-platform compatibility
+- **Performance Optimization**: Intelligent resource caching and background updates for lightning-fast load times
+
 ## 🛠️ Technical Architecture
 
 ### **Frontend Stack**
@@ -166,6 +172,7 @@ This project, completed as **The Odin Project's Full Stack Final Project**, show
 - Authentication and security best practices
 - Performance optimization techniques
 - Professional code organization and maintainability
+- Progressive Web App (PWA) development with service workers and web app manifests
 
 ## 🔗 Backend Repository
 
