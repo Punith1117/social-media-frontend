@@ -12,7 +12,7 @@ class ApiService {
       ...options,
     };
 
-    // Add Authorization header if token exists (token validation handled by AuthContext)
+    // Add Authorization header if token exists
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
