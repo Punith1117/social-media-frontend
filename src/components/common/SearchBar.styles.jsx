@@ -4,6 +4,10 @@ export const SearchContainer = styled.div`
   position: relative;
   width: 300px;
 
+  @media (max-width: 1000px) and (min-width: 768px) {
+    width: 220px;
+  }
+
   @media (max-width: 768px) {
     width: 100%;
   }

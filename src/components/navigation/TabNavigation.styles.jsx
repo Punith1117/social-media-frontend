@@ -5,7 +5,11 @@ export const TabContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex: 1;
+  flex: 0 0 auto;
+
+  @media (max-width: 1000px) and (min-width: 768px) {
+    gap: 0.25rem;
+  }
 
   @media (max-width: 768px) {
     flex: auto;
@@ -77,6 +81,12 @@ export const ProfileTab = styled(NavLink)`
     radial-gradient(ellipse at top, rgba(220, 53, 69, 0.1) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
 
+  @media (max-width: 1000px) and (min-width: 768px) {
+    min-width: 200px;
+    padding: 0.4rem 0.6rem;
+    gap: 0.5rem;
+  }
+
   @media (max-width: 768px) {
     min-width: 0;
     flex: 1;
@@ -89,6 +99,11 @@ export const SimpleTab = styled(NavLink)`
   ${baseTabStyles}
   min-width: 80px;
   justify-content: center;
+
+  @media (max-width: 1000px) and (min-width: 768px) {
+    min-width: 70px;
+    padding: 0.5rem 0.6rem;
+  }
 
   @media (max-width: 768px) {
     min-width: 60px;

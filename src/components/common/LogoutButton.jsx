@@ -57,6 +57,11 @@ const LogoutButtonContainer = styled.button`
   &:active {
     transform: translateY(0) scale(0.98);
   }
+
+  @media (max-width: 1000px) and (min-width: 768px) {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
   
   @media (max-width: 768px) {
     padding: 0.4rem 0.875rem;

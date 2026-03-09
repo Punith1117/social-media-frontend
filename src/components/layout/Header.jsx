@@ -122,6 +122,16 @@ const GitHubLink = styled.a`
     height: 16px;
   }
 
+  span {
+    display: inline;
+  }
+
+  @media (max-width: 1000px) and (min-width: 768px) {
+    span {
+      display: none;
+    }
+  }
+
   @media (max-width: 768px) {
     font-size: 0.8rem;
     
@@ -166,7 +176,7 @@ const Header = () => {
             title="source-code"
           >
             <Github />
-            by punith1117
+            <span>by punith1117</span>
           </GitHubLink>
         </CenterSection>
         <RightSection>
