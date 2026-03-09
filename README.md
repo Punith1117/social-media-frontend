@@ -174,6 +174,21 @@ This project, completed as **The Odin Project's Full Stack Final Project**, show
 - Professional code organization and maintainability
 - Progressive Web App (PWA) development with service workers and web app manifests
 
+## 🌐 Deployment
+
+### Netlify Production Deployment
+
+Deployed on Netlify with Client-Side Rendering (CSR) configuration:
+
+- **Live URL**: https://social-media-punith1117.netlify.app/
+- **Automatic CI/CD**: Builds deploy on every push to main branch
+- **SPA Routing**: Configured redirects for client-side navigation
+- **Configuration**: `netlify.toml` and `_redirects` for seamless deployment
+
+*Note: Backend may take up to 30 seconds for initial load due to free tier cold starts.*
+
+The application runs in production with comprehensive error handling, responsive design, and optimized performance.
+
 ## 🔗 Backend Repository
 
 https://github.com/Punith1117/social-media-backend
