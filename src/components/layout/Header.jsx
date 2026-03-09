@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { Github } from 'lucide-react';
 import TabNavigation from '../navigation/TabNavigation';
 import SearchBar from '../common/SearchBar';
 import LogoutButton from '../common/LogoutButton';
@@ -67,6 +68,7 @@ const HeaderContent = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 1rem;
+  position: relative;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -82,6 +84,51 @@ const LeftSection = styled.div`
   
   @media (max-width: 768px) {
     justify-content: center;
+  }
+`;
+
+const CenterSection = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    order: -1;
+  }
+`;
+
+const GitHubLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
   }
 `;
 
@@ -111,6 +158,17 @@ const Header = () => {
         <LeftSection>
           <TabNavigation />
         </LeftSection>
+        <CenterSection>
+          <GitHubLink 
+            href="https://github.com/Punith1117/social-media-frontend" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="source-code"
+          >
+            <Github />
+            by punith1117
+          </GitHubLink>
+        </CenterSection>
         <RightSection>
           {shouldShowSearchBar && <SearchBar />}
           {shouldShowLogoutButton && <LogoutButton />}
