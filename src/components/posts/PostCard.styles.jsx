@@ -311,10 +311,6 @@ export const PostContent = styled.div`
   word-wrap: break-word;
   overflow-wrap: break-word;
   margin-bottom: 0.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
   cursor: pointer;
   font-weight: 400;
   letter-spacing: -0.01em;

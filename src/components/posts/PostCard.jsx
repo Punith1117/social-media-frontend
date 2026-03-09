@@ -120,6 +120,24 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     });
   };
 
+  const truncateText = (text, maxLines = 3) => {
+    // Simple truncation - split by lines and join first 3 lines with ellipsis if needed
+    const lines = text.split('\n');
+    if (lines.length <= maxLines) {
+      return text;
+    }
+    
+    const truncatedLines = lines.slice(0, maxLines);
+    const lastLine = truncatedLines[maxLines - 1];
+    
+    // If the last line is too long, truncate it further
+    if (lastLine.length > 100) {
+      truncatedLines[maxLines - 1] = lastLine.substring(0, 97) + '...';
+    }
+    
+    return truncatedLines.join('\n') + '...';
+  };
+
   // Check if current user is the post owner
   const isPostOwner = user?.id === post.authorId;
 
@@ -169,7 +187,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
         )}
 
         <PostContent onClick={handleClick}>
-          {post.content}
+          {truncateText(post.content)}
         </PostContent>
 
         <PostActions>
