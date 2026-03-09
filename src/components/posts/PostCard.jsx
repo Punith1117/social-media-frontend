@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { HeartHandshake, FileEdit, Trash } from 'lucide-react';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
@@ -44,10 +44,6 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     // Add Cloudinary transformations for thumbnail
     const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
     return url.replace('/upload/', `/upload/${transformations}/`);
-  };
-
-  const handleClick = () => {
-    navigate(`/posts/${post.id}`);
   };
 
   const handleLike = async (e) => {
@@ -145,34 +141,31 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
     <>
       <PostCardContainer>
         {context === 'feed' && (
-          <PostHeader onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/users/${post.author?.username}`);
-          }}>
-            {post.author?.profilePhotoUrl ? (
-              <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
-            ) : (
-              <AuthorPhoto src="/default-avatar.svg" alt={post.author.username} />
-            )}
-            <AuthorInfo>
-              <AuthorUsername>
-                {post.author?.username && (
-                  <>
-                    <UsernameFirstChar>{post.author.username.charAt(0)}</UsernameFirstChar>
-                    <UsernameMiddleChars>{post.author.username.slice(1, -1)}</UsernameMiddleChars>
-                    <UsernameLastChar>{post.author.username.charAt(post.author.username.length - 1)}</UsernameLastChar>
-                  </>
-                )}
-              </AuthorUsername>
-              <AuthorDisplayName>{post.author?.displayName}</AuthorDisplayName>
-            </AuthorInfo>
-            <PostDates>
-              <PostDate>{formatDate(post.createdAt)}</PostDate>
-              {post.updatedAt !== post.createdAt && (
-                <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+          <PostHeader to={`/users/${post.author?.username}`}>
+          {post.author?.profilePhotoUrl ? (
+            <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
+          ) : (
+            <AuthorPhoto src="/default-avatar.svg" alt={post.author.username} />
+          )}
+          <AuthorInfo>
+            <AuthorUsername>
+              {post.author?.username && (
+                <>
+                  <UsernameFirstChar>{post.author.username.charAt(0)}</UsernameFirstChar>
+                  <UsernameMiddleChars>{post.author.username.slice(1, -1)}</UsernameMiddleChars>
+                  <UsernameLastChar>{post.author.username.charAt(post.author.username.length - 1)}</UsernameLastChar>
+                </>
               )}
-            </PostDates>
-          </PostHeader>
+            </AuthorUsername>
+            <AuthorDisplayName>{post.author?.displayName}</AuthorDisplayName>
+          </AuthorInfo>
+          <PostDates>
+            <PostDate>{formatDate(post.createdAt)}</PostDate>
+            {post.updatedAt !== post.createdAt && (
+              <PostDate>Updated: {formatDate(post.updatedAt)}</PostDate>
+            )}
+          </PostDates>
+        </PostHeader>
         )}
 
         {context === 'profile' && (
@@ -186,7 +179,7 @@ const PostCard = ({ post, onLikeUpdate, onDelete, context = 'profile' }) => {
           </PostHeader>
         )}
 
-        <PostContent onClick={handleClick}>
+        <PostContent to={`/posts/${post.id}`}>
           {truncateText(post.content)}
         </PostContent>
 

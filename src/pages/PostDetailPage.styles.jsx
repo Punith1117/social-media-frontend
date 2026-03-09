@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PageContainer = styled.div`
   padding: 1rem;
@@ -111,7 +112,7 @@ export const PostHeader = styled.div`
   }
 `;
 
-export const AuthorInfo = styled.div`
+export const AuthorInfo = styled(Link)`
   display: flex;
   align-items: center;
   margin-bottom: 0.75rem;
@@ -121,6 +122,8 @@ export const AuthorInfo = styled.div`
   border-radius: 12px;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
+  text-decoration: none;
+  color: inherit;
 
   &::before {
     content: '';

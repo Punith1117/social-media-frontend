@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trash } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import api from '../../services/api';
 import {
   CommentContainer,
@@ -29,11 +29,7 @@ const CommentItem = ({ comment, onDelete }) => {
     const transformations = 'w_100,h_100,c_fill,q_auto:good,f_auto';
     return url.replace('/upload/', `/upload/${transformations}/`);
   };
-  
-  const handleAuthorClick = () => {
-    navigate(`/users/${comment.author.username}`);
-  };
-  
+
   const handleDelete = async () => {
     try {
       // Optimistic update - remove comment immediately
@@ -71,7 +67,7 @@ const CommentItem = ({ comment, onDelete }) => {
   return (
     <CommentContainer>
       <CommentHeader>
-        <AuthorInfo onClick={handleAuthorClick}>
+        <AuthorInfo to={`/users/${comment.author.username}`}>
           {comment.author?.profilePhotoUrl ? (
             <AuthorPhoto src={getOptimizedImageUrl(comment.author.profilePhotoUrl)} alt={comment.author.username} />
           ) : (

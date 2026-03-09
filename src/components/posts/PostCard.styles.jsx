@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PostCardContainer = styled.div`
   background: 
@@ -105,7 +106,7 @@ export const PostCardContainer = styled.div`
   }
 `;
 
-export const PostHeader = styled.div`
+export const PostHeader = styled(Link)`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -118,6 +119,8 @@ export const PostHeader = styled.div`
   border-radius: 12px;
   margin: -0.5rem;
   margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: inherit;
   animation: headerFadeIn 0.5s ease-out 0.2s both;
 
   @keyframes headerFadeIn {
@@ -303,7 +306,8 @@ export const PostDate = styled.span`
   border-radius: 6px;
 `;
 
-export const PostContent = styled.div`
+export const PostContent = styled(Link)`
+  display: block;
   font-size: 1rem;
   line-height: 1.7;
   color: #d4c5a7;
@@ -323,6 +327,8 @@ export const PostContent = styled.div`
   border: 1px solid rgba(220, 53, 69, 0.2);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
   animation: contentFadeIn 0.6s ease-out 0.3s both;
 
   @keyframes contentFadeIn {

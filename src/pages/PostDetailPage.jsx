@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import { HeartHandshake, FileEdit, Trash, ArrowLeft } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -148,10 +148,7 @@ const PostDetailPage = () => {
     return url.replace('/upload/', `/upload/${transformations}/`);
   };
 
-  const handleAuthorClick = () => {
-    navigate(`/users/${post.author.username}`);
-  };
-
+  
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -206,7 +203,7 @@ const PostDetailPage = () => {
           <PostHeader>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <AuthorInfo onClick={handleAuthorClick}>
+                <AuthorInfo to={`/users/${post.author.username}`}>
                   {post.author?.profilePhotoUrl ? (
                     <AuthorPhoto src={getOptimizedImageUrl(post.author.profilePhotoUrl)} alt={post.author.username} />
                   ) : (

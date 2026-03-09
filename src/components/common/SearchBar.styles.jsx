@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SearchContainer = styled.div`
   position: relative;
@@ -97,14 +98,16 @@ export const ResultsDropdown = styled.div`
   border-radius: 0 0 8px 8px;
 `;
 
-export const UserResult = styled.div`
+export const UserResult = styled(Link)`
+  display: flex;
   padding: 0.75rem;
   border-bottom: 1px solid rgba(220, 53, 69, 0.2);
   cursor: pointer;
-  display: flex;
   align-items: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     background: rgba(220, 53, 69, 0.15);

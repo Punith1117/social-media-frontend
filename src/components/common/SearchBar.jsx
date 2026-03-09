@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDebounced } from '../../hooks/useDebounced';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import {
   SearchContainer,
@@ -26,7 +26,6 @@ const SearchBar = () => {
   const [error, setError] = useState(null);
   
   const debouncedValue = useDebounced(inputValue);
-  const navigate = useNavigate();
 
   // Optimize Cloudinary images for search results (smaller size, faster loading)
   const getOptimizedImageUrl = (url) => {
@@ -83,13 +82,7 @@ const SearchBar = () => {
     setIsOpen(false);
   };
 
-  const handleUserClick = (username) => {
-    navigate(`/users/${username}`);
-    setIsOpen(false);
-    setInputValue('');
-    setResults([]);
-  };
-
+  
   return (
     <SearchContainer>
       <SearchInputWrapper>
@@ -124,7 +117,7 @@ const SearchBar = () => {
               <NoResults>No users found</NoResults>
             )}
             {!loading && !error && results.map(user => (
-              <UserResult key={user.id} onClick={() => handleUserClick(user.username)}>
+              <UserResult key={user.id} to={`/users/${user.username}`}>
                 <Avatar src={getOptimizedImageUrl(user.profilePhotoUrl) || '/default-avatar.svg'} alt={user.username} />
                 <UserInfo>
                   <Username>{user.username}</Username>

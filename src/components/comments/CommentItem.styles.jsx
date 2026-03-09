@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const CommentContainer = styled.div`
   border-bottom: 1px solid rgba(220, 53, 69, 0.15);
@@ -69,7 +70,7 @@ export const CommentHeader = styled.div`
   gap: 1rem;
 `;
 
-export const AuthorInfo = styled.div`
+export const AuthorInfo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -78,6 +79,8 @@ export const AuthorInfo = styled.div`
   border-radius: 10px;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
+  text-decoration: none;
+  color: inherit;
 
   &::before {
     content: '';
