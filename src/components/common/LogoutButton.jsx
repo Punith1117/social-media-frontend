@@ -6,19 +6,19 @@ import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 2rem;
+  left: 2rem;
   z-index: 1000;
   
   @media (max-width: 768px) {
-    bottom: 0.75rem;
-    left: 0.75rem;
+    bottom: 1.75rem;
+    left: 1.75rem;
     z-index: 999;
   }
   
   @media (max-width: 480px) {
-    bottom: 0.5rem;
-    left: 0.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
     z-index: 998;
   }
 `;
@@ -30,8 +30,8 @@ const LogoutButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,8 +70,8 @@ const LogoutButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     
     &:hover {
       transform: translateY(-2px) scale(1.03);
@@ -79,8 +79,8 @@ const LogoutButton = styled.button`
   }
   
   @media (max-width: 480px) {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     
     &:hover {
       transform: translateY(-1px) scale(1.02);
@@ -102,7 +102,7 @@ const Logout = () => {
   return (
     <ButtonContainer>
       <LogoutButton onClick={handleLogout} title="Logout">
-        <LogOut size={20} />
+        <LogOut size={24} />
       </LogoutButton>
     </ButtonContainer>
   );

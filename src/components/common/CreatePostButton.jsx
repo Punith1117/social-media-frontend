@@ -5,19 +5,19 @@ import { useAuth } from '../../context/AuthContext';
 
 const ButtonContainer = styled.div`
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  right: 2rem;
   z-index: 999;
   
   @media (max-width: 768px) {
-    bottom: 0.75rem;
-    right: 0.75rem;
+    bottom: 1.75rem;
+    right: 1.75rem;
     z-index: 998;
   }
   
   @media (max-width: 480px) {
-    bottom: 0.5rem;
-    right: 0.5rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     z-index: 997;
   }
 `;
@@ -28,9 +28,9 @@ const CreatePostButton = styled.button`
   color: white;
   border: 1px solid rgba(220, 53, 69, 0.5);
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  font-size: 24px;
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
   font-weight: 300;
   cursor: pointer;
   box-shadow: 
@@ -80,9 +80,9 @@ const CreatePostButton = styled.button`
   }
   
   @media (max-width: 768px) {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
     
     &:hover {
       transform: translateY(-2px) scale(1.03);
@@ -90,9 +90,9 @@ const CreatePostButton = styled.button`
   }
   
   @media (max-width: 480px) {
-    width: 44px;
-    height: 44px;
-    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
     
     &:hover {
       transform: translateY(-1px) scale(1.02);
