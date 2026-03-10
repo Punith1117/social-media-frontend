@@ -38,31 +38,47 @@ const SearchBar = () => {
     return url.replace('/upload/', `/upload/${transformations}/`);
   };
 
+  // Clear error when input changes
+  useEffect(() => {
+    if (error) {
+      setError(null);
+    }
+  }, [inputValue]);
+
   // API call when debounced value changes
   useEffect(() => {
     const searchUsers = async () => {
       const trimmed = debouncedValue.trim();
-      if (!trimmed || trimmed.length < 3 || trimmed.length > 20) {
-        setResults([]);
-        // Don't close dropdown if there's input - show validation message
-        if (trimmed.length > 0) {
-          setIsOpen(true);
-        } else {
-          setIsOpen(false);
-        }
+      
+      // Reset states
+      setResults([]);
+      setError(null);
+      
+      // Validation checks
+      if (!trimmed) {
+        setIsOpen(false);
+        return;
+      }
+      
+      if (trimmed.length < 3) {
+        setIsOpen(true);
+        return;
+      }
+      
+      if (trimmed.length > 20) {
+        setIsOpen(true);
         return;
       }
 
+      // Perform search
       setLoading(true);
-      setError(null);
+      setIsOpen(true);
       
       try {
         const response = await api.searchUsers(trimmed);
-        setResults(response.users);
-        setIsOpen(true);
+        setResults(response.users || []);
       } catch (err) {
-        console.error('Search error:', err);
-        setError('Search failed');
+        setError(err.error || 'Search failed');
         setResults([]);
       } finally {
         setLoading(false);
@@ -80,9 +96,24 @@ const SearchBar = () => {
     setInputValue('');
     setResults([]);
     setIsOpen(false);
+    setError(null);
   };
 
-  
+  const getMessage = () => {
+    const trimmed = debouncedValue.trim();
+    
+    if (loading) return null;
+    if (error) return { type: 'error', message: error };
+    if (!trimmed) return null;
+    if (trimmed.length < 3) return { type: 'validation', message: 'Enter at least 3 characters to search' };
+    if (trimmed.length > 20) return { type: 'validation', message: 'Search must be 20 characters or less' };
+    if (!loading && !error && results.length === 0) return { type: 'no-results', message: 'No users found' };
+    
+    return null;
+  };
+
+  const message = getMessage();
+
   return (
     <SearchContainer>
       <SearchInputWrapper>
@@ -106,17 +137,16 @@ const SearchBar = () => {
         {isOpen && (
           <ResultsDropdown>
             {loading && <LoadingMessage>Loading...</LoadingMessage>}
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            {!loading && !error && debouncedValue.trim().length > 0 && debouncedValue.trim().length < 3 && (
-              <NoResults>Enter at least 3 characters to search</NoResults>
+            
+            {message && (
+              <>
+                {message.type === 'error' && <ErrorMessage>{message.message}</ErrorMessage>}
+                {message.type === 'validation' && <NoResults>{message.message}</NoResults>}
+                {message.type === 'no-results' && <NoResults>{message.message}</NoResults>}
+              </>
             )}
-            {!loading && !error && debouncedValue.trim().length > 20 && (
-              <NoResults>Search must be 20 characters or less</NoResults>
-            )}
-            {!loading && !error && results.length === 0 && debouncedValue.trim().length >= 3 && debouncedValue.trim().length <= 20 && (
-              <NoResults>No users found</NoResults>
-            )}
-            {!loading && !error && results.map(user => (
+            
+            {results.map(user => (
               <UserResult key={user.id} to={`/users/${user.username}`}>
                 <Avatar src={getOptimizedImageUrl(user.profilePhotoUrl) || '/default-avatar.svg'} alt={user.username} />
                 <UserInfo>

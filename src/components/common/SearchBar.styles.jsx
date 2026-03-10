@@ -174,4 +174,14 @@ export const ErrorMessage = styled.div`
   padding: 1rem;
   text-align: center;
   color: #e74c3c;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
 `;
