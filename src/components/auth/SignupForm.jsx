@@ -20,7 +20,8 @@ const SignupForm = () => {
   
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   });
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
@@ -30,7 +31,16 @@ const SignupForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
     
     // Real-time validation
-    validateField(name, value);
+    if (name === 'confirmPassword') {
+      validateField(name, value, formData.password);
+    } else {
+      validateField(name, value);
+      
+      // Re-validate confirm password when password changes
+      if (name === 'password' && formData.confirmPassword) {
+        validateField('confirmPassword', formData.confirmPassword, value);
+      }
+    }
     
     // Clear API error when user starts typing
     if (apiError) {
@@ -40,13 +50,17 @@ const SignupForm = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    validateField(name, value);
+    if (name === 'confirmPassword') {
+      validateField(name, value, formData.password);
+    } else {
+      validateField(name, value);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm(formData.username, formData.password)) {
+    if (!validateForm(formData.username, formData.password, formData.confirmPassword)) {
       return;
     }
 
@@ -97,6 +111,18 @@ const SignupForm = () => {
             onBlur={handleBlur}
             error={errors.password || (apiError?.field === 'password' ? apiError.error : null)}
             placeholder="Enter your password"
+            disabled={loading}
+          />
+          
+          <Input
+            label="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            error={errors.confirmPassword}
+            placeholder="Confirm your password"
             disabled={loading}
           />
           

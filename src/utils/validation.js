@@ -38,14 +38,28 @@ export const validatePassword = (password) => {
   return null;
 };
 
-export const validateSignupForm = (username, password) => {
+export const validateConfirmPassword = (password, confirmPassword) => {
+  if (!confirmPassword) {
+    return 'Please confirm your password';
+  }
+  
+  if (password !== confirmPassword) {
+    return 'Passwords do not match';
+  }
+  
+  return null;
+};
+
+export const validateSignupForm = (username, password, confirmPassword) => {
   const usernameError = validateUsername(username);
   const passwordError = validatePassword(password);
+  const confirmPasswordError = validateConfirmPassword(password, confirmPassword);
   
   return {
     username: usernameError,
     password: passwordError,
-    isValid: !usernameError && !passwordError
+    confirmPassword: confirmPasswordError,
+    isValid: !usernameError && !passwordError && !confirmPasswordError
   };
 };
 
