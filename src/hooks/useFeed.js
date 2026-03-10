@@ -78,7 +78,11 @@ const useFeed = (feedType = 'explore') => {
     ));
   };
 
-  return { posts, loading, error, cursor, hasMore, loadMore, updatePostLike, revertPostLike };
+  const deletePost = (postId) => {
+    setPosts(prev => prev.filter(post => post.id !== postId));
+  };
+
+  return { posts, loading, error, cursor, hasMore, loadMore, updatePostLike, revertPostLike, deletePost };
 };
 
 export default useFeed;

@@ -10,7 +10,7 @@ const ExplorePage = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike } = useFeed('explore');
+  const { posts, loading, error, hasMore, loadMore, updatePostLike, revertPostLike, deletePost } = useFeed('explore');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const loadingTriggerRef = useRef(null);
 
@@ -78,6 +78,21 @@ const ExplorePage = () => {
     }
   };
 
+  const handleDelete = async (postId) => {
+    try {
+      deletePost(postId);
+      await api.deletePost(postId);
+    } catch (error) {
+      if (error.status === 401 || error.status === 403) {
+        logout();
+        navigate('/login', { state: { from: location.pathname } });
+      } else {
+        console.error('Delete failed:', error);
+      }
+      throw error;
+    }
+  };
+
   return (
     <Container>
       <PostList
@@ -85,6 +100,7 @@ const ExplorePage = () => {
         loading={loading && posts.length === 0}
         error={error}
         onLikeUpdate={handleLikeUpdate}
+        onDelete={handleDelete}
         emptyMessage="No posts to explore"
         context="feed"
       />
