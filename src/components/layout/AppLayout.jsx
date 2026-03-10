@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import CreatePostButton from '../common/CreatePostButton';
 import Header from './Header';
+import LogoutButton from '../common/LogoutButton';
 
 const ContentContainer = styled.main`
   padding-top: 0px;
@@ -24,6 +25,7 @@ const AppLayout = ({ children }) => {
         {children}
       </ContentContainer>
       {shouldShowButton && <CreatePostButton />}
+      <LogoutButton />
     </>
   );
 };

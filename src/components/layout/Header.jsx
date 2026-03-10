@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Github } from 'lucide-react';
 import TabNavigation from '../navigation/TabNavigation';
 import SearchBar from '../common/SearchBar';
-import LogoutButton from '../common/LogoutButton';
 
 const HeaderContainer = styled.header`
   position: sticky;
@@ -155,12 +154,11 @@ const RightSection = styled.div`
 const Header = () => {
   const location = useLocation();
   
-  // Pages where SearchBar and LogoutButton should NOT appear
+  // Pages where SearchBar should NOT appear
   const excludedRoutes = ['/login', '/signup', '/create-post'];
   
   // Check if current route is excluded
   const shouldShowSearchBar = !excludedRoutes.includes(location.pathname);
-  const shouldShowLogoutButton = !excludedRoutes.includes(location.pathname);
 
   return (
     <HeaderContainer>
@@ -181,7 +179,6 @@ const Header = () => {
         </CenterSection>
         <RightSection>
           {shouldShowSearchBar && <SearchBar />}
-          {shouldShowLogoutButton && <LogoutButton />}
         </RightSection>
       </HeaderContent>
     </HeaderContainer>

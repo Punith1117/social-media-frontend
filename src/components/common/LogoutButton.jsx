@@ -1,29 +1,45 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { LogOut } from 'lucide-react';
 import styled from 'styled-components';
 
-const LogoutButtonContainer = styled.button`
-  padding: 0.5rem 1rem;
-  background: 
-    linear-gradient(135deg, rgba(108, 117, 125, 0.8) 0%, rgba(73, 80, 87, 0.9) 100%);
+const ButtonContainer = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  
+  @media (max-width: 768px) {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 999;
+  }
+  
+  @media (max-width: 480px) {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    z-index: 998;
+  }
+`;
+
+const LogoutButton = styled.button`
+  background: rgba(220, 53, 69, 0.9);
   color: white;
-  border: 1px solid rgba(220, 53, 69, 0.3);
-  border-radius: 10px;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    0 2px 8px rgba(108, 117, 125, 0.2),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-  white-space: nowrap;
-  
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+
   &::before {
     content: '';
     position: absolute;
@@ -33,56 +49,46 @@ const LogoutButtonContainer = styled.button`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(255, 255, 255, 0.15), 
+      rgba(255, 255, 255, 0.2), 
       transparent
     );
     transition: left 0.8s ease;
   }
-  
+
   &:hover {
-    background: 
-      linear-gradient(135deg, rgba(220, 53, 69, 0.8) 0%, rgba(192, 57, 43, 0.9) 100%);
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 
-      0 4px 12px rgba(220, 53, 69, 0.3),
-      0 0 0 2px rgba(220, 53, 69, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border-color: rgba(220, 53, 69, 0.5);
+    background: rgba(220, 53, 69, 1);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
     
     &::before {
       left: 100%;
     }
   }
-  
+
   &:active {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(-1px) scale(0.98);
   }
 
-  @media (max-width: 1000px) and (min-width: 768px) {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.75rem;
-  }
-  
   @media (max-width: 768px) {
-    padding: 0.4rem 0.875rem;
-    font-size: 0.75rem;
+    width: 44px;
+    height: 44px;
     
     &:hover {
-      transform: translateY(-1px) scale(1.01);
+      transform: translateY(-2px) scale(1.03);
     }
   }
   
   @media (max-width: 480px) {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.7rem;
+    width: 40px;
+    height: 40px;
     
     &:hover {
-      transform: translateY(-1px) scale(1.01);
+      transform: translateY(-1px) scale(1.02);
     }
   }
 `;
 
-const LogoutButton = () => {
+const Logout = () => {
   const { logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -91,15 +97,15 @@ const LogoutButton = () => {
     navigate('/login');
   };
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  if (!isAuthenticated) return null;
 
   return (
-    <LogoutButtonContainer onClick={handleLogout}>
-      Logout
-    </LogoutButtonContainer>
+    <ButtonContainer>
+      <LogoutButton onClick={handleLogout} title="Logout">
+        <LogOut size={20} />
+      </LogoutButton>
+    </ButtonContainer>
   );
 };
 
-export default LogoutButton;
+export default Logout;
