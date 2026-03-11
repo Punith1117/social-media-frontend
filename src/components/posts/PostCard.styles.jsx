@@ -89,6 +89,9 @@ export const PostDates = styled.div`
   text-align: right;
   font-size: 0.8rem;
   color: ${props => props.theme.colors.textLight};
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 `;
 
 export const PostDate = styled.span`
