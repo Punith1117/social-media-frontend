@@ -11,7 +11,8 @@ import {
   Form,
   SuccessMessage,
   ErrorMessage,
-  AuthText
+  AuthText,
+  DemoInfo
 } from './LoginForm.styles';
 
 const LoginForm = () => {
@@ -133,6 +134,12 @@ const LoginForm = () => {
         <AuthText>
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </AuthText>
+        
+        <DemoInfo>
+          Demo Account: <strong>Username: pun</strong> | <strong>Password: 1Abcd</strong>
+          <br />
+          <small>Note: Backend restart may take ~30s (free tier hosting)</small>
+        </DemoInfo>
       </FormContainer>
     </AuthContainer>
   );

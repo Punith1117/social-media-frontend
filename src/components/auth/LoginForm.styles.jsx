@@ -101,3 +101,28 @@ export const AuthText = styled.p`
     }
   }
 `;
+
+export const DemoInfo = styled.div`
+  margin: 1rem 0 0 0;
+  padding: 0.75rem;
+  background: ${props => props.theme.colors.surface};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: ${props => props.theme.colors.textLight};
+  backdrop-filter: blur(10px);
+  
+  strong {
+    color: ${props => props.theme.colors.primary};
+    font-weight: 600;
+  }
+  
+  small {
+    font-size: 0.75rem;
+    color: ${props => props.theme.colors.textLight};
+    opacity: 0.8;
+    margin-top: 0.25rem;
+    display: block;
+  }
+`;
