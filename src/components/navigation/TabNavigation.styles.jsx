@@ -30,24 +30,24 @@ const baseTabStyles = `
   cursor: pointer;
   position: relative;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 
   &:hover {
-    background: rgba(220, 53, 69, 0.15);
+    background: rgba(59, 130, 246, 0.15);
     color: #fff;
-    border-color: rgba(220, 53, 69, 0.4);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
   }
 
   &.active {
     color: #fff;
     background: 
-      radial-gradient(ellipse at center, rgba(220, 53, 69, 0.25) 0%, transparent 70%),
-      linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(139, 69, 19, 0.15) 100%);
-    border-color: rgba(220, 53, 69, 0.5);
+      radial-gradient(ellipse at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%),
+      linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 69, 19, 0.15) 100%);
+    border-color: rgba(59, 130, 246, 0.5);
     box-shadow: 
-      0 0 20px rgba(220, 53, 69, 0.3),
-      inset 0 1px 0 rgba(220, 53, 69, 0.4);
+      0 0 20px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(59, 130, 246, 0.4);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     animation: bloodPulse 2s ease-in-out infinite;
   }
@@ -55,14 +55,14 @@ const baseTabStyles = `
   @keyframes bloodPulse {
     0%, 100% {
       box-shadow: 
-        0 0 20px rgba(220, 53, 69, 0.3),
-        inset 0 1px 0 rgba(220, 53, 69, 0.4);
+        0 0 20px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(59, 130, 246, 0.4);
     }
     50% {
       box-shadow: 
-        0 0 30px rgba(220, 53, 69, 0.6),
-        0 0 40px rgba(220, 53, 69, 0.4),
-        inset 0 1px 0 rgba(220, 53, 69, 0.6);
+        0 0 30px rgba(59, 130, 246, 0.6),
+        0 0 40px rgba(59, 130, 246, 0.4),
+        inset 0 1px 0 rgba(59, 130, 246, 0.6);
     }
   }
 
@@ -78,7 +78,7 @@ export const ProfileTab = styled(NavLink)`
   gap: 0.75rem;
   padding: 0.5rem 1rem;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
 
   @media (max-width: 1000px) and (min-width: 768px) {
@@ -115,13 +115,13 @@ export const ProfilePhoto = styled.img`
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(220, 53, 69, 0.4);
-  box-shadow: 0 0 10px rgba(220, 53, 69, 0.2);
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: rgba(220, 53, 69, 0.6);
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.4);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
   }
 
   @media (max-width: 768px) {

@@ -24,9 +24,9 @@ const ButtonContainer = styled.div`
 
 const CreatePostButton = styled.button`
   background: 
-    linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
-  border: 1px solid rgba(220, 53, 69, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.5);
   border-radius: 50%;
   width: 64px;
   height: 64px;
@@ -34,8 +34,8 @@ const CreatePostButton = styled.button`
   font-weight: 300;
   cursor: pointer;
   box-shadow: 
-    0 8px 25px rgba(220, 53, 69, 0.4),
-    0 0 20px rgba(220, 53, 69, 0.2),
+    0 8px 25px rgba(59, 130, 246, 0.4),
+    0 0 20px rgba(59, 130, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
@@ -62,13 +62,13 @@ const CreatePostButton = styled.button`
   
   &:hover {
     background: 
-      linear-gradient(135deg, #c82333 0%, #a02622 100%);
+      linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 
-      0 12px 35px rgba(220, 53, 69, 0.5),
-      0 0 30px rgba(220, 53, 69, 0.3),
+      0 12px 35px rgba(59, 130, 246, 0.5),
+      0 0 30px rgba(59, 130, 246, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-color: rgba(220, 53, 69, 0.7);
+    border-color: rgba(59, 130, 246, 0.7);
     
     &::before {
       left: 100%;

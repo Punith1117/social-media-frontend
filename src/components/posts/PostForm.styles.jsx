@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 24px;
   padding: 2rem;
   margin-bottom: 1.5rem;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    inset 0 2px 4px rgba(59, 130, 246, 0.3),
     inset 0 -2px 4px rgba(139, 69, 19, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
@@ -46,9 +46,9 @@ export const FormContainer = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
+      rgba(59, 130, 246, 0.8), 
       rgba(139, 69, 19, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0.7;
@@ -64,11 +64,11 @@ export const FormContainer = styled.div`
     transform: translateY(-3px) scale(1.01);
     box-shadow: 
       0 35px 70px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(220, 53, 69, 0.4),
-      0 0 30px rgba(220, 53, 69, 0.3),
-      inset 0 2px 8px rgba(220, 53, 69, 0.4),
+      0 0 0 2px rgba(59, 130, 246, 0.4),
+      0 0 30px rgba(59, 130, 246, 0.3),
+      inset 0 2px 8px rgba(59, 130, 246, 0.4),
       inset 0 -2px 8px rgba(139, 69, 19, 0.3);
-    border-color: rgba(220, 53, 69, 0.5);
+    border-color: rgba(59, 130, 246, 0.5);
   }
 
   @media (max-width: 768px) {
@@ -87,11 +87,11 @@ export const TextArea = styled.textarea`
   min-height: 250px;
   min-width: 300px;
   padding: 1rem;
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 16px;
   background: 
     linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%),
-    rgba(220, 53, 69, 0.02);
+    rgba(59, 130, 246, 0.02);
   color: #e8d5c7;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -102,7 +102,7 @@ export const TextArea = styled.textarea`
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
     inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(220, 53, 69, 0.1);
+    0 1px 0 rgba(59, 130, 246, 0.1);
   backdrop-filter: blur(10px);
   animation: textareaFocus 0.5s ease-out;
 
@@ -125,22 +125,22 @@ export const TextArea = styled.textarea`
   
   &:focus {
     outline: none;
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%),
-      rgba(220, 53, 69, 0.05);
+      rgba(59, 130, 246, 0.05);
     box-shadow: 
       inset 0 2px 6px rgba(0, 0, 0, 0.3),
-      0 0 0 2px rgba(220, 53, 69, 0.2),
-      0 4px 12px rgba(220, 53, 69, 0.15);
+      0 0 0 2px rgba(59, 130, 246, 0.2),
+      0 4px 12px rgba(59, 130, 246, 0.15);
     transform: translateY(-1px);
   }
 
   &:hover:not(:focus) {
-    border-color: rgba(220, 53, 69, 0.4);
+    border-color: rgba(59, 130, 246, 0.4);
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.85) 0%, rgba(15, 10, 10, 0.92) 100%),
-      rgba(220, 53, 69, 0.03);
+      rgba(59, 130, 246, 0.03);
   }
   
   &:disabled {
@@ -164,7 +164,7 @@ export const CharacterCounter = styled.div`
   margin-top: 0.75rem;
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
-  background: rgba(220, 53, 69, 0.08);
+  background: rgba(59, 130, 246, 0.08);
   color: ${props => {
     if (props.characters > 280) return '#e74c3c'; // Red for 281-300
     if (props.characters > 200) return '#f39c12'; // Orange for 201-280
@@ -240,7 +240,7 @@ export const Button = styled.button`
   padding: 0.75rem 1.5rem;
   border: ${props => props.$variant === 'cancel' 
     ? '1px solid rgba(108, 117, 125, 0.5)' 
-    : '1px solid rgba(220, 53, 69, 0.5)'};
+    : '1px solid rgba(59, 130, 246, 0.5)'};
   background: ${props => props.$variant === 'cancel' 
     ? 'linear-gradient(135deg, rgba(108, 117, 125, 0.8) 0%, rgba(73, 80, 87, 0.9) 100%)'
     : 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)'};

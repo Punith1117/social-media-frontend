@@ -7,7 +7,7 @@ export const AuthContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
     linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #0d0d0d 70%, #000000 100%);
   backdrop-filter: blur(10px);
   position: relative;
@@ -15,7 +15,7 @@ export const AuthContainer = styled.div`
 
 export const FormContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -60,9 +60,9 @@ export const FormContainer = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
-      rgba(220, 53, 69, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8), 
+      rgba(59, 130, 246, 0.6),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0;
@@ -76,7 +76,7 @@ export const FormContainer = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -86,11 +86,11 @@ export const FormContainer = styled.div`
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
       0 40px 80px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(220, 53, 69, 0.4),
-      0 0 30px rgba(220, 53, 69, 0.3),
-      inset 0 2px 8px rgba(220, 53, 69, 0.4),
-      inset 0 -2px 8px rgba(220, 53, 69, 0.3);
-    border-color: rgba(220, 53, 69, 0.5);
+      0 0 0 2px rgba(59, 130, 246, 0.4),
+      0 0 30px rgba(59, 130, 246, 0.3),
+      inset 0 2px 8px rgba(59, 130, 246, 0.4),
+      inset 0 -2px 8px rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
     
     &::before {
       opacity: 1;
@@ -125,10 +125,10 @@ export const Title = styled.h1`
 
   @keyframes titleGlow {
     0% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(220, 53, 69, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(59, 130, 246, 0.3);
     }
     100% {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(220, 53, 69, 0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.5);
     }
   }
 `;
@@ -172,7 +172,7 @@ export const AuthText = styled.p`
   font-weight: 500;
   
   a {
-    color: #dc3545;
+    color: #3b82f6;
     text-decoration: none;
     font-weight: 700;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -185,7 +185,7 @@ export const AuthText = styled.p`
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #dc3545, #dc3545);
+      background: linear-gradient(90deg, #3b82f6, #3b82f6);
       transition: width 0.3s ease;
     }
     

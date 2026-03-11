@@ -19,9 +19,9 @@ export const PaginationContainer = styled.div`
     height: 1px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.3), 
+      rgba(59, 130, 246, 0.3), 
       rgba(139, 69, 19, 0.2),
-      rgba(220, 53, 69, 0.3),
+      rgba(59, 130, 246, 0.3),
       transparent
     );
   }
@@ -35,12 +35,12 @@ export const PaginationContainer = styled.div`
 
 export const PaginationButton = styled.button`
   background: ${props => props.$active 
-    ? 'linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(139, 69, 19, 0.8) 100%)' 
-    : 'radial-gradient(ellipse at center, rgba(220, 53, 69, 0.15) 0%, rgba(15, 10, 10, 0.95) 100%)'};
+    ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(139, 69, 19, 0.8) 100%)' 
+    : 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, rgba(15, 10, 10, 0.95) 100%)'};
   color: ${props => props.$active ? '#ffffff' : '#e8d5c7'};
   border: ${props => props.$active 
-    ? '1px solid rgba(220, 53, 69, 0.5)' 
-    : '1px solid rgba(220, 53, 69, 0.3)'};
+    ? '1px solid rgba(59, 130, 246, 0.5)' 
+    : '1px solid rgba(59, 130, 246, 0.3)'};
   padding: 0.75rem 1rem;
   border-radius: 12px;
   cursor: pointer;
@@ -52,8 +52,8 @@ export const PaginationButton = styled.button`
   backdrop-filter: blur(10px);
   box-shadow: 
     ${props => props.$active 
-      ? '0 8px 25px rgba(220, 53, 69, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
-      : '0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(220, 53, 69, 0.1)'};
+      ? '0 8px 25px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
+      : '0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(59, 130, 246, 0.1)'};
 
   &::before {
     content: '';
@@ -64,7 +64,7 @@ export const PaginationButton = styled.button`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.3), 
+      rgba(59, 130, 246, 0.3), 
       transparent
     );
     transition: left 0.6s ease;
@@ -73,13 +73,13 @@ export const PaginationButton = styled.button`
   &:hover:not(:disabled) {
     transform: translateY(-2px) scale(1.05);
     background: ${props => props.$active 
-      ? 'linear-gradient(135deg, rgba(220, 53, 69, 1) 0%, rgba(139, 69, 19, 0.9) 100%)' 
-      : 'radial-gradient(ellipse at center, rgba(220, 53, 69, 0.25) 0%, rgba(15, 10, 10, 0.98) 100%)'};
-    border-color: rgba(220, 53, 69, 0.6);
+      ? 'linear-gradient(135deg, rgba(59, 130, 246, 1) 0%, rgba(139, 69, 19, 0.9) 100%)' 
+      : 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.25) 0%, rgba(15, 10, 10, 0.98) 100%)'};
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
       ${props => props.$active 
-        ? '0 12px 35px rgba(220, 53, 69, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3)' 
-        : '0 8px 25px rgba(220, 53, 69, 0.3), inset 0 1px 0 rgba(220, 53, 69, 0.2)'};
+        ? '0 12px 35px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3)' 
+        : '0 8px 25px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(59, 130, 246, 0.2)'};
     
     &::before {
       left: 100%;
@@ -94,8 +94,8 @@ export const PaginationButton = styled.button`
     opacity: 0.3;
     cursor: not-allowed;
     transform: none;
-    background: radial-gradient(ellipse at center, rgba(220, 53, 69, 0.05) 0%, rgba(15, 10, 10, 0.9) 100%);
-    border-color: rgba(220, 53, 69, 0.1);
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, rgba(15, 10, 10, 0.9) 100%);
+    border-color: rgba(59, 130, 246, 0.1);
     color: #666;
   }
 

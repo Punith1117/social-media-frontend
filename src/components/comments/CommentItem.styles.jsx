@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const CommentContainer = styled.div`
-  border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.3) 0%, rgba(15, 10, 10, 0.2) 100%);
   border-radius: 12px;
   margin-bottom: 0.75rem;
@@ -34,14 +34,14 @@ export const CommentContainer = styled.div`
     left: 0;
     width: 3px;
     height: 100%;
-    background: linear-gradient(180deg, #dc3545, #8b4513);
+    background: linear-gradient(180deg, #3b82f6, #8b4513);
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
   &:hover {
     background: 
-      radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
       linear-gradient(135deg, rgba(20, 15, 15, 0.4) 0%, rgba(15, 10, 10, 0.3) 100%);
     transform: translateX(5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -89,14 +89,14 @@ export const AuthorInfo = styled(Link)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     border-radius: 10px;
   }
   
   &:hover {
-    background: rgba(220, 53, 69, 0.12);
+    background: rgba(59, 130, 246, 0.12);
     transform: translateY(-2px);
     
     &::before {
@@ -110,16 +110,16 @@ export const AuthorPhoto = styled.img`
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(220, 53, 69, 0.3);
+  border: 2px solid rgba(59, 130, 246, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
 
   &:hover {
     transform: scale(1.1) rotate(3deg);
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
-      0 4px 15px rgba(220, 53, 69, 0.3),
-      0 0 10px rgba(220, 53, 69, 0.2);
+      0 4px 15px rgba(59, 130, 246, 0.3),
+      0 0 10px rgba(59, 130, 246, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -144,13 +144,13 @@ export const AuthorName = styled.span`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: linear-gradient(90deg, #3b82f6, #8b4513);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
   }
 
   ${AuthorInfo}:hover & {
-    color: #dc3545;
+    color: #3b82f6;
     transform: translateX(2px);
     
     &::after {
@@ -165,8 +165,8 @@ export const CommentDate = styled.span`
   font-weight: 500;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  background: rgba(220, 53, 69, 0.08);
-  border: 1px solid rgba(220, 53, 69, 0.15);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.15);
 `;
 
 export const CommentContent = styled.div`

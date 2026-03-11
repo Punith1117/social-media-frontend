@@ -178,7 +178,7 @@ const EditPostPage = () => {
           <div style={{ 
             textAlign: 'center', 
             padding: '2rem', 
-            color: '#cc0000', 
+            color: '#60a5fa', 
             background: '#f8d7da', 
             border: '1px solid #f5c6cb', 
             borderRadius: '4px',
@@ -199,7 +199,7 @@ const EditPostPage = () => {
           <div style={{ 
             textAlign: 'center', 
             padding: '2rem', 
-            color: '#cc0000', 
+            color: '#60a5fa', 
             background: '#f8d7da', 
             border: '1px solid #f5c6cb', 
             borderRadius: '4px',

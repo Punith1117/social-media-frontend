@@ -16,7 +16,7 @@ const LoadingContainer = styled.div`
 const ErrorContainer = styled.div`
   text-align: center;
   padding: 2rem;
-  color: #cc0000;
+  color: #60a5fa;
 `;
 
 const NoPostsContainer = styled.div`

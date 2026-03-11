@@ -15,7 +15,7 @@ export const BackToTopButton = styled.button`
   position: fixed;
   bottom: 2rem;
   right: 20vw;
-  background: linear-gradient(135deg, #dc3545 0%, #8b4513 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b4513 100%);
   color: #e8d5c7;
   border: none;
   border-radius: 50%;
@@ -26,12 +26,12 @@ export const BackToTopButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(220, 53, 69, 0.5);
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
   }
 
   @media (max-width: 768px) {

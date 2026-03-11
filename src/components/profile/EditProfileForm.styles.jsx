@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 24px;
   padding: 2rem;
   margin-bottom: 1.5rem;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    inset 0 2px 4px rgba(59, 130, 246, 0.3),
     inset 0 -2px 4px rgba(139, 69, 19, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
@@ -46,9 +46,9 @@ export const FormContainer = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
+      rgba(59, 130, 246, 0.8), 
       rgba(139, 69, 19, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0.7;
@@ -64,11 +64,11 @@ export const FormContainer = styled.div`
     transform: translateY(-3px) scale(1.01);
     box-shadow: 
       0 35px 70px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(220, 53, 69, 0.4),
-      0 0 30px rgba(220, 53, 69, 0.3),
-      inset 0 2px 8px rgba(220, 53, 69, 0.4),
+      0 0 0 2px rgba(59, 130, 246, 0.4),
+      0 0 30px rgba(59, 130, 246, 0.3),
+      inset 0 2px 8px rgba(59, 130, 246, 0.4),
       inset 0 -2px 8px rgba(139, 69, 19, 0.3);
-    border-color: rgba(220, 53, 69, 0.5);
+    border-color: rgba(59, 130, 246, 0.5);
   }
 
   @media (max-width: 768px) {
@@ -124,12 +124,12 @@ export const Label = styled.label`
     left: 0;
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: linear-gradient(90deg, #3b82f6, #8b4513);
     transition: width 0.3s ease;
   }
 
   ${FormGroup}:hover & {
-    color: #dc3545;
+    color: #3b82f6;
     
     &::after {
       width: 100%;
@@ -142,13 +142,13 @@ export const Input = styled.input`
   padding: 1rem;
   border: 1px solid ${props => props.$hasError 
     ? 'rgba(231, 76, 60, 0.6)' 
-    : 'rgba(220, 53, 69, 0.3)'};
+    : 'rgba(59, 130, 246, 0.3)'};
   border-radius: 16px;
   background: 
     linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%),
     ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.05)' 
-      : 'rgba(220, 53, 69, 0.02)'};
+      : 'rgba(59, 130, 246, 0.02)'};
   color: #e8d5c7;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -156,7 +156,7 @@ export const Input = styled.input`
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
     inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(220, 53, 69, 0.1);
+    0 1px 0 rgba(59, 130, 246, 0.1);
   backdrop-filter: blur(10px);
   
   &::placeholder {
@@ -169,32 +169,32 @@ export const Input = styled.input`
     outline: none;
     border-color: ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.8)' 
-      : 'rgba(220, 53, 69, 0.6)'};
+      : 'rgba(59, 130, 246, 0.6)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%),
       ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.08)' 
-        : 'rgba(220, 53, 69, 0.05)'};
+        : 'rgba(59, 130, 246, 0.05)'};
     box-shadow: 
       inset 0 2px 6px rgba(0, 0, 0, 0.3),
       0 0 0 2px ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.2)' 
-        : 'rgba(220, 53, 69, 0.2)'},
+        : 'rgba(59, 130, 246, 0.2)'},
       0 4px 12px ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.15)' 
-        : 'rgba(220, 53, 69, 0.15)'};
+        : 'rgba(59, 130, 246, 0.15)'};
     transform: translateY(-1px);
   }
 
   &:hover:not(:focus) {
     border-color: ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.5)' 
-      : 'rgba(220, 53, 69, 0.4)'};
+      : 'rgba(59, 130, 246, 0.4)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.85) 0%, rgba(15, 10, 10, 0.92) 100%),
       ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.03)' 
-        : 'rgba(220, 53, 69, 0.03)'};
+        : 'rgba(59, 130, 246, 0.03)'};
   }
   
   &:disabled {
@@ -215,13 +215,13 @@ export const TextArea = styled.textarea`
   padding: 1rem;
   border: 1px solid ${props => props.$hasError 
     ? 'rgba(231, 76, 60, 0.6)' 
-    : 'rgba(220, 53, 69, 0.3)'};
+    : 'rgba(59, 130, 246, 0.3)'};
   border-radius: 16px;
   background: 
     linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%),
     ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.05)' 
-      : 'rgba(220, 53, 69, 0.02)'};
+      : 'rgba(59, 130, 246, 0.02)'};
   color: #e8d5c7;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -232,7 +232,7 @@ export const TextArea = styled.textarea`
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
     inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(220, 53, 69, 0.1);
+    0 1px 0 rgba(59, 130, 246, 0.1);
   backdrop-filter: blur(10px);
   
   &::placeholder {
@@ -245,32 +245,32 @@ export const TextArea = styled.textarea`
     outline: none;
     border-color: ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.8)' 
-      : 'rgba(220, 53, 69, 0.6)'};
+      : 'rgba(59, 130, 246, 0.6)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%),
       ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.08)' 
-        : 'rgba(220, 53, 69, 0.05)'};
+        : 'rgba(59, 130, 246, 0.05)'};
     box-shadow: 
       inset 0 2px 6px rgba(0, 0, 0, 0.3),
       0 0 0 2px ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.2)' 
-        : 'rgba(220, 53, 69, 0.2)'},
+        : 'rgba(59, 130, 246, 0.2)'},
       0 4px 12px ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.15)' 
-        : 'rgba(220, 53, 69, 0.15)'};
+        : 'rgba(59, 130, 246, 0.15)'};
     transform: translateY(-1px);
   }
 
   &:hover:not(:focus) {
     border-color: ${props => props.$hasError 
       ? 'rgba(231, 76, 60, 0.5)' 
-      : 'rgba(220, 53, 69, 0.4)'};
+      : 'rgba(59, 130, 246, 0.4)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.85) 0%, rgba(15, 10, 10, 0.92) 100%),
       ${props => props.$hasError 
         ? 'rgba(231, 76, 60, 0.03)' 
-        : 'rgba(220, 53, 69, 0.03)'};
+        : 'rgba(59, 130, 246, 0.03)'};
   }
   
   &:disabled {
@@ -292,12 +292,12 @@ export const Button = styled.button`
     ? '1px solid rgba(108, 117, 125, 0.5)' 
     : props.$variant === 'delete'
     ? '1px solid rgba(220, 53, 69, 0.5)'
-    : '1px solid rgba(220, 53, 69, 0.5)'};
+    : '1px solid rgba(59, 130, 246, 0.5)'};
   background: ${props => props.$variant === 'cancel' 
     ? 'linear-gradient(135deg, rgba(108, 117, 125, 0.8) 0%, rgba(73, 80, 87, 0.9) 100%)'
     : props.$variant === 'delete'
     ? 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)'
-    : 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)'};
+    : 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'};
   color: #ffffff;
   border-radius: 12px;
   cursor: pointer;
@@ -310,7 +310,7 @@ export const Button = styled.button`
       ? '0 4px 15px rgba(108, 117, 125, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       : props.$variant === 'delete'
       ? '0 4px 15px rgba(220, 53, 69, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-      : '0 4px 15px rgba(231, 76, 60, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'};
+      : '0 4px 15px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'};
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
@@ -335,13 +335,13 @@ export const Button = styled.button`
       ? 'linear-gradient(135deg, rgba(73, 80, 87, 0.9) 0%, rgba(52, 58, 64, 0.95) 100%)'
       : props.$variant === 'delete'
       ? 'linear-gradient(135deg, #c82333 0%, #a02622 100%)'
-      : 'linear-gradient(135deg, #c0392b 0%, #a93226 100%)'};
+      : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'};
     transform: translateY(-2px) scale(1.02);
     box-shadow: ${props => props.$variant === 'cancel'
       ? '0 6px 20px rgba(108, 117, 125, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
       : props.$variant === 'delete'
       ? '0 6px 20px rgba(220, 53, 69, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-      : '0 6px 20px rgba(231, 76, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'};
+      : '0 6px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'};
     
     &::before {
       left: 100%;
@@ -461,36 +461,36 @@ export const PhotoPreview = styled.img`
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(220, 53, 69, 0.3);
+  border: 3px solid rgba(59, 130, 246, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   animation: avatarPulse 2s ease-in-out infinite;
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(220, 53, 69, 0.2);
+    inset 0 0 0 1px rgba(59, 130, 246, 0.2);
 
   @keyframes avatarPulse {
     0%, 100% {
       box-shadow: 
         0 4px 15px rgba(0, 0, 0, 0.3),
-        0 0 0 0 rgba(220, 53, 69, 0.4),
-        inset 0 0 0 1px rgba(220, 53, 69, 0.2);
+        0 0 0 0 rgba(59, 130, 246, 0.4),
+        inset 0 0 0 1px rgba(59, 130, 246, 0.2);
     }
     50% {
       box-shadow: 
         0 4px 15px rgba(0, 0, 0, 0.3),
-        0 0 0 8px rgba(220, 53, 69, 0.1),
-        inset 0 0 0 1px rgba(220, 53, 69, 0.2);
+        0 0 0 8px rgba(59, 130, 246, 0.1),
+        inset 0 0 0 1px rgba(59, 130, 246, 0.2);
     }
   }
 
   &:hover {
     transform: scale(1.05) rotate(3deg);
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
-      0 8px 25px rgba(220, 53, 69, 0.3),
-      0 0 20px rgba(220, 53, 69, 0.2),
-      inset 0 0 15px rgba(220, 53, 69, 0.2);
+      0 8px 25px rgba(59, 130, 246, 0.3),
+      0 0 20px rgba(59, 130, 246, 0.2),
+      inset 0 0 15px rgba(59, 130, 246, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -513,8 +513,8 @@ export const FileInput = styled.input`
 export const FileInputButton = styled.button`
   padding: 0.5rem 1rem;
   background: 
-    linear-gradient(135deg, rgba(220, 53, 69, 0.8) 0%, rgba(192, 57, 43, 0.9) 100%);
-  border: 1px solid rgba(220, 53, 69, 0.5);
+    linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(37, 99, 235, 0.9) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.5);
   border-radius: 10px;
   color: #ffffff;
   cursor: pointer;
@@ -523,7 +523,7 @@ export const FileInputButton = styled.button`
   font-size: 0.875rem;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    0 4px 12px rgba(220, 53, 69, 0.2),
+    0 4px 12px rgba(59, 130, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   position: relative;
@@ -546,10 +546,10 @@ export const FileInputButton = styled.button`
 
   &:hover:not(:disabled) {
     background: 
-      linear-gradient(135deg, rgba(192, 57, 43, 0.9) 0%, rgba(168, 50, 38, 0.95) 100%);
+      linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(29, 78, 216, 0.95) 100%);
     transform: translateY(-1px) scale(1.02);
     box-shadow: 
-      0 6px 16px rgba(220, 53, 69, 0.3),
+      0 6px 16px rgba(59, 130, 246, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
     
     &::before {
@@ -579,7 +579,7 @@ export const ReadOnlyInput = styled.div`
   padding: 1rem;
   background: 
     linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.7) 100%);
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 16px;
   color: #a8a29e;
   font-weight: 500;
@@ -588,11 +588,11 @@ export const ReadOnlyInput = styled.div`
   backdrop-filter: blur(10px);
   box-shadow: 
     inset 0 2px 4px rgba(0, 0, 0, 0.1),
-    0 1px 0 rgba(220, 53, 69, 0.05);
+    0 1px 0 rgba(59, 130, 246, 0.05);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &:hover {
-    border-color: rgba(220, 53, 69, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.65) 0%, rgba(15, 10, 10, 0.75) 100%);
   }
@@ -633,9 +633,9 @@ export const FileInfo = styled.div`
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   padding: 0.5rem 0.75rem;
-  background: rgba(220, 53, 69, 0.05);
+  background: rgba(59, 130, 246, 0.05);
   border-radius: 8px;
-  border: 1px solid rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   backdrop-filter: blur(5px);
   animation: fileFadeIn 0.3s ease-out;
 

@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const ProfileCardContainer = styled.div`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 24px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    inset 0 2px 4px rgba(59, 130, 246, 0.3),
     inset 0 -2px 4px rgba(139, 69, 19, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
@@ -49,9 +49,9 @@ export const ProfileCardContainer = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
+      rgba(59, 130, 246, 0.8), 
       rgba(139, 69, 19, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0;
@@ -66,7 +66,7 @@ export const ProfileCardContainer = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -81,11 +81,11 @@ export const ProfileCardContainer = styled.div`
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
       0 40px 80px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(220, 53, 69, 0.4),
-      0 0 30px rgba(220, 53, 69, 0.3),
-      inset 0 2px 8px rgba(220, 53, 69, 0.4),
+      0 0 0 2px rgba(59, 130, 246, 0.4),
+      0 0 30px rgba(59, 130, 246, 0.3),
+      inset 0 2px 8px rgba(59, 130, 246, 0.4),
       inset 0 -2px 8px rgba(139, 69, 19, 0.3);
-    border-color: rgba(220, 53, 69, 0.5);
+    border-color: rgba(59, 130, 246, 0.5);
     
     &::before {
       opacity: 1;
@@ -115,7 +115,7 @@ export const ProfilePhoto = styled.img`
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(220, 53, 69, 0.3);
+  border: 3px solid rgba(59, 130, 246, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   animation: avatarPulse 2s ease-in-out infinite;
@@ -123,10 +123,10 @@ export const ProfilePhoto = styled.img`
 
   @keyframes avatarPulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
     }
     50% {
-      box-shadow: 0 0 0 8px rgba(220, 53, 69, 0.1);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
     }
   }
 
@@ -138,7 +138,7 @@ export const ProfilePhoto = styled.img`
     right: -3px;
     bottom: -3px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #dc3545, #8b4513);
+    background: linear-gradient(45deg, #3b82f6, #8b4513);
     z-index: -1;
     opacity: 0;
     transition: all 0.4s ease;
@@ -152,7 +152,7 @@ export const ProfilePhoto = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(220, 53, 69, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -161,11 +161,11 @@ export const ProfilePhoto = styled.img`
 
   &:hover {
     transform: scale(1.1) rotate(5deg);
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
-      0 8px 25px rgba(220, 53, 69, 0.4),
-      0 0 20px rgba(220, 53, 69, 0.3),
-      inset 0 0 15px rgba(220, 53, 69, 0.2);
+      0 8px 25px rgba(59, 130, 246, 0.4),
+      0 0 20px rgba(59, 130, 246, 0.3),
+      inset 0 0 15px rgba(59, 130, 246, 0.2);
     
     &::after {
       opacity: 1;
@@ -207,13 +207,13 @@ export const UserName = styled.h2`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: linear-gradient(90deg, #3b82f6, #8b4513);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
   }
 
   ${ProfileCardContainer}:hover & {
-    color: #dc3545;
+    color: #3b82f6;
     transform: translateX(3px);
     
     &::after {
@@ -247,12 +247,12 @@ export const DisplayName = styled.p`
   margin: 0 0 1rem 0;
   line-height: 1.3;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   ${ProfileCardContainer}:hover & {
     color: #d4c5a7;
-    border-color: rgba(220, 53, 69, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -318,8 +318,8 @@ export const JoinDate = styled.p`
   }
 
   ${ProfileCardContainer}:hover & {
-    color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
   }
 
   @media (max-width: 768px) {

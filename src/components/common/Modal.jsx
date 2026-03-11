@@ -37,8 +37,8 @@ const ModalContent = styled.div`
   position: relative;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(220, 53, 69, 0.1),
-    inset 0 1px 0 rgba(220, 53, 69, 0.2);
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(59, 130, 246, 0.2);
   animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @keyframes slideUp {
@@ -65,7 +65,7 @@ const ModalHeader = styled.div`
   align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
 `;
 
 const ModalTitle = styled.h2`
@@ -77,11 +77,11 @@ const ModalTitle = styled.h2`
 `;
 
 const CloseButton = styled.button`
-  background: rgba(220, 53, 69, 0.15);
-  border: 1px solid rgba(220, 53, 69, 0.25);
+  background: rgba(108, 117, 125, 0.15);
+  border: 1px solid rgba(108, 117, 125, 0.25);
   font-size: 1.25rem;
   cursor: pointer;
-  color: #dc3545;
+  color: #6b7280;
   padding: 0;
   width: 36px;
   height: 36px;
@@ -93,9 +93,9 @@ const CloseButton = styled.button`
   font-weight: 600;
 
   &:hover:not(:disabled) {
-    background: rgba(220, 53, 69, 0.25);
-    border-color: rgba(220, 53, 69, 0.4);
-    color: #dc3545;
+    background: rgba(108, 117, 125, 0.25);
+    border-color: rgba(108, 117, 125, 0.4);
+    color: #7fa76cff;
     transform: scale(1.05);
   }
 

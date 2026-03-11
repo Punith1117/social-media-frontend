@@ -31,9 +31,9 @@ const ButtonContainer = styled.div`
 `;
 
 const CancelButton = styled.button`
-  background: rgba(220, 53, 69, 0.15);
-  color: #dc3545;
-  border: 1px solid rgba(220, 53, 69, 0.25);
+  background: rgba(108, 117, 125, 0.15);
+  color: #6b7280;
+  border: 1px solid rgba(108, 117, 125, 0.25);
   padding: 0.75rem 1.5rem;
   border-radius: 12px;
   cursor: pointer;
@@ -55,7 +55,7 @@ const CancelButton = styled.button`
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(220, 53, 69, 0.3);
+    background: rgba(108, 117, 125, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
   }
@@ -66,8 +66,10 @@ const CancelButton = styled.button`
   }
   
   &:hover:not(:disabled) {
+    background: rgba(108, 117, 125, 0.25);
+    color: #7fa76cff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 52, 16, 0.4);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
   }
   
   &:disabled {
@@ -84,8 +86,8 @@ const CancelButton = styled.button`
 `;
 
 const DeleteButton = styled.button`
-  background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
-  color: #e8d5c7;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: #ffffff;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 12px;
@@ -104,7 +106,7 @@ const DeleteButton = styled.button`
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(232, 213, 199, 0.3);
+    background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
   }
@@ -115,8 +117,9 @@ const DeleteButton = styled.button`
   }
   
   &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #c82333 0%, #a02622 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 52, 16, 0.4);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
   }
   
   &:disabled {

@@ -21,11 +21,11 @@ export const SearchInputWrapper = styled.div`
 export const SearchInput = styled.input`
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 8px;
   font-size: 0.9rem;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
   backdrop-filter: blur(10px);
   color: #e8d5c7;
@@ -37,10 +37,10 @@ export const SearchInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: rgba(220, 53, 69, 0.5);
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
     background: 
-      radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%),
       linear-gradient(135deg, rgba(20, 15, 15, 0.7) 0%, rgba(15, 10, 10, 0.5) 100%);
   }
 
@@ -70,7 +70,7 @@ export const CloseButton = styled.button`
 
   &:hover {
     color: #e8d5c7;
-    background: rgba(220, 53, 69, 0.2);
+    background: rgba(59, 130, 246, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -87,10 +87,10 @@ export const ResultsDropdown = styled.div`
   left: 0;
   right: 0;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-top: none;
   max-height: 300px;
   overflow-y: auto;
@@ -101,7 +101,7 @@ export const ResultsDropdown = styled.div`
 export const UserResult = styled(Link)`
   display: flex;
   padding: 0.75rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.2);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
   cursor: pointer;
   align-items: center;
   gap: 0.75rem;
@@ -110,7 +110,7 @@ export const UserResult = styled(Link)`
   color: inherit;
 
   &:hover {
-    background: rgba(220, 53, 69, 0.15);
+    background: rgba(59, 130, 246, 0.15);
   }
 
   &:last-child {

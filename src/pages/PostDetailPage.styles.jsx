@@ -6,7 +6,7 @@ export const PageContainer = styled.div`
   position: relative;
   min-height: 100vh;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.95) 0%, rgba(15, 10, 10, 0.9) 100%);
   
   @media (max-width: 768px) {
@@ -31,16 +31,16 @@ export const PostContainer = styled.div`
 export const PostSection = styled.div`
   flex: 2;
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 24px;
   padding: 2rem;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    inset 0 2px 4px rgba(59, 130, 246, 0.3),
     inset 0 -2px 4px rgba(139, 69, 19, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
@@ -74,9 +74,9 @@ export const PostSection = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
+      rgba(59, 130, 246, 0.8), 
       rgba(139, 69, 19, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0.7;
@@ -97,7 +97,7 @@ export const PostSection = styled.div`
 export const PostHeader = styled.div`
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.2);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
   animation: headerFadeIn 0.5s ease-out 0.2s both;
 
   @keyframes headerFadeIn {
@@ -132,14 +132,14 @@ export const AuthorInfo = styled(Link)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     border-radius: 12px;
   }
   
   &:hover {
-    background: rgba(220, 53, 69, 0.12);
+    background: rgba(59, 130, 246, 0.12);
     transform: translateY(-2px);
     
     &::before {
@@ -153,27 +153,27 @@ export const AuthorPhoto = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(220, 53, 69, 0.3);
+  border: 3px solid rgba(59, 130, 246, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   animation: avatarPulse 2s ease-in-out infinite;
 
   @keyframes avatarPulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
     }
     50% {
-      box-shadow: 0 0 0 8px rgba(220, 53, 69, 0.1);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
     }
   }
 
   &:hover {
     transform: scale(1.1) rotate(5deg);
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
-      0 8px 25px rgba(220, 53, 69, 0.4),
-      0 0 20px rgba(220, 53, 69, 0.3),
-      inset 0 0 15px rgba(220, 53, 69, 0.2);
+      0 8px 25px rgba(59, 130, 246, 0.4),
+      0 0 20px rgba(59, 130, 246, 0.3),
+      inset 0 0 15px rgba(59, 130, 246, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -208,13 +208,13 @@ export const AuthorName = styled.span`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: linear-gradient(90deg, #3b82f6, #8b4513);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
   }
 
   ${AuthorInfo}:hover & {
-    color: #dc3545;
+    color: #3b82f6;
     transform: translateX(3px);
     
     &::after {
@@ -235,8 +235,8 @@ export const PostDate = styled.span`
   font-weight: 500;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
-  background: rgba(220, 53, 69, 0.1);
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 `;
 
 export const PostDates = styled.div`
@@ -259,10 +259,10 @@ export const PostContent = styled.div`
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 1.5rem;
   background: 
-    linear-gradient(135deg, rgba(220, 53, 69, 0.12) 0%, rgba(139, 69, 19, 0.08) 100%),
-    radial-gradient(circle at top right, rgba(220, 53, 69, 0.1) 0%, transparent 50%);
+    linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 69, 19, 0.08) 100%),
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
   border-radius: 16px;
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   position: relative;
   overflow: hidden;
   animation: contentFadeIn 0.6s ease-out 0.3s both;
@@ -289,7 +289,7 @@ export const PostContent = styled.div`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.2), 
+      rgba(59, 130, 246, 0.2), 
       transparent
     );
     transition: left 0.8s ease;
@@ -298,14 +298,14 @@ export const PostContent = styled.div`
   &:hover {
     color: #e8d5c7;
     background: 
-      linear-gradient(135deg, rgba(220, 53, 69, 0.18) 0%, rgba(139, 69, 19, 0.12) 100%),
-      radial-gradient(circle at top right, rgba(220, 53, 69, 0.15) 0%, transparent 50%);
-    border-color: rgba(220, 53, 69, 0.4);
+      linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(139, 69, 19, 0.12) 100%),
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    border-color: rgba(59, 130, 246, 0.4);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 
       0 15px 35px rgba(0, 0, 0, 0.3),
-      0 5px 15px rgba(220, 53, 69, 0.2),
-      inset 0 1px 0 rgba(220, 53, 69, 0.3);
+      0 5px 15px rgba(59, 130, 246, 0.2),
+      inset 0 1px 0 rgba(59, 130, 246, 0.3);
     
     &::before {
       left: 100%;
@@ -458,9 +458,9 @@ export const ErrorContainer = styled.div`
 
 export const BackButton = styled.button`
   background: 
-    radial-gradient(ellipse at center, rgba(220, 53, 69, 0.15) 0%, transparent 70%),
-    linear-gradient(135deg, rgba(220, 53, 69, 0.1) 0%, rgba(139, 69, 19, 0.05) 100%);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+    radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 69, 19, 0.05) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   color: #e8d5c7;
   cursor: pointer;
   font-size: 0.9rem;
@@ -486,14 +486,14 @@ export const BackButton = styled.button`
   
   &:hover {
     background: 
-      radial-gradient(ellipse at center, rgba(220, 53, 69, 0.25) 0%, transparent 70%),
-      linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%);
-    border-color: rgba(220, 53, 69, 0.5);
+      radial-gradient(ellipse at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%),
+      linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%);
+    border-color: rgba(59, 130, 246, 0.5);
     color: #ffffff;
     transform: translateY(-2px) scale(1.05);
     box-shadow: 
-      0 8px 25px rgba(220, 53, 69, 0.3),
-      0 0 20px rgba(220, 53, 69, 0.2);
+      0 8px 25px rgba(59, 130, 246, 0.3),
+      0 0 20px rgba(59, 130, 246, 0.2);
   }
   
   @media (max-width: 768px) {

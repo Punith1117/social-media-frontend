@@ -27,12 +27,12 @@ export const Text = styled.p`
   text-align: center;
   
   a {
-    color: #cc0000;
+    color: #3b82f6;
     text-decoration: none;
     font-weight: 600;
     
     &:hover {
-      color: #ff0000;
+      color: #60a5fa;
       text-decoration: underline;
     }
   }
@@ -63,18 +63,18 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 0.75rem 1rem;
-  border: 1px solid ${props => props.$hasError ? 'rgba(231, 76, 60, 0.5)' : 'rgba(220, 53, 69, 0.2)'};
+  border: 1px solid ${props => props.$hasError ? 'rgba(231, 76, 60, 0.5)' : 'rgba(59, 130, 246, 0.2)'};
   border-radius: 12px;
   background: 
     linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%),
-    rgba(220, 53, 69, 0.02);
+    rgba(59, 130, 246, 0.02);
   color: #e8d5c7;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
     inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(220, 53, 69, 0.1);
+    0 1px 0 rgba(59, 130, 246, 0.1);
   backdrop-filter: blur(10px);
   
   &::placeholder {
@@ -84,22 +84,22 @@ export const Input = styled.input`
   
   &:focus {
     outline: none;
-    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.7)' : 'rgba(220, 53, 69, 0.5)'};
+    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.7)' : 'rgba(59, 130, 246, 0.5)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%),
-      rgba(220, 53, 69, 0.05);
+      rgba(59, 130, 246, 0.05);
     box-shadow: 
       inset 0 2px 6px rgba(0, 0, 0, 0.3),
-      0 0 0 2px rgba(220, 53, 69, 0.2),
-      0 4px 12px rgba(220, 53, 69, 0.15);
+      0 0 0 2px rgba(59, 130, 246, 0.2),
+      0 4px 12px rgba(59, 130, 246, 0.15);
     transform: translateY(-1px);
   }
   
   &:hover:not(:focus) {
-    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.6)' : 'rgba(220, 53, 69, 0.3)'};
+    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.6)' : 'rgba(59, 130, 246, 0.3)'};
     background: 
       linear-gradient(135deg, rgba(20, 15, 15, 0.85) 0%, rgba(15, 10, 10, 0.92) 100%),
-      rgba(220, 53, 69, 0.03);
+      rgba(59, 130, 246, 0.03);
   }
   
   &:disabled {
@@ -116,9 +116,9 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #ff0000 0%, #cc0000 50%, #990000 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #dc3545 50%, #1e40af 100%);
   color: #ffffff;
-  border: 2px solid #ff0000;
+  border: 2px solid #3b82f6;
   border-radius: 12px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
@@ -128,8 +128,8 @@ export const Button = styled.button`
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 
-    0 4px 20px rgba(255, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 0, 0, 0.3),
+    0 4px 20px rgba(59, 130, 246, 0.5),
+    0 0 0 1px rgba(59, 130, 246, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
@@ -156,20 +156,20 @@ export const Button = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
   }
   
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #ff3333 0%, #ff0000 50%, #cc0000 100%);
-    border-color: #ff3333;
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #dc3545 100%);
+    border-color: #60a5fa;
     color: #ffffff;
     transform: translateY(-3px);
     box-shadow: 
-      0 8px 30px rgba(255, 0, 0, 0.8),
-      0 0 0 2px rgba(255, 51, 51, 0.4),
+      0 8px 30px rgba(59, 130, 246, 0.8),
+      0 0 0 2px rgba(96, 165, 250, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
     
     &::before {
@@ -184,14 +184,14 @@ export const Button = styled.button`
   &:active:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: 
-      0 4px 15px rgba(255, 0, 0, 0.6),
-      0 0 0 1px rgba(255, 0, 0, 0.4);
+      0 4px 15px rgba(59, 130, 246, 0.6),
+      0 0 0 1px rgba(59, 130, 246, 0.4);
   }
   
   &:disabled {
-    background: linear-gradient(135deg, #4a0000 0%, #330000 100%);
-    border-color: #660000;
-    color: #990000;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    border-color: #2563eb;
+    color: #60a5fa;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;

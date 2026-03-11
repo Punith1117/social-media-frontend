@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 export const PostCardContainer = styled.article`
   background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%),
     linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 24px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
-    inset 0 -2px 4px rgba(139, 69, 19, 0.2);
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    inset 0 2px 4px rgba(59, 130, 246, 0.3),
+    inset 0 -2px 4px rgba(59, 130, 246, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
@@ -47,9 +47,9 @@ export const PostCardContainer = styled.article`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.8), 
+      rgba(59, 130, 246, 0.8), 
       rgba(139, 69, 19, 0.6),
-      rgba(220, 53, 69, 0.8),
+      rgba(59, 130, 246, 0.8),
       transparent
     );
     opacity: 0;
@@ -64,7 +64,7 @@ export const PostCardContainer = styled.article`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -79,11 +79,11 @@ export const PostCardContainer = styled.article`
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
       0 40px 80px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(220, 53, 69, 0.4),
-      0 0 30px rgba(220, 53, 69, 0.3),
-      inset 0 2px 8px rgba(220, 53, 69, 0.4),
+      0 0 0 2px rgba(59, 130, 246, 0.4),
+      0 0 30px rgba(59, 130, 246, 0.3),
+      inset 0 2px 8px rgba(59, 130, 246, 0.4),
       inset 0 -2px 8px rgba(139, 69, 19, 0.3);
-    border-color: rgba(220, 53, 69, 0.5);
+    border-color: rgba(59, 130, 246, 0.5);
     
     &::before {
       opacity: 1;
@@ -112,7 +112,7 @@ export const PostHeader = styled(Link)`
   gap: 1rem;
   padding: 0.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   cursor: pointer;
   position: relative;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -141,14 +141,14 @@ export const PostHeader = styled(Link)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(220, 53, 69, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     border-radius: 12px;
   }
 
   &:hover {
-    background: rgba(220, 53, 69, 0.12);
+    background: rgba(59, 130, 246, 0.12);
     transform: translateY(-2px);
     
     &::before {
@@ -171,17 +171,17 @@ export const AuthorPhoto = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(220, 53, 69, 0.3);
+  border: 3px solid rgba(59, 130, 246, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   animation: avatarPulse 2s ease-in-out infinite;
 
   @keyframes avatarPulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
     }
     50% {
-      box-shadow: 0 0 0 8px rgba(220, 53, 69, 0.1);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
     }
   }
 
@@ -193,7 +193,7 @@ export const AuthorPhoto = styled.img`
     right: -3px;
     bottom: -3px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #dc3545, #8b4513);
+    background: linear-gradient(45deg, #3b82f6, #8b4513);
     z-index: -1;
     opacity: 0;
     transition: all 0.4s ease;
@@ -207,7 +207,7 @@ export const AuthorPhoto = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(220, 53, 69, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -216,11 +216,11 @@ export const AuthorPhoto = styled.img`
 
   &:hover {
     transform: scale(1.1) rotate(5deg);
-    border-color: rgba(220, 53, 69, 0.6);
+    border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 
-      0 8px 25px rgba(220, 53, 69, 0.4),
-      0 0 20px rgba(220, 53, 69, 0.3),
-      inset 0 0 15px rgba(220, 53, 69, 0.2);
+      0 8px 25px rgba(59, 130, 246, 0.4),
+      0 0 20px rgba(59, 130, 246, 0.3),
+      inset 0 0 15px rgba(59, 130, 246, 0.2);
     
     &::after {
       opacity: 1;
@@ -265,13 +265,13 @@ export const AuthorUsername = styled.div`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: linear-gradient(90deg, #3b82f6, #8b4513);
     transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
   }
 
   ${PostHeader}:hover & {
-    color: #dc3545;
+    color: #3b82f6;
     transform: translateX(3px);
     
     &::after {
@@ -321,10 +321,10 @@ export const PostContent = styled(Link)`
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 1.2rem;
   background: 
-    linear-gradient(135deg, rgba(220, 53, 69, 0.12) 0%, rgba(139, 69, 19, 0.08) 100%),
-    radial-gradient(circle at top right, rgba(220, 53, 69, 0.1) 0%, transparent 50%);
+    linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 69, 19, 0.08) 100%),
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
   border-radius: 16px;
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -353,7 +353,7 @@ export const PostContent = styled(Link)`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.2), 
+      rgba(59, 130, 246, 0.2), 
       transparent
     );
     transition: left 0.8s ease;
@@ -368,9 +368,9 @@ export const PostContent = styled(Link)`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(220, 53, 69, 0.6), 
+      rgba(59, 130, 246, 0.6), 
       rgba(139, 69, 19, 0.4),
-      rgba(220, 53, 69, 0.6),
+      rgba(59, 130, 246, 0.6),
       transparent
     );
     border-radius: 2px;
@@ -393,14 +393,14 @@ export const PostContent = styled(Link)`
   &:hover {
     color: #e8d5c7;
     background: 
-      linear-gradient(135deg, rgba(220, 53, 69, 0.18) 0%, rgba(139, 69, 19, 0.12) 100%),
-      radial-gradient(circle at top right, rgba(220, 53, 69, 0.15) 0%, transparent 50%);
-    border-color: rgba(220, 53, 69, 0.4);
+      linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(139, 69, 19, 0.12) 100%),
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    border-color: rgba(59, 130, 246, 0.4);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 
       0 15px 35px rgba(0, 0, 0, 0.3),
-      0 5px 15px rgba(220, 53, 69, 0.2),
-      inset 0 1px 0 rgba(220, 53, 69, 0.3);
+      0 5px 15px rgba(59, 130, 246, 0.2),
+      inset 0 1px 0 rgba(59, 130, 246, 0.3);
     
     &::before {
       left: 100%;
@@ -427,7 +427,7 @@ export const PostActions = styled.section`
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(220, 53, 69, 0.15);
+  border-top: 1px solid rgba(59, 130, 246, 0.15);
   animation: actionsFadeIn 0.5s ease-out 0.9s both;
 
   @keyframes actionsFadeIn {
@@ -593,7 +593,7 @@ export const AuthorSection = styled.div`
   margin-bottom: 1rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
@@ -602,7 +602,7 @@ export const AuthorSection = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-    background: rgba(220, 53, 69, 0.08);
+    background: rgba(59, 130, 246, 0.08);
   }
 
   @media (max-width: 768px) {
