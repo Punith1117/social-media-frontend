@@ -4,13 +4,6 @@ import { useAuth } from '../../context/AuthContext';
 import { LogOut } from 'lucide-react';
 import styled from 'styled-components';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  danger: '#dc3545',
-  dangerLight: 'rgba(220, 53, 69, 0.2)',
-  dangerBorder: 'rgba(220, 53, 69, 0.3)'
-};
-
 const ButtonContainer = styled.div`
   position: fixed;
   bottom: 2rem;
@@ -31,9 +24,9 @@ const ButtonContainer = styled.div`
 `;
 
 const LogoutButton = styled.button`
-  background: ${COLORS.danger};
+  background: ${props => props.theme.colors.danger};
   color: white;
-  border: 1px solid ${COLORS.dangerBorder};
+  border: 1px solid ${props => props.theme.colors.dangerBorder};
   border-radius: 50%;
   cursor: pointer;
   backdrop-filter: blur(10px);

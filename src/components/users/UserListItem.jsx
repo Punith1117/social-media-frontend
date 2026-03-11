@@ -3,40 +3,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import FollowButton from '../profile/FollowButton';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#e8d5c7',
-  textLight: '#a8a29e',
-  danger: '#dc3545',
-  accent: '#8b4513'
-};
-
 const UserItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid ${COLORS.primaryBorder};
+  border-bottom: 1px solid ${props => props.theme.colors.primaryBorder};
   position: relative;
   transition: all 0.3s ease;
-  animation: fadeIn 0.4s ease-out both;
-  
-  @keyframes fadeIn {
-    from { 
-      opacity: 0; 
-      transform: translateX(-15px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateX(0); 
-    }
-  }
+  animation: ${props => props.theme.animations.fadeInSlide} 0.4s ease-out both;
   
   &:hover {
-    background: ${COLORS.primaryLight};
+    background: ${props => props.theme.colors.primaryLight};
     
     &::before {
       content: '';
@@ -45,8 +22,8 @@ const UserItemContainer = styled.div`
       top: 0;
       bottom: 0;
       width: 3px;
-      background: linear-gradient(180deg, ${COLORS.primary}, ${COLORS.accent});
-      animation: slideIn 0.3s ease-out;
+      background: linear-gradient(180deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.accent});
+      animation: ${props => props.theme.animations.slideIn} 0.3s ease-out;
     }
   }
   
@@ -75,12 +52,12 @@ const UserAvatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-right: 1rem;
-  border: 2px solid ${COLORS.primaryBorder};
+  border: 2px solid ${props => props.theme.colors.primaryBorder};
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    border-color: ${COLORS.primary};
+    border-color: ${props => props.theme.colors.primary};
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
   }
 `;
@@ -91,26 +68,26 @@ const UserInfo = styled.div`
 
 const Username = styled.div`
   font-weight: 600;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    color: ${COLORS.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
 const DisplayName = styled.div`
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    color: ${COLORS.text};
+    color: ${props => props.theme.colors.text};
   }
 `;
 

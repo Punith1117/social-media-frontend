@@ -2,20 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Share2, ClipboardCopy, CircleCheck, CircleX } from 'lucide-react';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#e8d5c7',
-  textLight: '#a8a29e',
-  textSecondary: '#d4c5a7',
-  danger: '#dc3545',
-  dangerLight: 'rgba(220, 53, 69, 0.15)',
-  dangerBorder: 'rgba(220, 53, 69, 0.2)'
-};
-
 const ShareContainer = styled.div`
   position: relative;
   display: inline-block;
@@ -23,8 +9,8 @@ const ShareContainer = styled.div`
 
 const ShareButtonStyled = styled.button`
   background: rgba(59, 130, 246, 0.1);
-  color: ${COLORS.primary};
-  border: 1px solid ${COLORS.primaryBorder};
+  color: ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   padding: 0.5rem 1rem;
   border-radius: 12px;
   cursor: pointer;
@@ -38,7 +24,7 @@ const ShareButtonStyled = styled.button`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   &:hover:not(:disabled) {
-    background: ${COLORS.primary};
+    background: ${props => props.theme.colors.primary};
     color: #ffffff;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   }
@@ -58,9 +44,9 @@ const FallbackDropdown = styled.div`
   position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
-  background: ${COLORS.background};
+  background: ${props => props.theme.colors.background};
   backdrop-filter: blur(20px);
-  border: 1px solid ${COLORS.dangerBorder};
+  border: 1px solid ${props => props.theme.colors.dangerBorder};
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   z-index: 1000;
@@ -85,16 +71,16 @@ const DropdownOption = styled.button`
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 500;
-  color: ${COLORS.textSecondary};
+  color: ${props => props.theme.colors.textSecondary};
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${COLORS.dangerLight};
-    color: ${COLORS.danger};
+    background: ${props => props.theme.colors.dangerLight};
+    color: ${props => props.theme.colors.danger};
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid ${COLORS.dangerBorder};
+    border-bottom: 1px solid ${props => props.theme.colors.dangerBorder};
   }
 `;
 

@@ -1,37 +1,20 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// Centralized colors - much easier to maintain
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#d4c5a7',
-  textLight: '#a8a29e',
-  danger: '#e74c3c',
-  warning: '#f39c12'
-};
-
 export const PostCardContainer = styled.article`
-  background: ${COLORS.background};
+  background: ${props => props.theme.colors.background};
   backdrop-filter: blur(10px);
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  animation: fadeIn 0.5s ease-out;
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  animation: ${props => props.theme.animations.fadeIn} 0.5s ease-out;
 
   &:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    border-color: ${COLORS.primary};
+    border-color: ${props => props.theme.colors.primary};
   }
 
   @media (max-width: 768px) {
@@ -46,7 +29,7 @@ export const PostHeader = styled(Link)`
   gap: 1rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid ${COLORS.primaryBorder};
+  border-bottom: 1px solid ${props => props.theme.colors.primaryBorder};
   text-decoration: none;
   color: inherit;
   transition: all 0.2s ease;
@@ -55,7 +38,7 @@ export const PostHeader = styled(Link)`
   margin-bottom: 0.5rem;
 
   &:hover {
-    background: ${COLORS.primaryLight};
+    background: ${props => props.theme.colors.primaryLight};
   }
 `;
 
@@ -64,11 +47,11 @@ export const AuthorPhoto = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid ${COLORS.primaryBorder};
+  border: 2px solid ${props => props.theme.colors.primaryBorder};
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: ${COLORS.primary};
+    border-color: ${props => props.theme.colors.primary};
   }
 
   @media (max-width: 768px) {
@@ -84,20 +67,20 @@ export const AuthorInfo = styled.div`
 
 export const AuthorUsername = styled.div`
   font-weight: 700;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   transition: color 0.2s ease;
 
   ${PostHeader}:hover & {
-    color: ${COLORS.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
 export const AuthorDisplayName = styled.div`
   font-size: 0.875rem;
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   margin-top: 2px;
 `;
 
@@ -105,11 +88,11 @@ export const PostDates = styled.div`
   margin-left: auto;
   text-align: right;
   font-size: 0.8rem;
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
 `;
 
 export const PostDate = styled.span`
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.25rem 0.5rem;
@@ -120,15 +103,15 @@ export const PostContent = styled(Link)`
   display: block;
   font-size: 1rem;
   line-height: 1.6;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   margin: 1rem 0;
   padding: 1rem;
-  background: ${COLORS.primaryLight};
+  background: ${props => props.theme.colors.primaryLight};
   border-radius: 12px;
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   text-decoration: none;
   transition: all 0.2s ease;
 
@@ -146,17 +129,17 @@ export const PostActions = styled.section`
   align-items: center;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 1px solid ${COLORS.primaryBorder};
+  border-top: 1px solid ${props => props.theme.colors.primaryBorder};
 `;
 
 export const LikeButton = styled.button`
   background: ${props => props.$isLiked 
-    ? COLORS.danger 
-    : 'rgba(231, 76, 60, 0.1)'};
-  color: ${props => props.$isLiked ? '#fff' : COLORS.danger};
+    ? props.theme.colors.danger 
+    : props.theme.colors.dangerLight};
+  color: ${props => props.$isLiked ? '#fff' : props.theme.colors.danger};
   border: 1px solid ${props => props.$isLiked 
-    ? COLORS.danger 
-    : 'rgba(231, 76, 60, 0.3)'};
+    ? props.theme.colors.danger 
+    : props.theme.colors.dangerBorder};
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
@@ -189,9 +172,9 @@ export const ButtonContainer = styled.div`
 `;
 
 export const EditButton = styled.button`
-  background: rgba(243, 156, 18, 0.1);
-  color: ${COLORS.warning};
-  border: 1px solid rgba(243, 156, 18, 0.3);
+  background: ${props => props.theme.colors.warningLight};
+  color: ${props => props.theme.colors.warning};
+  border: 1px solid ${props => props.theme.colors.warningBorder};
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   cursor: pointer;
@@ -200,7 +183,7 @@ export const EditButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: ${COLORS.warning};
+    background: ${props => props.theme.colors.warning};
     color: #fff;
   }
 
@@ -211,9 +194,9 @@ export const EditButton = styled.button`
 `;
 
 export const DeleteButton = styled.button`
-  background: rgba(231, 76, 60, 0.1);
-  color: ${COLORS.danger};
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  background: ${props => props.theme.colors.dangerLight};
+  color: ${props => props.theme.colors.danger};
+  border: 1px solid ${props => props.theme.colors.dangerBorder};
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   cursor: pointer;
@@ -222,7 +205,7 @@ export const DeleteButton = styled.button`
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: ${COLORS.danger};
+    background: ${props => props.theme.colors.danger};
     color: #fff;
   }
 
@@ -253,7 +236,7 @@ export const UsernameLastChar = styled.span`
 `;
 
 export const LikesCount = styled.span`
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   font-size: 0.875rem;
 `;
 
@@ -264,7 +247,7 @@ export const AuthorSection = styled.div`
   margin-bottom: 1rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid ${COLORS.primaryBorder};
+  border-bottom: 1px solid ${props => props.theme.colors.primaryBorder};
   cursor: pointer;
   transition: all 0.2s ease;
   border-radius: 8px;
@@ -272,7 +255,7 @@ export const AuthorSection = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-    background: ${COLORS.primaryLight};
+    background: ${props => props.theme.colors.primaryLight};
   }
 
   @media (max-width: 768px) {

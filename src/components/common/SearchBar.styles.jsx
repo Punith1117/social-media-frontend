@@ -21,36 +21,31 @@ export const SearchInputWrapper = styled.div`
 export const SearchInput = styled.input`
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 8px;
   font-size: 0.9rem;
-  background: 
-    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
-  backdrop-filter: blur(10px);
-  color: #e8d5c7;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
+  transition: all 0.3s ease;
 
   &::placeholder {
-    color: #a8a29e;
+    color: ${props => props.theme.colors.textLight};
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-    background: 
-      radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%),
-      linear-gradient(135deg, rgba(20, 15, 15, 0.7) 0%, rgba(15, 10, 10, 0.5) 100%);
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 0 2px ${props => props.theme.colors.primary}20;
+    background: ${props => props.theme.colors.background};
   }
 
   @media (max-width: 1000px) and (min-width: 768px) {
-    padding: 0.625rem;  /* 10px - increased for tablet */
+    padding: 0.625rem;
     font-size: 0.85rem;
   }
 
   @media (max-width: 768px) {
-    padding: 0.75rem;  /* 12px - increased for mobile */
+    padding: 0.75rem;
     font-size: 0.8rem;
   }
 `;
@@ -64,7 +59,7 @@ export const CloseButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
   transition: all 0.3s ease;
   border-radius: 50%;
   width: 24px;
@@ -74,8 +69,8 @@ export const CloseButton = styled.button`
   justify-content: center;
 
   &:hover {
-    color: #e8d5c7;
-    background: rgba(59, 130, 246, 0.2);
+    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.primaryLight};
   }
 
   @media (max-width: 768px) {
@@ -91,22 +86,19 @@ export const ResultsDropdown = styled.div`
   top: 100%;
   left: 0;
   right: 0;
-  background: 
-    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: ${props => props.theme.colors.background};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-top: none;
   max-height: 300px;
   overflow-y: auto;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 0 0 8px 8px;
 `;
 
 export const UserResult = styled(Link)`
   display: flex;
   padding: 0.75rem;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  border-bottom: 1px solid ${props => props.theme.colors.primaryBorder};
   cursor: pointer;
   align-items: center;
   gap: 0.75rem;
@@ -115,7 +107,7 @@ export const UserResult = styled(Link)`
   color: inherit;
 
   &:hover {
-    background: rgba(59, 130, 246, 0.15);
+    background: ${props => props.theme.colors.primaryLight};
   }
 
   &:last-child {
@@ -146,12 +138,12 @@ export const UserInfo = styled.div`
 
 export const Username = styled.div`
   font-weight: 500;
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
 `;
 
 export const DisplayName = styled.div`
   font-size: 0.8rem;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
 
   @media (max-width: 768px) {
     font-size: 0.7rem;
@@ -161,7 +153,7 @@ export const DisplayName = styled.div`
 export const NoResults = styled.div`
   padding: 1rem;
   text-align: center;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
 
   @media (max-width: 768px) {
     padding: 0.75rem;
@@ -172,13 +164,13 @@ export const NoResults = styled.div`
 export const LoadingMessage = styled.div`
   padding: 1rem;
   text-align: center;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
 `;
 
 export const ErrorMessage = styled.div`
   padding: 1rem;
   text-align: center;
-  color: #e74c3c;
+  color: ${props => props.theme.colors.danger};
   font-size: 0.9rem;
   line-height: 1.3;
   word-wrap: break-word;

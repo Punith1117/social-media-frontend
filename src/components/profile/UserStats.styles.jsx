@@ -7,25 +7,14 @@ export const StatsContainer = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   background: 
-    radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 70%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
+    radial-gradient(ellipse at center, ${props => props.theme.colors.primaryLight} 0%, ${props => props.theme.colors.primaryLight}50 50%, transparent 70%),
+    linear-gradient(135deg, ${props => props.theme.colors.background}99 0%, ${props => props.theme.colors.darkBg}99 100%);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  animation: statsFadeIn 0.6s ease-out 0.5s both;
-
-  @keyframes statsFadeIn {
-    0% {
-      opacity: 0;
-      filter: blur(5px);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(0);
-    }
-  }
+  animation: ${props => props.theme.animations.fadeIn} 0.6s ease-out 0.5s both;
 
   &::before {
     content: '';
@@ -36,9 +25,9 @@ export const StatsContainer = styled.div`
     height: 2px;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(59, 130, 246, 0.8), 
-      rgba(59, 130, 246, 0.6),
-      rgba(59, 130, 246, 0.8),
+      ${props => props.theme.colors.primary}cc, 
+      ${props => props.theme.colors.primary}99,
+      ${props => props.theme.colors.primary}cc,
       transparent
     );
     opacity: 0.3;
@@ -46,10 +35,10 @@ export const StatsContainer = styled.div`
   }
 
   &:hover {
-    border-color: rgba(59, 130, 246, 0.4);
+    border-color: ${props => props.theme.colors.primaryBorder};
     box-shadow: 
       0 10px 25px rgba(0, 0, 0, 0.3),
-      0 0 15px rgba(59, 130, 246, 0.2);
+      0 0 15px ${props => props.theme.colors.primaryLight};
     
     &::before {
       opacity: 0.8;
@@ -79,7 +68,7 @@ export const StatItem = styled.div`
     height: 60%;
     background: linear-gradient(to bottom, 
       transparent, 
-      rgba(59, 130, 246, 0.3), 
+      ${props => props.theme.colors.primaryBorder}, 
       transparent
     );
     transform: translateY(-50%);
@@ -100,10 +89,10 @@ export const StatItem = styled.div`
 export const StatNumber = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
-  text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  text-shadow: 0 0 10px ${props => props.theme.colors.primaryLight};
   transition: all 0.3s ease;
   position: relative;
 
@@ -114,7 +103,7 @@ export const StatNumber = styled.div`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #3b82f6);
+    background: linear-gradient(90deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.primary});
     transition: width 0.4s ease;
     border-radius: 1px;
   }
@@ -126,7 +115,7 @@ export const StatNumber = styled.div`
 
 export const StatLabel = styled.div`
   font-size: 0.9rem;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
   margin-top: 0.25rem;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -140,7 +129,7 @@ export const StatLabel = styled.div`
     left: 50%;
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #d4c5a7, transparent);
+    background: linear-gradient(90deg, transparent, ${props => props.theme.colors.textSecondary}, transparent);
     transition: all 0.4s ease;
     transform: translateX(-50%);
   }
@@ -154,7 +143,7 @@ export const StatLabel = styled.div`
     height: 100%;
     background: linear-gradient(90deg, 
       transparent, 
-      rgba(212, 197, 167, 0.1), 
+      ${props => props.theme.colors.textSecondary}20, 
       transparent
     );
     transition: left 0.6s ease;
@@ -179,10 +168,9 @@ export const StatLink = styled(Link)`
 
   &:hover {
     text-decoration: none;
-    background: rgba(59, 130, 246, 0.05);
     
     ${StatNumber} {
-      color: #3b82f6;
+      color: ${props => props.theme.colors.primary};
       
       &::before {
         width: 100%;
@@ -190,7 +178,7 @@ export const StatLink = styled(Link)`
     }
 
     ${StatLabel} {
-      color: #d4c5a7;
+      color: ${props => props.theme.colors.textSecondary};
       
       &::before {
         width: 80%;

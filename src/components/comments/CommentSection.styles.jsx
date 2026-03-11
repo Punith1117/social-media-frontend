@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#e8d5c7',
-  textLight: '#a8a29e',
-  danger: '#dc3545'
-};
-
 export const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,7 +12,7 @@ export const CommentsContainer = styled.div`
 
 export const CommentsHeader = styled.h3`
   margin-bottom: 1rem;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   font-weight: 700;
   font-size: 1.3rem;
   text-transform: uppercase;
@@ -36,7 +25,7 @@ export const CommentsHeader = styled.h3`
     left: 0;
     width: 60px;
     height: 3px;
-    background: ${COLORS.primary};
+    background: ${props => props.theme.colors.primary};
     border-radius: 2px;
   }
 `;
@@ -47,14 +36,14 @@ export const CommentForm = styled.form`
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: ${COLORS.background};
+  background: ${props => props.theme.colors.background};
   border-radius: 16px;
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   backdrop-filter: blur(15px);
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: ${COLORS.primary};
+    border-color: ${props => props.theme.colors.primary};
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
@@ -68,35 +57,35 @@ export const CommentTextarea = styled.textarea`
   width: 100%;
   min-height: 100px;
   padding: 1rem;
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 12px;
   font-family: inherit;
   font-size: 0.95rem;
-  background: ${COLORS.background};
-  color: ${COLORS.text};
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
   resize: vertical;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 
   &::placeholder {
-    color: ${COLORS.textLight};
+    color: ${props => props.theme.colors.textLight};
     font-style: italic;
   }
 
   &:focus {
     outline: none;
-    border-color: ${COLORS.primary};
-    box-shadow: 0 0 0 2px ${COLORS.primaryLight};
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 0 2px ${props => props.theme.colors.primaryLight};
   }
 
   &:hover:not(:focus) {
-    border-color: ${COLORS.primary};
+    border-color: ${props => props.theme.colors.primary};
   }
 `;
 
 export const CharacterCounter = styled.div`
   font-size: 0.8rem;
-  color: ${props => props.$overLimit ? COLORS.danger : COLORS.textLight};
+  color: ${props => props.$overLimit ? props.theme.colors.danger : props.theme.colors.textLight};
   text-align: right;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -105,11 +94,11 @@ export const CharacterCounter = styled.div`
 export const SubmitButton = styled.button`
   background: ${props => props.disabled 
     ? 'rgba(59, 130, 246, 0.1)' 
-    : COLORS.primary};
-  color: ${props => props.disabled ? COLORS.textLight : '#ffffff'};
+    : props.theme.colors.primary};
+  color: ${props => props.disabled ? props.theme.colors.textLight : '#ffffff'};
   border: 1px solid ${props => props.disabled 
-    ? COLORS.primaryBorder
-    : COLORS.primary};
+    ? props.theme.colors.primaryBorder
+    : props.theme.colors.primary};
   padding: 0.75rem 1.5rem;
   border-radius: 12px;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
@@ -133,41 +122,35 @@ export const SubmitButton = styled.button`
 `;
 
 export const ErrorMessage = styled.div`
-  color: ${COLORS.danger};
+  color: ${props => props.theme.colors.danger};
   font-size: 0.85rem;
   margin-top: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(220, 53, 69, 0.1);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  background: ${props => props.theme.colors.dangerLight};
+  border: 1px solid ${props => props.theme.colors.dangerBorder};
   border-radius: 8px;
   font-weight: 500;
-  animation: shake 0.3s ease-in-out;
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-  }
+  animation: ${props => props.theme.animations.shake} 0.3s ease-in-out;
 `;
 
 export const LoadingMessage = styled.div`
   text-align: center;
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   padding: 1.5rem;
   font-size: 1rem;
   font-weight: 500;
-  background: ${COLORS.primaryLight};
-  border: 1px solid ${COLORS.primaryBorder};
+  background: ${props => props.theme.colors.primaryLight};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 12px;
 `;
 
 export const NoComments = styled.div`
   text-align: center;
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   font-style: italic;
   padding: 1.5rem;
   font-size: 1rem;
-  background: ${COLORS.primaryLight};
-  border: 1px solid ${COLORS.primaryBorder};
+  background: ${props => props.theme.colors.primaryLight};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 12px;
 `;

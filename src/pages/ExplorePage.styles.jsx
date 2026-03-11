@@ -15,8 +15,8 @@ export const BackToTopButton = styled.button`
   position: fixed;
   bottom: 2rem;
   right: 20vw;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b4513 100%);
-  color: #e8d5c7;
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, ${props => props.theme.colors.accent} 100%);
+  color: ${props => props.theme.colors.text};
   border: none;
   border-radius: 50%;
   width: 3rem;
@@ -26,12 +26,12 @@ export const BackToTopButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 25px ${props => props.theme.colors.primary}66;
   transition: all 0.3s ease;
 
   &:hover {
     background: linear-gradient(135deg, #2563eb 0%, #7c2d12 100%);
-    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 12px 35px ${props => props.theme.colors.primary}80;
   }
 
   @media (max-width: 768px) {

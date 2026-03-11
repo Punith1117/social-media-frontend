@@ -2,42 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import UserListItem from './UserListItem';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#e8d5c7',
-  textLight: '#a8a29e',
-  danger: '#dc3545'
-};
-
 const ListContainer = styled.div`
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 16px;
-  background: ${COLORS.background};
+  background: ${props => props.theme.colors.background};
   backdrop-filter: blur(15px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.6s ease-out;
-  
-  @keyframes fadeIn {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  }
+  animation: ${props => props.theme.animations.fadeIn} 0.6s ease-out;
 `;
 
 const ListHeader = styled.div`
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid ${COLORS.primaryBorder};
+  border-bottom: 1px solid ${props => props.theme.colors.primaryBorder};
   font-weight: 600;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -46,7 +24,7 @@ const ListHeader = styled.div`
 const LoadingMessage = styled.div`
   padding: 3rem 2rem;
   text-align: center;
-  color: ${COLORS.text};
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
@@ -61,7 +39,7 @@ const LoadingMessage = styled.div`
 const EmptyMessage = styled.div`
   padding: 3rem 2rem;
   text-align: center;
-  color: ${COLORS.textLight};
+  color: ${props => props.theme.colors.textLight};
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 1rem;
@@ -71,18 +49,7 @@ const EmptyMessage = styled.div`
   margin: 1rem;
   border: 1px solid rgba(220, 53, 69, 0.1);
   backdrop-filter: blur(5px);
-  animation: fadeIn 0.5s ease-out;
-  
-  @keyframes fadeIn {
-    from { 
-      opacity: 0; 
-      transform: scale(0.95); 
-    }
-    to { 
-      opacity: 1; 
-      transform: scale(1); 
-    }
-  }
+  animation: ${props => props.theme.animations.fadeIn} 0.5s ease-out;
 `;
 
 const UserList = ({ users, loading, count, title }) => {

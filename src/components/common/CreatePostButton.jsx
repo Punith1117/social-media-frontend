@@ -3,15 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/AuthContext';
 
-// Centralized colors for consistent theming
-const COLORS = {
-  primary: '#3b82f6',
-  primaryLight: 'rgba(59, 130, 246, 0.2)',
-  primaryBorder: 'rgba(59, 130, 246, 0.3)',
-  background: 'rgba(20, 15, 15, 0.98)',
-  text: '#e8d5c7'
-};
-
 const ButtonContainer = styled.div`
   position: fixed;
   bottom: 2rem;
@@ -32,9 +23,9 @@ const ButtonContainer = styled.div`
 `;
 
 const CreatePostButton = styled.button`
-  background: ${COLORS.primary};
+  background: ${props => props.theme.colors.primary};
   color: white;
-  border: 1px solid ${COLORS.primaryBorder};
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 50%;
   width: 64px;
   height: 64px;

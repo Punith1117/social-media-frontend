@@ -26,7 +26,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: rgba(20, 15, 15, 0.98);
+  background: ${props => props.theme.colors.background};
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 2rem;
@@ -39,18 +39,7 @@ const ModalContent = styled.div`
     0 25px 50px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(59, 130, 246, 0.1),
     inset 0 1px 0 rgba(59, 130, 246, 0.2);
-  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
+  animation: ${props => props.theme.animations.slideUp} 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (max-width: 768px) {
     padding: 1.5rem;
@@ -72,7 +61,7 @@ const ModalTitle = styled.h2`
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   letter-spacing: -0.02em;
 `;
 
@@ -107,7 +96,7 @@ const CloseButton = styled.button`
 `;
 
 const ModalBody = styled.div`
-  color: #d4c5a7;
+  color: ${props => props.theme.colors.textSecondary};
   line-height: 1.6;
 `;
 

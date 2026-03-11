@@ -23,47 +23,27 @@ const baseTabStyles = `
   align-items: center;
   padding: 0.75rem 1rem;
   text-decoration: none;
-  color: #e8d5c7;
+  color: #9ca3af;
   font-weight: 500;
   border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   cursor: pointer;
-  position: relative;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
+  background: ${props => props.theme.colors.background};
 
   &:hover {
+    color: #ffffff;
     background: rgba(59, 130, 246, 0.15);
-    color: #fff;
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
   }
 
   &.active {
-    color: #fff;
-    background: 
-      radial-gradient(ellipse at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%),
-      linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 69, 19, 0.15) 100%);
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 
-      0 0 20px rgba(59, 130, 246, 0.3),
-      inset 0 1px 0 rgba(59, 130, 246, 0.4);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    animation: bloodPulse 2s ease-in-out infinite;
-  }
-
-  @keyframes bloodPulse {
-    0%, 100% {
-      box-shadow: 
-        0 0 20px rgba(59, 130, 246, 0.3),
-        inset 0 1px 0 rgba(59, 130, 246, 0.4);
-    }
-    50% {
-      box-shadow: 
-        0 0 30px rgba(59, 130, 246, 0.6),
-        0 0 40px rgba(59, 130, 246, 0.4),
-        inset 0 1px 0 rgba(59, 130, 246, 0.6);
-    }
+    color: #ffffff;
+    background: ${props => props.theme.colors.primary};
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    animation: ${props => props.theme.animations.pulse} 2s infinite;
   }
 
   @media (max-width: 768px) {
@@ -77,9 +57,6 @@ export const ProfileTab = styled(NavLink)`
   min-width: 250px;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
-  background: 
-    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.6) 0%, rgba(15, 10, 10, 0.4) 100%);
 
   @media (max-width: 1000px) and (min-width: 768px) {
     min-width: 200px;
@@ -115,13 +92,11 @@ export const ProfilePhoto = styled.img`
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(59, 130, 246, 0.4);
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+  border: 2px solid ${props => props.theme.colors.primaryBorder};
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: rgba(59, 130, 246, 0.6);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    border-color: ${props => props.theme.colors.primary};
   }
 
   @media (max-width: 768px) {
@@ -141,12 +116,10 @@ export const ProfileInfo = styled.div`
 export const Username = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  text-transform: uppercase;
 
   @media (max-width: 768px) {
     font-size: 0.8rem;
@@ -171,7 +144,7 @@ export const MiddleLetter = styled.span`
 
 export const DisplayName = styled.span`
   font-size: 0.8rem;
-  color: #a8a29e;
+  color: ${props => props.theme.colors.textLight};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
