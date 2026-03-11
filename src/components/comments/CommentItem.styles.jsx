@@ -1,61 +1,43 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+// Centralized colors for consistent theming
+const COLORS = {
+  primary: '#3b82f6',
+  primaryLight: 'rgba(59, 130, 246, 0.2)',
+  primaryBorder: 'rgba(59, 130, 246, 0.3)',
+  background: 'rgba(20, 15, 15, 0.98)',
+  text: '#e8d5c7',
+  textLight: '#a8a29e',
+  textSecondary: '#d4c5a7',
+  danger: '#dc3545'
+};
+
 export const CommentContainer = styled.div`
-  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
-  background: 
-    radial-gradient(ellipse at top, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.3) 0%, rgba(15, 10, 10, 0.2) 100%);
+  border-bottom: 1px solid ${COLORS.primaryBorder};
+  background: ${COLORS.background};
   border-radius: 12px;
   margin-bottom: 0.75rem;
   padding: 1rem;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
-  animation: commentEntrance 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out;
 
-  @keyframes commentEntrance {
-    0% {
-      opacity: 0;
-      transform: translateX(-20px);
-      filter: blur(5px);
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateX(-20px); 
     }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-      filter: blur(0);
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
     }
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, #3b82f6, #8b4513);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  &:hover {
-    background: 
-      radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(20, 15, 15, 0.4) 0%, rgba(15, 10, 10, 0.3) 100%);
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    
-    &::before {
-      opacity: 0.7;
-    }
-  }
-  
   @media (max-width: 768px) {
     padding: 0.8rem;
     margin-bottom: 0.5rem;
   }
-  
+
   &:last-child {
     border-bottom: none;
     margin-bottom: 0;
@@ -77,31 +59,12 @@ export const AuthorInfo = styled(Link)`
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 10px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
+  transition: all 0.3s ease;
   text-decoration: none;
   color: inherit;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    border-radius: 10px;
-  }
-  
   &:hover {
-    background: rgba(59, 130, 246, 0.12);
-    transform: translateY(-2px);
-    
-    &::before {
-      opacity: 1;
-    }
+    background: ${COLORS.primaryLight};
   }
 `;
 
@@ -110,16 +73,11 @@ export const AuthorPhoto = styled.img`
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(59, 130, 246, 0.3);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
+  border: 2px solid ${COLORS.primaryBorder};
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: scale(1.1) rotate(3deg);
-    border-color: rgba(59, 130, 246, 0.6);
-    box-shadow: 
-      0 4px 15px rgba(59, 130, 246, 0.3),
-      0 0 10px rgba(59, 130, 246, 0.2);
+    border-color: ${COLORS.primary};
   }
 
   @media (max-width: 768px) {
@@ -130,47 +88,29 @@ export const AuthorPhoto = styled.img`
 
 export const AuthorName = styled.span`
   font-weight: 700;
-  color: #e8d5c7;
+  color: ${COLORS.text};
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #8b4513);
-    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-radius: 2px;
-  }
+  transition: all 0.3s ease;
 
   ${AuthorInfo}:hover & {
-    color: #3b82f6;
-    transform: translateX(2px);
-    
-    &::after {
-      width: 100%;
-    }
+    color: ${COLORS.primary};
   }
 `;
 
 export const CommentDate = styled.span`
-  color: #a8a29e;
+  color: ${COLORS.textLight};
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  background: ${COLORS.primaryLight};
+  border: 1px solid ${COLORS.primaryBorder};
 `;
 
 export const CommentContent = styled.div`
-  color: #d4c5a7;
+  color: ${COLORS.textSecondary};
   line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -181,25 +121,23 @@ export const CommentContent = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  background: rgba(231, 76, 60, 0.15);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.25);
+  background: rgba(220, 53, 69, 0.1);
+  color: ${COLORS.danger};
+  border: 1px solid rgba(220, 53, 69, 0.3);
   padding: 0.4rem 0.6rem;
   border-radius: 12px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   &:hover:not(:disabled) {
-    background: #e74c3c;
+    background: ${COLORS.danger};
     color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   }
-  
+
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;

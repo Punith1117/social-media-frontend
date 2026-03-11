@@ -23,7 +23,7 @@ export const ProfileCardContainer = styled.div`
   animation: fadeIn 0.6s ease-out;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.4rem;
 
   @keyframes fadeIn {
     from { 

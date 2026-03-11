@@ -2,15 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Share2, ClipboardCopy, CircleCheck, CircleX } from 'lucide-react';
 
+// Centralized colors for consistent theming
+const COLORS = {
+  primary: '#3b82f6',
+  primaryLight: 'rgba(59, 130, 246, 0.2)',
+  primaryBorder: 'rgba(59, 130, 246, 0.3)',
+  background: 'rgba(20, 15, 15, 0.98)',
+  text: '#e8d5c7',
+  textLight: '#a8a29e',
+  textSecondary: '#d4c5a7',
+  danger: '#dc3545',
+  dangerLight: 'rgba(220, 53, 69, 0.15)',
+  dangerBorder: 'rgba(220, 53, 69, 0.2)'
+};
+
 const ShareContainer = styled.div`
   position: relative;
   display: inline-block;
 `;
 
 const ShareButtonStyled = styled.button`
-  background: rgba(155, 89, 182, 0.15);
-  color: #9b59b6;
-  border: 1px solid rgba(155, 89, 182, 0.25);
+  background: rgba(59, 130, 246, 0.1);
+  color: ${COLORS.primary};
+  border: 1px solid ${COLORS.primaryBorder};
   padding: 0.5rem 1rem;
   border-radius: 12px;
   cursor: pointer;
@@ -20,15 +34,13 @@ const ShareButtonStyled = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   &:hover:not(:disabled) {
-    background: #9b59b6;
+    background: ${COLORS.primary};
     color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   }
 
   &:disabled {
@@ -46,27 +58,18 @@ const FallbackDropdown = styled.div`
   position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
-  background: rgba(20, 15, 15, 0.95);
+  background: ${COLORS.background};
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  border: 1px solid ${COLORS.dangerBorder};
   border-radius: 12px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(220, 53, 69, 0.1),
-    inset 0 1px 0 rgba(220, 53, 69, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   overflow: hidden;
-  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.3s ease-out;
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 `;
 
@@ -82,17 +85,16 @@ const DropdownOption = styled.button`
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #d4c5a7;
-  transition: all 0.2s ease;
-  position: relative;
+  color: ${COLORS.textSecondary};
+  transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(220, 53, 69, 0.15);
-    color: #dc3545;
+    background: ${COLORS.dangerLight};
+    color: ${COLORS.danger};
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid rgba(220, 53, 69, 0.15);
+    border-bottom: 1px solid ${COLORS.dangerBorder};
   }
 `;
 

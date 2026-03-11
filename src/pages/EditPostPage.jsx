@@ -7,9 +7,19 @@ import { CenterContainer } from '../styles/MinimalStyles';
 import PostForm from '../components/posts/PostForm';
 
 const PageContainer = styled.div`
-  max-width: 600px;
+  width: 600px;
   margin: 0 auto;
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    max-width: 95%;
+    padding: 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 98%;
+    padding: 0.5rem;
+  }
 `;
 
 const PageTitle = styled.h1`
@@ -21,19 +31,6 @@ const PageTitle = styled.h1`
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  position: relative;
-  animation: titleFadeIn 0.6s ease-out;
-
-  @keyframes titleFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   &::after {
     content: '';
@@ -43,20 +40,8 @@ const PageTitle = styled.h1`
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, #dc3545, #8b4513);
+    background: #3b82f6;
     border-radius: 2px;
-    animation: titleUnderline 0.8s ease-out 0.3s both;
-  }
-
-  @keyframes titleUnderline {
-    0% {
-      width: 0;
-      opacity: 0;
-    }
-    100% {
-      width: 60px;
-      opacity: 1;
-    }
   }
 `;
 
