@@ -8,11 +8,9 @@ import SearchBar from '../common/SearchBar';
 const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
-  background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
+  background: ${props => props.theme.colors.background};
   backdrop-filter: blur(25px);
-  border-bottom: 1px solid rgba(220, 53, 69, 0.3);
+  border-bottom: 1px solid ${props => props.theme.colors.border};
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -20,36 +18,12 @@ const HeaderContainer = styled.header`
   flex-wrap: wrap;
   padding: 0 1rem;
   min-height: 60px;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(220, 53, 69, 0.1),
-    inset 0 1px 0 rgba(220, 53, 69, 0.2);
+  box-shadow: 0 4px 20px ${props => props.theme.colors.shadow};
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent, 
-      rgba(220, 53, 69, 0.6), 
-      rgba(139, 69, 19, 0.4),
-      rgba(220, 53, 69, 0.6),
-      transparent
-    );
-    opacity: 0.8;
-  }
-
   &:hover {
-    border-bottom-color: rgba(220, 53, 69, 0.5);
-    box-shadow: 
-      0 8px 30px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(220, 53, 69, 0.2),
-      0 0 20px rgba(220, 53, 69, 0.15),
-      inset 0 1px 0 rgba(220, 53, 69, 0.3);
+    border-bottom-color: ${props => props.theme.colors.primaryBorder};
+    box-shadow: 0 8px 30px ${props => props.theme.colors.shadow};
   }
 
   @media (max-width: 768px) {
@@ -105,14 +79,14 @@ const GitHubLink = styled.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${props => props.theme.colors.textLight};
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 400;
   transition: all 0.3s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 1);
+    color: ${props => props.theme.isDarkMode ? '#ffffff' : props.theme.colors.primary};
     text-decoration: underline;
   }
 

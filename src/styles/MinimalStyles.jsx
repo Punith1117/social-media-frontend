@@ -55,7 +55,7 @@ export const FormGroup = styled.div`
 export const Label = styled.label`
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  color: #b9b9b9ff;
+  color: ${props => props.theme.colors.textLight};
   font-size: 0.9rem;
   letter-spacing: 0.01em;
   margin-bottom: 0.25rem;
@@ -63,54 +63,49 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 0.75rem 1rem;
-  border: 1px solid ${props => props.$hasError ? 'rgba(231, 76, 60, 0.5)' : 'rgba(59, 130, 246, 0.2)'};
+  border: 1px solid ${props => props.$hasError ? props.theme.colors.dangerBorder : props.theme.colors.primaryBorder};
   border-radius: 12px;
-  background: 
-    linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%),
-    rgba(59, 130, 246, 0.02);
-  color: #e8d5c7;
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(59, 130, 246, 0.1);
+  box-shadow: ${props => props.theme.isDarkMode 
+    ? 'inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(59, 130, 246, 0.1)'
+    : 'inset 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05)'
+  };
   backdrop-filter: blur(10px);
   
   &::placeholder {
-    color: #a8a29e;
+    color: ${props => props.theme.colors.textLight};
     opacity: 0.7;
   }
   
   &:focus {
     outline: none;
-    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.7)' : 'rgba(59, 130, 246, 0.5)'};
-    background: 
-      linear-gradient(135deg, rgba(20, 15, 15, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%),
-      rgba(59, 130, 246, 0.05);
-    box-shadow: 
-      inset 0 2px 6px rgba(0, 0, 0, 0.3),
-      0 0 0 2px rgba(59, 130, 246, 0.2),
-      0 4px 12px rgba(59, 130, 246, 0.15);
+    border-color: ${props => props.$hasError ? props.theme.colors.danger : props.theme.colors.primary};
+    background: ${props => props.theme.colors.background};
+    box-shadow: ${props => props.theme.isDarkMode
+      ? 'inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(59, 130, 246, 0.15)'
+      : 'inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(59, 130, 246, 0.2), 0 2px 8px rgba(59, 130, 246, 0.1)'
+    };
     transform: translateY(-1px);
   }
   
   &:hover:not(:focus) {
-    border-color: ${props => props.$hasError ? 'rgba(231, 76, 60, 0.6)' : 'rgba(59, 130, 246, 0.3)'};
-    background: 
-      linear-gradient(135deg, rgba(20, 15, 15, 0.85) 0%, rgba(15, 10, 10, 0.92) 100%),
-      rgba(59, 130, 246, 0.03);
+    border-color: ${props => props.$hasError ? props.theme.colors.dangerBorder : props.theme.colors.primaryBorder};
+    background: ${props => props.theme.colors.background};
   }
   
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: rgba(108, 117, 125, 0.1);
-    border-color: rgba(108, 117, 125, 0.3);
+    background: ${props => props.theme.colors.surface};
+    border-color: ${props => props.theme.colors.border};
   }
   
   &:invalid {
-    border-color: rgba(231, 76, 60, 0.5);
+    border-color: ${props => props.theme.colors.dangerBorder};
   }
 `;
 
@@ -204,7 +199,7 @@ export const Button = styled.button`
 `;
 
 export const ErrorMessage = styled.span`
-  color: #ff3333;
+  color: ${props => props.theme.colors.danger};
   font-size: 0.8rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
@@ -228,7 +223,7 @@ export const ErrorMessage = styled.span`
 `;
 
 export const SuccessMessage = styled.span`
-  color: #00ff00;
+  color: ${props => props.theme.colors.success};
   font-size: 0.8rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;

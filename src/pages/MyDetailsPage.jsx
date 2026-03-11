@@ -14,19 +14,19 @@ const LoadingContainer = styled.div`
   align-items: center;
   height: 200px;
   font-size: 1.1rem;
-  color: #666;
+  color: ${props => props.theme.colors.textLight};
 `;
 
 const ErrorContainer = styled.div`
   text-align: center;
   padding: 2rem;
-  color: #60a5fa;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const EditButton = styled.button`
-  background: rgba(243, 156, 18, 0.15);
-  color: #f39c12;
-  border: 1px solid rgba(243, 156, 18, 0.25);
+  background: ${props => props.theme.colors.warningLight};
+  color: ${props => props.theme.colors.warning};
+  border: 1px solid ${props => props.theme.colors.warningBorder};
   padding: 0.5rem 1rem;
   border-radius: 12px;
   cursor: pointer;
@@ -41,10 +41,10 @@ const EditButton = styled.button`
   margin-bottom: 1rem;
 
   &:hover:not(:disabled) {
-    background: #f39c12;
+    background: ${props => props.theme.colors.warning};
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+    box-shadow: 0 4px 12px ${props => props.theme.colors.warning}4d;
   }
 
   &:disabled {

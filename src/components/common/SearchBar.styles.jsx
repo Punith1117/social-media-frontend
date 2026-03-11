@@ -21,7 +21,7 @@ export const SearchInputWrapper = styled.div`
 export const SearchInput = styled.input`
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid ${props => props.theme.colors.primaryBorder};
+  border: 3px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 8px;
   font-size: 0.9rem;
   background: ${props => props.theme.colors.background};

@@ -21,12 +21,10 @@ const ShareButtonStyled = styled.button`
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   &:hover:not(:disabled) {
     background: ${props => props.theme.colors.primary};
     color: #ffffff;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
   }
 
   &:disabled {

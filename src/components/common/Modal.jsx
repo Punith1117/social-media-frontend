@@ -7,7 +7,7 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: ${props => props.theme.isDarkMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.5)'};
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -35,10 +35,7 @@ const ModalContent = styled.div`
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(59, 130, 246, 0.1),
-    inset 0 1px 0 rgba(59, 130, 246, 0.2);
+  box-shadow: ${props => props.theme.colors.shadow};
   animation: ${props => props.theme.animations.slideUp} 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (max-width: 768px) {
@@ -54,7 +51,7 @@ const ModalHeader = styled.div`
   align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  border-bottom: 1px solid ${props => props.theme.colors.border};
 `;
 
 const ModalTitle = styled.h2`
@@ -66,11 +63,11 @@ const ModalTitle = styled.h2`
 `;
 
 const CloseButton = styled.button`
-  background: rgba(108, 117, 125, 0.15);
-  border: 1px solid rgba(108, 117, 125, 0.25);
+  background: ${props => props.theme.colors.surface};
+  border: 1px solid ${props => props.theme.colors.border};
   font-size: 1.25rem;
   cursor: pointer;
-  color: #6b7280;
+  color: ${props => props.theme.colors.textLight};
   padding: 0;
   width: 36px;
   height: 36px;
@@ -82,9 +79,9 @@ const CloseButton = styled.button`
   font-weight: 600;
 
   &:hover:not(:disabled) {
-    background: rgba(108, 117, 125, 0.25);
-    border-color: rgba(108, 117, 125, 0.4);
-    color: #7fa76cff;
+    background: ${props => props.theme.colors.primaryLight};
+    border-color: ${props => props.theme.colors.primaryBorder};
+    color: ${props => props.theme.colors.primary};
     transform: scale(1.05);
   }
 

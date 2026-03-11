@@ -6,7 +6,10 @@ export const AuthContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: linear-gradient(135deg, ${props => props.theme.colors.darkBg} 0%, #1a1a1a 30%, #0d0d0d 70%, #000000 100%);
+  background: ${props => props.theme.isDarkMode 
+    ? `linear-gradient(135deg, ${props.theme.colors.darkBg} 0%, #1a1a1a 30%, #0d0d0d 70%, #000000 100%)`
+    : `linear-gradient(135deg, ${props.theme.colors.surface} 0%, ${props.theme.colors.background} 50%, ${props.theme.colors.surface} 100%)`
+  };
   backdrop-filter: blur(10px);
 `;
 
@@ -18,12 +21,12 @@ export const FormContainer = styled.div`
   padding: 2rem;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px ${props => props.theme.colors.shadow};
   transition: all 0.3s ease;
   animation: ${props => props.theme.animations.fadeIn} 0.6s ease-out;
 
   &:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 40px ${props => props.theme.colors.shadow};
     border-color: ${props => props.theme.colors.primary};
   }
 
@@ -42,7 +45,10 @@ export const Title = styled.h1`
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: ${props => props.theme.isDarkMode 
+    ? '0 2px 4px rgba(0, 0, 0, 0.8)' 
+    : '0 1px 2px rgba(0, 0, 0, 0.1)'
+  };
 `;
 
 export const Form = styled.form`

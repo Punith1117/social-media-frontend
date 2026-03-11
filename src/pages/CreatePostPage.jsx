@@ -23,7 +23,7 @@ const PageContainer = styled.div`
 `;
 
 const PageTitle = styled.h1`
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -31,6 +31,7 @@ const PageTitle = styled.h1`
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  position: relative;
 
   &::after {
     content: '';
@@ -40,7 +41,7 @@ const PageTitle = styled.h1`
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background: #3b82f6;
+    background: ${props => props.theme.colors.primary};
     border-radius: 2px;
   }
 `;
@@ -51,7 +52,7 @@ const LoadingOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: ${props => props.theme.isDarkMode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.5)'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,22 +61,19 @@ const LoadingOverlay = styled.div`
 `;
 
 const LoadingSpinner = styled.div`
-  background: 
-    radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%);
+  background: ${props => props.theme.isDarkMode
+    ? `radial-gradient(ellipse at top, rgba(220, 53, 69, 0.15) 0%, transparent 50%), linear-gradient(135deg, rgba(20, 15, 15, 0.98) 0%, rgba(15, 10, 10, 0.95) 100%)`
+    : props.theme.colors.background
+  };
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 24px;
   padding: 2rem;
   text-align: center;
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(220, 53, 69, 0.2),
-    inset 0 2px 4px rgba(220, 53, 69, 0.3),
-    inset 0 -2px 4px rgba(139, 69, 19, 0.2);
+  box-shadow: ${props => props.theme.colors.shadow};
   animation: spinnerEntrance 0.4s ease-out;
 
   @keyframes spinnerEntrance {

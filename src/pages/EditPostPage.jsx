@@ -22,8 +22,28 @@ const PageContainer = styled.div`
   }
 `;
 
+const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: ${props => props.theme.colors.danger};
+  background: ${props => props.theme.colors.dangerLight};
+  border: 1px solid ${props => props.theme.colors.dangerBorder};
+  border-radius: 4px;
+  margin: 1rem 0;
+`;
+
+const WarningMessage = styled.div`
+  text-align: center;
+  padding: 2rem;
+  color: ${props => props.theme.colors.warning};
+  background: ${props => props.theme.colors.warningLight};
+  border: 1px solid ${props => props.theme.colors.warningBorder};
+  border-radius: 4px;
+  margin: 1rem 0;
+`;
+
 const PageTitle = styled.h1`
-  color: #e8d5c7;
+  color: ${props => props.theme.colors.text};
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -31,6 +51,7 @@ const PageTitle = styled.h1`
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  position: relative;
 
   &::after {
     content: '';
@@ -40,7 +61,7 @@ const PageTitle = styled.h1`
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background: #3b82f6;
+    background: ${props => props.theme.colors.primary};
     border-radius: 2px;
   }
 `;
@@ -139,17 +160,9 @@ const EditPostPage = () => {
       <CenterContainer>
         <PageContainer>
           <PageTitle>Edit Post</PageTitle>
-          <div style={{ 
-            textAlign: 'center', 
-            padding: '2rem', 
-            color: '#856404', 
-            background: '#fff3cd', 
-            border: '1px solid #ffeaa7', 
-            borderRadius: '4px',
-            margin: '1rem 0'
-          }}>
+          <WarningMessage>
             {error || 'You are not authorized to edit this post'}
-          </div>
+          </WarningMessage>
         </PageContainer>
       </CenterContainer>
     );
@@ -160,17 +173,9 @@ const EditPostPage = () => {
       <CenterContainer>
         <PageContainer>
           <PageTitle>Edit Post</PageTitle>
-          <div style={{ 
-            textAlign: 'center', 
-            padding: '2rem', 
-            color: '#60a5fa', 
-            background: '#f8d7da', 
-            border: '1px solid #f5c6cb', 
-            borderRadius: '4px',
-            margin: '1rem 0'
-          }}>
+          <ErrorMessage>
             {error}
-          </div>
+          </ErrorMessage>
         </PageContainer>
       </CenterContainer>
     );
@@ -181,17 +186,9 @@ const EditPostPage = () => {
       <CenterContainer>
         <PageContainer>
           <PageTitle>Edit Post</PageTitle>
-          <div style={{ 
-            textAlign: 'center', 
-            padding: '2rem', 
-            color: '#60a5fa', 
-            background: '#f8d7da', 
-            border: '1px solid #f5c6cb', 
-            borderRadius: '4px',
-            margin: '1rem 0'
-          }}>
+          <ErrorMessage>
             Post not found
-          </div>
+          </ErrorMessage>
         </PageContainer>
       </CenterContainer>
     );

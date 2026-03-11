@@ -18,45 +18,38 @@ export const TabContainer = styled.nav`
   }
 `;
 
-const baseTabStyles = `
+export const ProfileTab = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
   text-decoration: none;
-  color: #9ca3af;
+  color: ${props => props.theme.colors.textLight};
   font-weight: 500;
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
-  border: 1px solid ${props => props.theme.colors.primaryBorder};
+  border: 2px solid ${props => props.theme.colors.border};
   background: ${props => props.theme.colors.background};
+  min-width: 250px;
+  gap: 0.75rem;
 
   &:hover {
-    color: #ffffff;
-    background: rgba(59, 130, 246, 0.15);
+    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.primaryLight};
     border-color: ${props => props.theme.colors.primary};
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 20px ${props => props.theme.colors.primary}66;
   }
 
   &.active {
-    color: #ffffff;
-    background: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
+    background: ${props => props.theme.colors.primaryLight};
     border-color: ${props => props.theme.colors.primary};
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
-    animation: ${props => props.theme.animations.pulse} 2s infinite;
+    font-weight: 600;
   }
 
-  @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
+  &:active {
+    transform: translateY(0);
   }
-`;
-
-export const ProfileTab = styled(NavLink)`
-  ${baseTabStyles}
-  min-width: 250px;
-  gap: 0.75rem;
-  padding: 0.5rem 1rem;
 
   @media (max-width: 1000px) and (min-width: 768px) {
     min-width: 200px;
@@ -73,9 +66,37 @@ export const ProfileTab = styled(NavLink)`
 `;
 
 export const SimpleTab = styled(NavLink)`
-  ${baseTabStyles}
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: ${props => props.theme.colors.textLight};
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid ${props => props.theme.colors.border};
+  background: ${props => props.theme.colors.background};
   min-width: 80px;
   justify-content: center;
+
+  &:hover {
+    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.primaryLight};
+    border-color: ${props => props.theme.colors.primary};
+    box-shadow: 0 0 20px ${props => props.theme.colors.primary}66;
+  }
+
+  &.active {
+    color: ${props => props.theme.colors.primary};
+    background: ${props => props.theme.colors.primaryLight};
+    border-color: ${props => props.theme.colors.primary};
+    font-weight: 600;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 
   @media (max-width: 1000px) and (min-width: 768px) {
     min-width: 70px;

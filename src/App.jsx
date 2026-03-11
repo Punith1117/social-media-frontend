@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ThemeProvider } from 'styled-components';
 import { AuthProvider } from './context/AuthContext';
 import { ProfileProvider } from './context/ProfileContext';
-import theme from './theme.js';
+import { ThemeProvider as CustomThemeProvider, useTheme } from './context/ThemeContext';
+import GlobalStyles from './styles/GlobalStyles';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 import AppLayout from './components/layout/AppLayout';
 import HomePage from './pages/HomePage';
@@ -18,9 +19,13 @@ import FollowersPage from './pages/FollowersPage';
 import FollowingPage from './pages/FollowingPage';
 import ExplorePage from './pages/ExplorePage';
 
-function App() {
+// Inner component that uses the theme
+const AppContent = () => {
+  const theme = useTheme();
+  
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <AuthProvider>
         <ProfileProvider>
           <Router>
@@ -72,6 +77,14 @@ function App() {
         </ProfileProvider>
       </AuthProvider>
     </ThemeProvider>
+  );
+};
+
+function App() {
+  return (
+    <CustomThemeProvider>
+      <AppContent />
+    </CustomThemeProvider>
   );
 }
 
