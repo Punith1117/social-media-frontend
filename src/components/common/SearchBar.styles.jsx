@@ -44,8 +44,13 @@ export const SearchInput = styled.input`
       linear-gradient(135deg, rgba(20, 15, 15, 0.7) 0%, rgba(15, 10, 10, 0.5) 100%);
   }
 
+  @media (max-width: 1000px) and (min-width: 768px) {
+    padding: 0.625rem;  /* 10px - increased for tablet */
+    font-size: 0.85rem;
+  }
+
   @media (max-width: 768px) {
-    padding: 0.375rem;
+    padding: 0.75rem;  /* 12px - increased for mobile */
     font-size: 0.8rem;
   }
 `;

@@ -27,20 +27,21 @@ export const BackToTopButton = styled.button`
   justify-content: center;
   font-size: 1.2rem;
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2563eb 0%, #7c2d12 100%);
     box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
   }
 
   @media (max-width: 768px) {
-    right: 50%;
-    transform: translateX(50%);
+    right: 1rem;
+    left: 1rem;
     bottom: 1rem;
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1rem;
+    margin: 0 auto;
   }
 `;
 

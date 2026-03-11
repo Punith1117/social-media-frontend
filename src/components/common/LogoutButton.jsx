@@ -4,6 +4,13 @@ import { useAuth } from '../../context/AuthContext';
 import { LogOut } from 'lucide-react';
 import styled from 'styled-components';
 
+// Centralized colors for consistent theming
+const COLORS = {
+  danger: '#dc3545',
+  dangerLight: 'rgba(220, 53, 69, 0.2)',
+  dangerBorder: 'rgba(220, 53, 69, 0.3)'
+};
+
 const ButtonContainer = styled.div`
   position: fixed;
   bottom: 2rem;
@@ -24,9 +31,9 @@ const ButtonContainer = styled.div`
 `;
 
 const LogoutButton = styled.button`
-  background: rgba(220, 53, 69, 0.9);
+  background: ${COLORS.danger};
   color: white;
-  border: none;
+  border: 1px solid ${COLORS.dangerBorder};
   border-radius: 50%;
   cursor: pointer;
   backdrop-filter: blur(10px);
@@ -35,56 +42,27 @@ const LogoutButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-      transparent, 
-      rgba(255, 255, 255, 0.2), 
-      transparent
-    );
-    transition: left 0.8s ease;
-  }
-
   &:hover {
-    background: rgba(220, 53, 69, 1);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
-    
-    &::before {
-      left: 100%;
-    }
+    background: #c82333;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    border-color: rgba(220, 53, 69, 0.5);
   }
 
   &:active {
-    transform: translateY(-1px) scale(0.98);
+    transform: scale(0.95);
   }
 
   @media (max-width: 768px) {
     width: 48px;
     height: 48px;
-    
-    &:hover {
-      transform: translateY(-2px) scale(1.03);
-    }
   }
   
   @media (max-width: 480px) {
     width: 44px;
     height: 44px;
-    
-    &:hover {
-      transform: translateY(-1px) scale(1.02);
-    }
   }
 `;
 

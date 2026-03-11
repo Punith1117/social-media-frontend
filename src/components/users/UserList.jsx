@@ -2,65 +2,57 @@ import React from 'react';
 import styled from 'styled-components';
 import UserListItem from './UserListItem';
 
+// Centralized colors for consistent theming
+const COLORS = {
+  primary: '#3b82f6',
+  primaryLight: 'rgba(59, 130, 246, 0.2)',
+  primaryBorder: 'rgba(59, 130, 246, 0.3)',
+  background: 'rgba(20, 15, 15, 0.98)',
+  text: '#e8d5c7',
+  textLight: '#a8a29e',
+  danger: '#dc3545'
+};
+
 const ListContainer = styled.div`
-  border: 1px solid rgba(220, 53, 69, 0.3);
+  border: 1px solid ${COLORS.primaryBorder};
   border-radius: 16px;
-  background: 
-    linear-gradient(135deg, rgba(20, 15, 15, 0.8) 0%, rgba(15, 10, 10, 0.9) 100%);
+  background: ${COLORS.background};
   backdrop-filter: blur(15px);
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(220, 53, 69, 0.1);
-  animation: listEntrance 0.6s ease-out 0.8s both;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.6s ease-out;
   
-  @keyframes listEntrance {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.98);
-      filter: blur(5px);
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
     }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
     }
   }
 `;
 
 const ListHeader = styled.div`
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.3);
+  border-bottom: 1px solid ${COLORS.primaryBorder};
   font-weight: 600;
-  color: #e8d5c7;
+  color: ${COLORS.text};
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      rgba(220, 53, 69, 0.6), 
-      rgba(139, 69, 19, 0.3),
-      rgba(220, 53, 69, 0.6));
-  }
 `;
 
 const LoadingMessage = styled.div`
   padding: 3rem 2rem;
   text-align: center;
-  color: #e8d5c7;
+  color: ${COLORS.text};
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
-  animation: loadingPulse 2s ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite;
   
-  @keyframes loadingPulse {
+  @keyframes pulse {
     0%, 100% { opacity: 0.6; }
     50% { opacity: 1; }
   }
@@ -69,7 +61,7 @@ const LoadingMessage = styled.div`
 const EmptyMessage = styled.div`
   padding: 3rem 2rem;
   text-align: center;
-  color: #a8a29e;
+  color: ${COLORS.textLight};
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 1rem;
@@ -79,16 +71,16 @@ const EmptyMessage = styled.div`
   margin: 1rem;
   border: 1px solid rgba(220, 53, 69, 0.1);
   backdrop-filter: blur(5px);
-  animation: emptyFadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
   
-  @keyframes emptyFadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.95); 
     }
-    100% {
-      opacity: 1;
-      transform: scale(1);
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
     }
   }
 `;

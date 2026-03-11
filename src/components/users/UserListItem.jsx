@@ -3,29 +3,40 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import FollowButton from '../profile/FollowButton';
 
+// Centralized colors for consistent theming
+const COLORS = {
+  primary: '#3b82f6',
+  primaryLight: 'rgba(59, 130, 246, 0.2)',
+  primaryBorder: 'rgba(59, 130, 246, 0.3)',
+  background: 'rgba(20, 15, 15, 0.98)',
+  text: '#e8d5c7',
+  textLight: '#a8a29e',
+  danger: '#dc3545',
+  accent: '#8b4513'
+};
+
 const UserItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid rgba(220, 53, 69, 0.2);
+  border-bottom: 1px solid ${COLORS.primaryBorder};
   position: relative;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation: itemSlideIn 0.4s ease-out both;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.4s ease-out both;
   
-  @keyframes itemSlideIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-15px);
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateX(-15px); 
     }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
     }
   }
   
   &:hover {
-    background: rgba(220, 53, 69, 0.1);
-    transform: translateX(5px);
+    background: ${COLORS.primaryLight};
     
     &::before {
       content: '';
@@ -34,7 +45,7 @@ const UserItemContainer = styled.div`
       top: 0;
       bottom: 0;
       width: 3px;
-      background: linear-gradient(180deg, #dc3545, #8b4513);
+      background: linear-gradient(180deg, ${COLORS.primary}, ${COLORS.accent});
       animation: slideIn 0.3s ease-out;
     }
   }
@@ -55,7 +66,7 @@ const UserItemLink = styled(Link)`
   flex: 1;
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
 `;
 
 const UserAvatar = styled.img`
@@ -64,18 +75,13 @@ const UserAvatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-right: 1rem;
-  border: 2px solid rgba(220, 53, 69, 0.3);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px rgba(220, 53, 69, 0.2);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid ${COLORS.primaryBorder};
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    transform: scale(1.1) rotate(5deg);
-    border-color: rgba(220, 53, 69, 0.6);
-    box-shadow: 
-      0 6px 20px rgba(220, 53, 69, 0.3),
-      0 0 15px rgba(220, 53, 69, 0.2);
+    border-color: ${COLORS.primary};
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
   }
 `;
 
@@ -85,27 +91,26 @@ const UserInfo = styled.div`
 
 const Username = styled.div`
   font-weight: 600;
-  color: #e8d5c7;
+  color: ${COLORS.text};
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    color: #ffffff;
-    transform: translateY(-1px);
+    color: ${COLORS.primary};
   }
 `;
 
 const DisplayName = styled.div`
-  color: #a8a29e;
+  color: ${COLORS.textLight};
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   
   ${UserItemContainer}:hover & {
-    color: #e8d5c7;
+    color: ${COLORS.text};
   }
 `;
 
