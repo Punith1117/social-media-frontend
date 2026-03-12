@@ -302,10 +302,10 @@ export const FileInputButton = styled.button`
 
 export const ReadOnlyInput = styled.div`
   padding: 1rem;
-  background: rgba(20, 15, 15, 0.6);
+  background: ${props => props.theme.colors.surface};
   border: 1px solid ${props => props.theme.colors.primaryBorder};
   border-radius: 12px;
-  color: ${props => props.theme.colors.textLight};
+  color: ${props => props.theme.colors.text};
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -314,7 +314,7 @@ export const ReadOnlyInput = styled.div`
 
   &:hover {
     border-color: ${props => props.theme.colors.primary};
-    background: rgba(20, 15, 15, 0.65);
+    background: ${props => props.theme.colors.surface};
   }
 
   @media (max-width: 768px) {

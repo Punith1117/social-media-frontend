@@ -19,11 +19,12 @@ const TabNavigation = () => {
 
   // Helper function to format username with styled first and last letters
   const formatUsername = (username) => {
-    if (!username || username.length <= 2) return username;
+    if (!username || username.length <= 2) return username?.toUpperCase();
     
-    const first = username[0];
-    const middle = username.slice(1, -1);
-    const last = username[username.length - 1];
+    const upperUsername = username.toUpperCase();
+    const first = upperUsername[0];
+    const middle = upperUsername.slice(1, -1);
+    const last = upperUsername[upperUsername.length - 1];
     
     return (
       <>

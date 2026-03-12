@@ -52,16 +52,16 @@ export const ProfileTab = styled(NavLink)`
   }
 
   @media (max-width: 1000px) and (min-width: 768px) {
-    min-width: 200px;
-    padding: 0.4rem 0.6rem;
-    gap: 0.5rem;
+    min-width: 160px;
+    padding: 0.3rem 0.5rem;
+    gap: 0.4rem;
   }
 
   @media (max-width: 768px) {
     min-width: 0;
     flex: 1;
-    gap: 0.5rem;
-    padding: 0.375rem 0.75rem;
+    gap: 0.3rem;
+    padding: 0.25rem 0.5rem;
   }
 `;
 
@@ -99,12 +99,15 @@ export const SimpleTab = styled(NavLink)`
   }
 
   @media (max-width: 1000px) and (min-width: 768px) {
-    min-width: 70px;
-    padding: 0.5rem 0.6rem;
+    min-width: 75px;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.8em;
   }
-
+    
   @media (max-width: 768px) {
-    min-width: 60px;
+    min-width: 75px;
+    padding: 0.25rem 0.3rem;
+    font-size: 0.8em;
   }
 `;
 

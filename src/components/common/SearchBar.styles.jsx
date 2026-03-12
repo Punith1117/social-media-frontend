@@ -40,12 +40,12 @@ export const SearchInput = styled.input`
   }
 
   @media (max-width: 1000px) and (min-width: 768px) {
-    padding: 0.625rem;
+    padding: 0.5rem;
     font-size: 0.85rem;
   }
 
   @media (max-width: 768px) {
-    padding: 0.75rem;
+    padding: 0.6rem;
     font-size: 0.8rem;
   }
 `;
