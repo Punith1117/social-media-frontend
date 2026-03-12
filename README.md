@@ -1,18 +1,20 @@
 # Social Media Frontend
-*Production-ready React application demonstrating full-stack development excellence*
 
-## 🏆 Executive Summary
+A modern **React** social media application demonstrating scalable architecture, real-world features, and production deployment.
+
+This production-ready frontend showcases modern React development with scalable state management, interactive social features, and performance-focused UI design.
+
+Developed as The Odin Project – Full Stack Final Project, the application integrates with a RESTful backend and implements features commonly found in modern social platforms, including follows, likes, comments, infinite scrolling feeds, and Progressive Web App capabilities.
 
 **Live Demo**: https://social-media-punith1117.netlify.app/explore  
+(~30 seconds backend server restart time due to free tier hosting)  
+
 **Backend Repository**: https://github.com/Punith1117/social-media-backend
 
-A modern social media frontend showcasing **professional React development** with **15+ production features**, **95+ Lighthouse performance**, and **enterprise-grade architecture**. Built as **The Odin Project's Full Stack Final Project**, this application demonstrates expertise in modern web development, scalable state management, and production deployment.
-
 ### Demo Account
-Use the following credentials to explore the app:
-
-**Username:** demo  
-**Password:** demo123
+Use the following credentials to explore the app:  
+**Username:** pun  
+**Password:** 1Abcd
 
 ---
 
@@ -66,6 +68,8 @@ Use the following credentials to explore the app:
 - **Installable App**: PWA install support with custom icons
 - **Cross Platform**: Standalone experience with responsive layouts
 
+**Production Features**: Core features across authentication, social engagement, UX, and PWA capabilities
+
 ---
 
 ## Technical Architecture
@@ -97,11 +101,12 @@ Use the following credentials to explore the app:
 - **Debounced Search** prevents excessive API calls
 - **Optimistic UI Updates** improve user responsiveness
 - **Efficient Component Structure** reduces unnecessary re-renders
+- **Lazy Loading** for code splitting and faster initial load
 
 ### Scalability Features
 - **Pagination** for handling large datasets efficiently
 - **Graceful Error Handling** prevents UI crashes
-- **Loading Indicators** improve perceived performance
+- **Loading States** with text indicators during async operations
 - **Service Worker Caching** enables offline reliability
 
 ---
@@ -111,20 +116,35 @@ Use the following credentials to explore the app:
 ### Code Quality
 - **ESLint** for consistent code style and error detection
 - **Reusable Component Architecture**
-- **Robust Error Handling**
+- **Robust Error Handling** with try-catch blocks and user feedback
 - **Centralized Theme System** supporting dark/light mode
 
 ### Development Workflow
-- **Git Version Control**
+- **Git Version Control** with conventional commits
 - **Vite Build Tool** for fast development and optimized production builds
-- **Test-ready Structure** for future unit and integration tests
+- **Testing Infrastructure** ready for unit and integration tests
+
+### Security Considerations
+- **JWT Authentication** with token expiration handling
+- **Input Validation** on forms and API requests
+- **Token Storage** using localStorage
+- **Token Cleanup** on expiration and logout
+
+**Note:** Tokens are stored in localStorage, which is vulnerable to XSS attacks. For production environments, HttpOnly cookies would be preferable.
+
+### Accessibility
+- **Semantic HTML5** for screen reader compatibility
+- **ARIA Labels** on interactive elements
+- **Keyboard Navigation** support
+- **Focus Management** for modal dialogs
+- **Color Contrast** meeting WCAG standards
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 20+
 - npm
 - Running backend API
 
@@ -141,9 +161,41 @@ npm install
 
 # Setup environment variables
 cp .env.example .env
-
-# Configure API base URL
+# Edit .env with your configuration:
 VITE_API_BASE_URL=http://localhost:3000
+VITE_APP_NAME=Social Media App
 
 # Start development server
 npm run dev
+
+# Build and preview production build
+npm run build && npm run preview
+```
+
+---
+
+## Project Structure
+
+* `public/`: Static assets and index.html
+* `src/`: Source code for the application
+* `src/components/`: Reusable React components
+* `src/context/`: Global state management with Context API
+* `src/hooks/`: Custom React hooks for reusable logic
+* `src/pages/`: Page-level components for routing
+* `src/services/`: API service layer for data fetching
+* `src/utils/`: Utility functions for miscellaneous tasks
+
+---
+
+## API Integration
+
+* `src/services/api.js`: Centralized API service layer with Axios configuration
+* `JWT Authentication`: Bearer token handling and automatic cleanup
+* **RESTful Endpoints**: Standard HTTP methods for CRUD operations
+
+---
+
+## Deployment & DevOps
+
+* `netlify.toml`: Netlify configuration for deployment
+* `vite.config.js`: Vite configuration for development and production builds
