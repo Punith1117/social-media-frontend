@@ -42,6 +42,26 @@ Use the following credentials to explore the app:
 
 ---
 
+## 🎬 Feature Demos
+
+### Post Management
+Create, delete, and edit posts
+![Create/Delete Post](./public/create-delete-post.gif?width=450)
+
+### Infinite Scrolling Feed
+Seamless content loading with intersection observer.
+![Feed Scroll](./public/feed-scroll.gif?width=450)
+
+### Profile Customization
+Personalize your profile with photo uploads and edits.
+![Profile Customization](./public/profile-customization.gif?width=450)
+
+### User Search & Follow
+Discover and follow other users with debounced search.
+![User Search & Follow](./public/user-search-and-follow.gif?width=450)
+
+---
+
 ## Core Features
 
 ### 🔐 Authentication & User Management
