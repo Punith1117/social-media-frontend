@@ -36,6 +36,8 @@ export const PostSection = styled.div`
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
   animation: fadeIn 0.6s ease-out;
+  width: 100%;
+  max-width: 100%;
 
   @keyframes fadeIn {
     from { 
@@ -149,7 +151,10 @@ export const PostContent = styled.div`
   color: ${props => props.theme.colors.textSecondary};
   white-space: pre-wrap;
   word-wrap: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  hyphens: auto;
   margin-bottom: 1.5rem;
   font-weight: 400;
   letter-spacing: -0.01em;

@@ -11,6 +11,8 @@ export const PostCardContainer = styled.article`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   animation: ${props => props.theme.animations.fadeIn} 0.5s ease-out;
+  width: 100%;
+  max-width: 100%;
 
   &:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -109,7 +111,10 @@ export const PostContent = styled(Link)`
   color: ${props => props.theme.colors.text};
   white-space: pre-wrap;
   word-wrap: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  hyphens: auto;
   margin: 1rem 0;
   padding: 1rem;
   background: ${props => props.theme.colors.primaryLight};
